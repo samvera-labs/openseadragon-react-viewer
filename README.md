@@ -2,11 +2,9 @@
 
 Starter configuration for a project which handles development and npm packaging of a React/Redux micro application exported as a React component.
 
-**Note**: This configuration does not (currently) publish to the NPM registry, but rather is meant to `import` the packaged wrapper component directly via a Github branch. See **Deployment** notes below for more info and example code.
-
 ## Goals
 
-1. This boilerplate repository aims to be a single repository which is both a development environment, and offers `npm` packaging capabilities.
+This boilerplate repository aims to be a single repository which is both a development environment, and offers `npm` packaging capabilities.
 
 ## Getting Started
 
@@ -23,10 +21,10 @@ yarn --version
 
 ### Installing
 
-1. Clone this repository to your local machine
+1. Clone or fork this repository
 
 ```
-git clone
+git clone git@github.com:adamjarling/starter-react-webpack-npm_packaging-project.git
 ```
 
 2. Install dependencies
@@ -43,13 +41,19 @@ yarn start
 
 Open up a browser and navigate to: http://localhost:3001/. Hot reloading via `webpack` is enabled, so you'll see live updates in the browser during development.
 
-### Development
+### Customizing
 
-All development should be done in the `/src` directory.
+1. Rename the project folder "starter-react-webpack-npm_packaging-project" to your own...ie: "my-awesome-packaged-component"
+
+2. Update the `package.json` file to customize for your project. Especially `namme, description, keywords, author`, etc.
+
+## Development
+
+All code updates should be done to files in the `/src` directory.
 
 The `/demo` directory contains the demo application entry point `index.html` file, and mocks an application consuming the SME component.
 
-#### Component configuration
+### Component configuration
 
 A consuming application is expected to provide the following configuration `props` passed to the SME component.
 
@@ -58,7 +62,7 @@ A consuming application is expected to provide the following configuration `prop
 | `someProp`    | string | What does this prop do? Fill in your details here. |     |     |
 | `anotherProp` | number | Unique id of the work.                             |     |     |
 
-#### Example usage
+### Example usage
 
 ```
 const props = {
@@ -69,7 +73,7 @@ const props = {
 <YourComponent {...props} />
 ```
 
-### Commands
+## Commands
 
 The following commands are available to the application via `npm scripts` located in the `package.json` file.
 
@@ -117,7 +121,7 @@ To run tests in `watch` mode:
 yarn test:watch
 ```
 
-`Jest` is the configured testing framework, and we're in the process of incorporating `react-testing-library` https://github.com/testing-library/react-testing-library.
+`Jest` is the configured testing framework.
 
 ### Coding style tests
 
@@ -158,7 +162,7 @@ See the yarn docs (https://yarnpkg.com/lang/en/docs/cli/add/) for more info on a
 ## Built With
 
 - [React](https://reactjs.org/) - JavaScript component library
-- [Peak.js](https://github.com/bbc/peaks.js) - Waveform display library from BBC
+- [React Redux](https://react-redux.js.org/) - Redux for state management (You don't have to use it)
 - [Jest](https://jestjs.io/) - Testing framework
 
 ## Contributing
