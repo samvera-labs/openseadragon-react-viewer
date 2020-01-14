@@ -2,7 +2,11 @@
 
 Starter configuration for a project which handles development and npm packaging of a React/Redux micro application exported as a React component.
 
-**Note**: We are not currently publishing this package to NPM, but rather `import`ing the resulting component directly via a Github repository URL address. See **Deployment** notes below for more info and example code.
+**Note**: This configuration does not (currently) publish to the NPM registry, but rather is meant to `import` the packaged wrapper component directly via a Github branch. See **Deployment** notes below for more info and example code.
+
+## Goals
+
+1. This boilerplate repository aims to be a single repository which is both a development environment, and offers `npm` packaging capabilities.
 
 ## Getting Started
 
