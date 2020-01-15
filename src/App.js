@@ -1,22 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
+import React from "react";
+import "./App.scss";
+import OpenSeadragonContainer from "./containers/OpenSeadragonContainer";
+import "./fontawesome-usage";
 
-// Font Awesome Imports
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPen, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
-library.add(faPen, faSave, faTrash);
+const App = () => {
+  const manifestUrl =
+    "https://iiif.stack.rdc.library.northwestern.edu/public/06/20/ea/ca/-5/4e/6-/41/81/-a/85/8-/39/dd/ea/0b/b1/c5-manifest.json";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Your app goes here</h1>
-        <p>
-          CSS styles are applied like <span className="some-style">this</span>
-        </p>
-      </div>
-    );
-  }
-}
+  return <OpenSeadragonContainer iiifManifestUrl={manifestUrl} />;
+};
 
 export default App;

@@ -1,7 +1,7 @@
 {
-  "name": "starter-react-webpack-npm_packaging-project",
+  "name": "openseadragon-react-viewer",
   "version": "1.0.0",
-  "description": "Starter configuration for a project which handles development and npm packaging of a React/Redux micro application exported as a React component.",
+  "description": "A React wrapper around OpenSeadragon providing some additional fileset navigation.",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest --coverage --colors",
@@ -15,7 +15,7 @@
   ],
   "keywords": [
     "React",
-    "redux",
+    "OpenSeadragon",
     "webpack",
     "babel",
     "packaging",
@@ -45,9 +45,11 @@
     "css-loader": "^3.4.2",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
+    "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "rimraf": "^3.0.0",
+    "sass-loader": "^8.0.2",
     "style-loader": "^1.1.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
@@ -59,9 +61,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "axios": "^0.19.1",
-    "prop-types": "^15.6.2",
-    "react-redux": "^7.1.3",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "openseadragon": "^2.4.1",
+    "prop-types": "^15.6.2"
   }
 }
