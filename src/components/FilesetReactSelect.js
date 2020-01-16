@@ -19,12 +19,14 @@ const FilesetReactSelect = ({
     <div className="dropdown-select-wrapper" data-testid="react-select-wrapper">
       <Select
         options={tileSources}
-        value={currentTileSource}
+        //value={currentTileSource}
         onChange={handleChange}
         isMulti={false}
         isOptionSelected={obj => false}
         className="react-select-container"
         classNamePrefix="react-select"
+        maxMenuHeight={600}
+        placeholder="Filter work file sets"
         theme={theme => ({
           ...theme,
           borderRadius: 0,

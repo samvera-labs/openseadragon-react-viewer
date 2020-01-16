@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { getCanvasImageResources } from "../services/iiif-parser";
 import Toolbar from "../components/Toolbar";
 import FilesetReactSelect from "../components/FilesetReactSelect";
+import Thumbnails from "../components/Thumbnails";
 
 /**
  * Viewer component
@@ -19,16 +20,15 @@ const Viewer = ({ manifest }) => {
   const [currentFileset, setCurrentFileset] = useState();
 
   useEffect(() => {
-    console.log("useEffect() on []");
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
   }, []);
 
   useEffect(() => {
-    console.log("useEffect() on canvasImageResources");
     setCurrentFileset(
       canvasImageResources.length > 0 ? canvasImageResources[0] : null
     );
+    // Initialize OpenSeadragon instance
     initOpenSeadragon();
   }, [canvasImageResources]);
 
@@ -36,8 +36,11 @@ const Viewer = ({ manifest }) => {
     loadNewFileset(id);
   };
 
+  const handleThumbClick = id => {
+    loadNewFileset(id);
+  };
+
   function loadNewFileset(id) {
-    console.log("openSeadragonInstance", openSeadragonInstance);
     const index = canvasImageResources.findIndex(element => element.id === id);
 
     setCurrentFileset(canvasImageResources[index]);
@@ -45,7 +48,6 @@ const Viewer = ({ manifest }) => {
   }
 
   function initOpenSeadragon() {
-    console.log("initOpenSeadragon()");
     if (canvasImageResources.length === 0) {
       return;
     }
@@ -112,6 +114,7 @@ const Viewer = ({ manifest }) => {
           >
             <Toolbar
               isMobile={false}
+              // TODO: Wire downloading up
               // onDownloadCropClick={this.handleDownloadCropClick}
               // onDownloadFullSize={this.handleDownloadFullSize}
             />
@@ -121,13 +124,13 @@ const Viewer = ({ manifest }) => {
 
       <div id="openseadragon1" className="open-seadragon-container"></div>
 
-      {/* {tileSources.length > 1 && (
-        <WorkOpenSeadragonThumbnails
-          currentTileSource={currentTileSource}
-          onThumbClick={this.handleThumbClick}
-          tileSources={tileSources}
+      {canvasImageResources.length > 1 && (
+        <Thumbnails
+          currentFileset={currentFileset}
+          onThumbClick={handleThumbClick}
+          tileSources={canvasImageResources}
         />
-      )} */}
+      )}
     </>
   );
 };
