@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { getTileSources } from "../services/iiif-parser";
+import { getCanvasImageResources } from "../services/iiif-parser";
 import Toolbar from "../components/Toolbar";
+import FilesetReactSelect from "../components/FilesetReactSelect";
 
 const OpenSeadragonContainer = ({ iiifManifestUrl }) => {
-  let openSeadragonInstance = null;
-  const [tileSources, setTileSources] = useState([]);
+  const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
+  const [canvasImageResources, setCanvasImageResources] = useState([]);
+  const [currentFileset, setCurrentFileset] = useState();
+
+  console.log(" ");
+  console.log("OpenSeadragonContainer() renders");
 
   useEffect(() => {
     // Get the IIIF manifest to read tilesources
@@ -15,8 +20,11 @@ const OpenSeadragonContainer = ({ iiifManifestUrl }) => {
   }, []);
 
   useEffect(() => {
+    setCurrentFileset(
+      canvasImageResources.length > 0 ? canvasImageResources[0] : null
+    );
     initOpenSeadragon();
-  }, [tileSources]);
+  }, [canvasImageResources]);
 
   async function getManifest() {
     // Get the mainifest
@@ -25,11 +33,23 @@ const OpenSeadragonContainer = ({ iiifManifestUrl }) => {
     // Handle possible errors
 
     // Pull out tile sources from manifest
-    setTileSources(getTileSources(response.data));
+    setCanvasImageResources(getCanvasImageResources(response.data));
+  }
+
+  const handleFilesetSelectChange = id => {
+    loadNewFileset(id);
+  };
+
+  function loadNewFileset(id) {
+    console.log("openSeadragonInstance", openSeadragonInstance);
+    const index = canvasImageResources.findIndex(element => element.id === id);
+
+    setCurrentFileset(canvasImageResources[index]);
+    openSeadragonInstance.goToPage(index);
   }
 
   function initOpenSeadragon() {
-    if (tileSources.length === 0) {
+    if (canvasImageResources.length === 0) {
       return;
     }
 
@@ -42,52 +62,54 @@ const OpenSeadragonContainer = ({ iiifManifestUrl }) => {
       previousButton: "previous"
     };
 
-    OpenSeadragon({
-      ajaxWithCredentials: true,
-      crossOriginPolicy: "Anonymous",
-      defaultZoomLevel: 0,
-      gestureSettingsMouse: {
-        scrollToZoom: false,
-        clickToZoom: true,
-        dblClickToZoom: true,
-        pinchToZoom: true
-      },
-      id: "openseadragon1",
-      loadTilesWithAjax: true,
-      navigatorPosition: "ABSOLUTE",
-      navigatorTop: "100px",
-      navigatorLeft: "40px",
-      navigatorHeight: "200px",
-      navigatorWidth: "260px",
-      navImages: {},
-      preserveViewport: true,
-      referenceStripScroll: "vertical",
-      sequenceMode: true,
-      showNavigator: true,
-      //showFlipControl: false,
-      showNavigationControl: true,
-      // showRotationControl: false,
-      // showZoomControl: false,
-      showHomeControl: false,
-      // showFullPageControl: false,
-      // showSequenceControl: false,
-      showReferenceStrip: false,
-      toolbar: "toolbarDiv",
-      tileSources: tileSources.map(t => t.id),
-      visibilityRatio: 1,
-      ...customControlIds
-    });
+    setOpenSeadragonInstance(
+      OpenSeadragon({
+        ajaxWithCredentials: true,
+        crossOriginPolicy: "Anonymous",
+        defaultZoomLevel: 0,
+        gestureSettingsMouse: {
+          scrollToZoom: false,
+          clickToZoom: true,
+          dblClickToZoom: true,
+          pinchToZoom: true
+        },
+        id: "openseadragon1",
+        loadTilesWithAjax: true,
+        navigatorPosition: "ABSOLUTE",
+        navigatorTop: "100px",
+        navigatorLeft: "40px",
+        navigatorHeight: "200px",
+        navigatorWidth: "260px",
+        navImages: {},
+        preserveViewport: true,
+        referenceStripScroll: "vertical",
+        sequenceMode: true,
+        showNavigator: true,
+        //showFlipControl: false,
+        showNavigationControl: true,
+        // showRotationControl: false,
+        // showZoomControl: false,
+        showHomeControl: false,
+        // showFullPageControl: false,
+        // showSequenceControl: false,
+        showReferenceStrip: false,
+        toolbar: "toolbarDiv",
+        tileSources: canvasImageResources.map(t => t.id),
+        visibilityRatio: 1,
+        ...customControlIds
+      })
+    );
   }
 
   return (
-    <div>
-      <div className="open-seadgragon-top-bar-wrapper">
-        <div className={`open-seadgragon-top-bar `}>
-          {/* <WorkOpenSeadragonFilesetReactSelect
-            currentTileSource={currentTileSource}
-            onFileSetChange={this.handleFilesetSelectChange}
-            tileSources={tileSources}
-          /> */}
+    <div className="osdr-wrapper">
+      <div className="osdr-top-bar-wrapper">
+        <div className={`osdr-top-bar `}>
+          <FilesetReactSelect
+            currentTileSource={currentFileset}
+            onFileSetChange={handleFilesetSelectChange}
+            tileSources={canvasImageResources}
+          />
 
           <div id="toolbarDiv" className="toolbar">
             <Toolbar

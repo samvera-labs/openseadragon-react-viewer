@@ -3,7 +3,7 @@
  * @param {object} manifest
  * @returns {array}
  */
-export function getTileSources(manifest) {
+export function getCanvasImageResources(manifest) {
   let tileSources = [];
 
   if (!manifest.sequences || !manifest.sequences[0].canvases) {

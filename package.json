@@ -62,6 +62,8 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "axios": "^0.19.1",
     "openseadragon": "^2.4.1",
-    "prop-types": "^15.6.2"
+    "prop-types": "^15.6.2",
+    "react-select": "^3.0.8",
+    "react-sizes": "^2.0.0"
   }
 }
