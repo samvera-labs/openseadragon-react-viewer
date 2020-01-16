@@ -12,15 +12,18 @@ import {
   faArrowCircleRight,
   faHome
 } from "@fortawesome/free-solid-svg-icons";
-library.add(
-  faPen,
-  faSave,
-  faTrash,
-  faSearchPlus,
-  faSearchMinus,
-  faExpand,
-  faDownload,
-  faArrowCircleLeft,
-  faArrowCircleRight,
-  faHome
-);
+
+export default function registerIcons() {
+  library.add(
+    faPen,
+    faSave,
+    faTrash,
+    faSearchPlus,
+    faSearchMinus,
+    faExpand,
+    faDownload,
+    faArrowCircleLeft,
+    faArrowCircleRight,
+    faHome
+  );
+}
