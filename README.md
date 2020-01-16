@@ -1,10 +1,10 @@
-# Starter React/Redux webpack npm-packaging project
+# OpenSeadragon React Viewer
 
-Starter configuration for a project which handles development and npm packaging of a React/Redux micro application exported as a React component.
+A React wrapper component around the OpenSeadragon viewer, for importing into React projects.
 
 ## Goals
 
-This boilerplate repository aims to be a single repository which is both a development environment, and offers `npm` packaging capabilities.
+...tbd
 
 ## Getting Started
 
@@ -23,10 +23,6 @@ yarn --version
 
 1. Clone or fork this repository
 
-```
-git clone git@github.com:adamjarling/starter-react-webpack-npm_packaging-project.git
-```
-
 2. Install dependencies
 
 ```
@@ -41,36 +37,28 @@ yarn start
 
 Open up a browser and navigate to: http://localhost:3001/. Hot reloading via `webpack` is enabled, so you'll see live updates in the browser during development.
 
-### Customizing
-
-1. Rename the project folder "starter-react-webpack-npm_packaging-project" to your own...ie: "my-awesome-packaged-component"
-
-2. Update the `package.json` file to customize for your project. Especially `namme, description, keywords, author`, etc.
-
 ## Development
 
 All code updates should be done to files in the `/src` directory.
 
-The `/demo` directory contains the demo application entry point `index.html` file, and mocks an application consuming the SME component.
+The `/demo` directory contains the demo application entry point `index.html` file. `/demo/index.js` mocks your React application importing the OpenSeadragon React Viewer component.
 
 ### Component configuration
 
-A consuming application is expected to provide the following configuration `props` passed to the SME component.
+A consuming application is expected to provide the following configuration `props` passed to the OpenSeadragon React Viewer component.
 
-| prop          | type   | description                                        |     |     |
-| ------------- | ------ | -------------------------------------------------- | --- | --- |
-| `someProp`    | string | What does this prop do? Fill in your details here. |     |     |
-| `anotherProp` | number | Unique id of the work.                             |     |     |
+| prop                   | type   | description                                                 |     |     |
+| ---------------------- | ------ | ----------------------------------------------------------- | --- | --- |
+| `manifestUrl`          | string | URL of a public manifest.                                   |     |     |
+| `showSelectFilter`     | bool   | Whether to display the custom child images in a Work filter |     |     |
+| `showCustomThumbnails` | bool   | Whether to display custom thumbnails                        |     |     |
 
 ### Example usage
 
 ```
-const props = {
-  someProp: 'I am the value for some prop',
-  anotherProp: 123456789,
-};
+import OpenSeadragonReactViewer from "openseadragon-react-viewer"
 
-<YourComponent {...props} />
+<OpenSeadragonReactViewer manifestUrl="https://some-manifest-url-here.json" />
 ```
 
 ## Commands
@@ -161,8 +149,8 @@ See the yarn docs (https://yarnpkg.com/lang/en/docs/cli/add/) for more info on a
 
 ## Built With
 
+- [OpenSeadragon](https://openseadragon.github.io/) - OpenSeadragon
 - [React](https://reactjs.org/) - JavaScript component library
-- [React Redux](https://react-redux.js.org/) - Redux for state management (You don't have to use it)
 - [Jest](https://jestjs.io/) - Testing framework
 
 ## Contributing
