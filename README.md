@@ -1,14 +1,32 @@
 # OpenSeadragon React Viewer
 
-A React wrapper component around the OpenSeadragon viewer, for importing into React projects.
+A React wrapper component around the OpenSeadragon viewer. Import the component into your React application, feed it a IIIF manifest URL via props (see below for example), and it will render an OpenSeadragon viewer with:
 
-## Goals
+- Alternative toolbar icons
+- A searchable dropdown select menu for navigating an image with multiple tile source images.
+- A custom thumbnail navigator for an image with multiple tile source images.
+- Ability to download the currently zoomed canvas image, or be presented with a link to download the full-size image.
 
-...tbd
+## Usage
 
-## Getting Started
+```
+yarn add https://github.com/samvera-labs/openseadragon-react-viewer
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+```
+
+Then in your React application...
+
+```
+// MyReactComponent.js
+
+import OpenSeadragonReactViewer from "openseadragon-react-viewer"
+
+<OpenSeadragonReactViewer manifestUrl="https://some-manifest-url-here.json" />
+```
+
+For testing, see `/demo/src/index.html` for an example IIIF manifest from Northwestern Libraries Digital Collections.
+
+## Development
 
 ### Prerequisites
 
