@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve("lib"),
     filename: "OpenSeadragonViewer.js",
+    library: "OpenSeadragonReactViewer",
     libraryTarget: "umd",
     publicPath: "/lib/",
     umdNamedDefine: true
