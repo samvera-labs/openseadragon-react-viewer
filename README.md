@@ -11,10 +11,8 @@ This component is being extracted from Northwesten's Digital Collections app. Fo
 
 ## Usage
 
-Install from the Github repo (Note, not yet functional...working on it)
-
 ```
-yarn add https://github.com/samvera-labs/openseadragon-react-viewer
+yarn add openseadragon-react-viewer
 ```
 
 Then in your React application...

@@ -6,12 +6,12 @@ import axios from "axios";
 /**
  * Wrapper OpenSeadragon component
  * @param {Object} props - React props
+ * @param {string} props.manifestUrl - something like "https://some-manifes-url"
  */
 const OpenSeadragonContainer = ({ manifestUrl }) => {
   const [manifest, setManifest] = useState();
 
   useEffect(() => {
-    // Get the IIIF manifest to read tilesources
     getManifest();
   }, []);
 
