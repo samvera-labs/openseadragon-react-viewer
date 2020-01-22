@@ -1,11 +1,13 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
-  template: path.join(__dirname, "demo/src/index.html"),
-  filename: "./index.html"
-});
+
 module.exports = {
-  entry: path.join(__dirname, "demo/src/index.js"),
+  mode: "production",
+  entry: "./src/App.js",
+  output: {
+    path: path.resolve("lib"),
+    filename: "OpenSeadragonViewer.js",
+    libraryTarget: "commonjs2"
+  },
   module: {
     rules: [
       {
@@ -27,14 +29,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  plugins: [htmlWebpackPlugin],
-  resolve: {
-    extensions: [".js", ".jsx"]
-  },
-  devServer: {
-    port: 3001,
-    open: true
-  },
-  devtool: "source-map"
+  }
 };
