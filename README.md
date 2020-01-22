@@ -1,17 +1,20 @@
-# OpenSeadragon React Viewer
+# OpenSeadragonViewer
 
 A React wrapper component around the OpenSeadragon viewer. Import the component into your React application, feed it a IIIF manifest URL via props (see below for example), and it will render an OpenSeadragon viewer with:
 
 - Alternative toolbar icons
 - A searchable dropdown select menu for navigating an image with multiple tile source images.
 - A custom thumbnail navigator for an image with multiple tile source images.
-- Ability to download the currently zoomed canvas image, or be presented with a link to download the full-size image.
+- Ability to download the currently zoomed canvas image, or be presented with a link to download the full-size image. _(coming soon...)_
+
+This component is being extracted from Northwesten's Digital Collections app. For an example: https://dc.library.northwestern.edu/items/f912a581-d9e8-43d6-a7c8-a8d46eff7517
 
 ## Usage
 
+Install from the Github repo (Note, not yet functional...working on it)
+
 ```
 yarn add https://github.com/samvera-labs/openseadragon-react-viewer
-
 ```
 
 Then in your React application...
@@ -19,14 +22,32 @@ Then in your React application...
 ```
 // MyReactComponent.js
 
-import OpenSeadragonReactViewer from "openseadragon-react-viewer"
+import OpenSeadragonViewer from "openseadragon-react-viewer"
 
-<OpenSeadragonReactViewer manifestUrl="https://some-manifest-url-here.json" />
+<OpenSeadragonViewer manifestUrl="https://some-manifest-url-here.json" />
 ```
 
-For testing, see `/demo/src/index.html` for an example IIIF manifest from Northwestern Libraries Digital Collections.
+For demo purposes, see `/demo/src/index.js` for an example IIIF manifest from Northwestern Libraries Digital Collections.
 
 ## Development
+
+Note there are two environments, a bundling (`/`) and development (`/demo`) environent, each with their own `package.json` and `webpack.config.js` files.
+
+```
+package.json
+webpack.config.js
+...
+// Edit files in the /scr directory when developing
+/src
+
+...
+// A conveniece directory for working on the component
+/demo
+/demo/package.json
+/demo/webpack.config.js
+```
+
+Root level handles the bundling/packaging. Demo level provides dev server environment. Note you'll need to do a `yarn install` in both directories.
 
 ### Prerequisites
 
@@ -41,25 +62,36 @@ yarn --version
 
 1. Clone or fork this repository
 
-2. Install dependencies
+2. Install _root_ dependencies
 
 ```
 yarn install
 ```
 
-3. Start the development server
+3. Install _demo_ dependencies
 
 ```
-yarn start
+cd demo
+yarn install
 ```
 
-Open up a browser and navigate to: http://localhost:3001/. Hot reloading via `webpack` is enabled, so you'll see live updates in the browser during development.
+### More on repo environments
 
-## Development
+Application components are located in the root level `/src` directory.
 
-All code updates should be done to files in the `/src` directory.
+The `/demo` directory is a convenience directory mocking a consuming application. View `/demo/src/index.js` to see how the demo is `@import`ing the OpenSeadragonViewer component.
 
-The `/demo` directory contains the demo application entry point `index.html` file. `/demo/index.js` mocks your React application importing the OpenSeadragon React Viewer component.
+### Running the demo
+
+From within `/demo`, run
+
+`yarn start`
+
+and the demo app will load in the browser. Any changes made to component files in `/src` will live reload in the browser.
+
+### Caveat
+
+Keep in mind the `/demo` is a convenience directory for developing an _unbundled_ component. By default, it's not importing the commonjs export. See https://github.com/samvera-labs/starter-react-component-npm for more details
 
 ### Component configuration
 
@@ -71,47 +103,17 @@ A consuming application is expected to provide the following configuration `prop
 | `showSelectFilter`     | bool   | Whether to display the custom child images in a Work filter |     |     |
 | `showCustomThumbnails` | bool   | Whether to display custom thumbnails                        |     |     |
 
-### Example usage
+## Deployment
+
+### Bundling
+
+When ready to package your component, from within the project root directory, run:
 
 ```
-import OpenSeadragonReactViewer from "openseadragon-react-viewer"
-
-<OpenSeadragonReactViewer manifestUrl="https://some-manifest-url-here.json" />
+yarn build
 ```
 
-## Commands
-
-The following commands are available to the application via `npm scripts` located in the `package.json` file.
-
-```
-yarn clean
-```
-
-Cleans the output directory `dist`, ensuring a fresh copy of files when preparing your files for packaging.
-
-```
-yarn start
-```
-
-Starts the webpack development server in which you can view your work. http://localhost:3001/
-
-```
-yarn test
-```
-
-Runs the application's tests once, and provides a coverage report.
-
-```
-yarn test:watch
-```
-
-If you prefer to keep an open `watch` on your tests during development, run this command in a separate tab in your terminal/shell.
-
-```
-yarn transpile
-```
-
-This command prepares the React component for packaging and distribution. It moves packaged, transpiled files into the `/dist` directory. Run this command when you're happy with your development changes, before committing a branch which you wish to push to Github or import locally.
+This will output bundled files in the `/lib` folder. The OpenSeadragonViewer component is now ready to be imported directly as a package from any external React app.
 
 ## Running the tests
 
@@ -127,48 +129,15 @@ To run tests in `watch` mode:
 yarn test:watch
 ```
 
-`Jest` is the configured testing framework.
-
-### Coding style tests
+## Code style
 
 There is a `prettierrc` file with project coding style settings.
-
-## Deployment
-
-To create a new build package which can be imported by a consuming application, run:
-
-```
-yarn transpile
-```
-
-This will create a component package in the `/dist` folder which is ready to be imported by another application.
-
-Currently we're installing the component through a GitHub repo instead of the NPM repository, so to import the default package into your application, run:
-
-```
-yarn add https://github.com/your-name-or-organization/your-repository-name
-```
-
-If you'd like to import a feature branch you're working on, maybe called `my-new-feature`, do the following:
-
-```
-yarn remove your-repository-name
-```
-
-(to make sure old files aren't hanging around)
-
-Then,
-
-```
-yarn add https://github.com/your-name-or-organization/your-repository-name#my-new-feature
-```
-
-See the yarn docs (https://yarnpkg.com/lang/en/docs/cli/add/) for more info on alternative ways of importing packages.
 
 ## Built With
 
 - [OpenSeadragon](https://openseadragon.github.io/) - OpenSeadragon
 - [React](https://reactjs.org/) - JavaScript component library
+- [Webpack](https://webpack.js.org/) - Webpack JavaScript bundler
 - [Jest](https://jestjs.io/) - Testing framework
 
 ## Contributing
