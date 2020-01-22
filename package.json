@@ -19,21 +19,11 @@
   "scripts": {
     "test": "jest --coverage --colors",
     "test:watch": "jest --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "prepublish": "rm -rf ./lib && yarn run build"
   },
   "contributors": [
     "Adam Arling <aarling@gmail.com>"
-  ],
-  "keywords": [
-    "React",
-    "OpenSeadragon",
-    "webpack",
-    "babel",
-    "packaging",
-    "npm",
-    "jest",
-    "react-testing-library",
-    "fontawesome"
   ],
   "author": "Adam J. Arling",
   "license": "ISC",
