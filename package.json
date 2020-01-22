@@ -2,6 +2,19 @@
   "name": "openseadragon-react-viewer",
   "version": "1.0.0",
   "description": "A React wrapper around OpenSeadragon providing some additional fileset navigation.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samvera-labs/openseadragon-react-viewer"
+  },
+  "keywords": [
+    "OpenSeadragon",
+    "Open Seadragon",
+    "Pyramidal tifs",
+    "React",
+    "webpack",
+    "image viewer",
+    "zoomable"
+  ],
   "main": "./lib/OpenSeadragonViewer.js",
   "scripts": {
     "test": "jest --coverage --colors",
