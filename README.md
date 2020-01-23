@@ -42,7 +42,16 @@ Props the component accepts:
 - `manifestUrl` - {string} IIIF manifest url (required)
 - `options` - {object} (coming soon...) An options config object whether to use custom features or OpenSeadragon features
 
-## Contributing towards development
+## Development
+
+**TL/DR:** To spin up a live-reloading local development environment, from the project root directory run:
+
+```
+cd demo
+yarn start
+```
+
+Visit http://localhost:8080/ in your browser. Additional info below...
 
 ### Prerequisites
 
@@ -57,20 +66,20 @@ yarn --version
 
 1. Clone or fork this repository
 
-2. Install _root_ dependencies
+2. Install root-level project dependencies
 
 ```
 yarn install
 ```
 
-3. Install _demo_ dependencies
+3. Install _/demo_ dependencies
 
 ```
 cd demo
 yarn install
 ```
 
-For demo purposes, see `/demo/src/index.js` for an example IIIF manifest from Northwestern Libraries Digital Collections.
+See `/demo/src/index.js` for an example IIIF manifest URL from Northwestern Libraries Digital Collections you can initially use.
 
 Note there are two environments, a bundling (`/`) and development (`/demo`) environent, each with their own `package.json` and `webpack.config.js` files.
 
@@ -88,10 +97,6 @@ webpack.config.js
 /demo/webpack.config.js
 ```
 
-### More on dev environments
-
-Application components are located in the root level `/src` directory.
-
 The `/demo` directory is a convenience directory mocking a consuming application. View `/demo/src/index.js` to see how the demo is `@import`ing the OpenSeadragonViewer component.
 
 ### Running the demo
@@ -106,7 +111,13 @@ and the demo app will load in the browser. Any changes made to component files i
 
 Keep in mind the `/demo` is a convenience directory for developing an _unbundled_ component. By default, it's not importing the commonjs export. See https://github.com/samvera-labs/starter-react-component-npm for more details on how to sync webpack loaders in packaging and demo environments.
 
+## Contributing
+
+If you're working on PR for this project, branch off `master` and create a feature branch. Submit your PR to https://github.com/samvera-labs/openseadragon-react-viewer. You're awesome. Thanks!
+
 ## Deployment
+
+If you forked this repo and want to publish your own version, here's some info on how the packaing works.
 
 ### Bundling
 
