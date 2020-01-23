@@ -141,6 +141,7 @@ Use [Prettier](https://prettier.io/).
 ## Built With
 
 - [OpenSeadragon](https://openseadragon.github.io/) - OpenSeadragon
+- [IIIF](https://iiif.io/) - IIIF International Image Interoperability Framework
 - [React](https://reactjs.org/) - JavaScript component library
 - [Webpack](https://webpack.js.org/) - Webpack JavaScript bundler
 - [Jest](https://jestjs.io/) - Testing framework

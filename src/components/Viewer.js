@@ -5,6 +5,7 @@ import { getCanvasImageResources } from "../services/iiif-parser";
 import Toolbar from "../components/Toolbar";
 import FilesetReactSelect from "../components/FilesetReactSelect";
 import Thumbnails from "../components/Thumbnails";
+import Canvas2Image from "@reglendo/canvas2image";
 
 /**
  * Viewer component
@@ -31,6 +32,53 @@ const Viewer = ({ manifest }) => {
     // Initialize OpenSeadragon instance
     initOpenSeadragon();
   }, [canvasImageResources]);
+
+  const calculateDownloadDimensions = () => {
+    let returnObj = {};
+
+    try {
+      let height,
+        width,
+        maxWidth = 3000,
+        canvasHeight = openSeadragonInstance.drawer.canvas.height,
+        canvasWidth = openSeadragonInstance.drawer.canvas.width,
+        proportionRatio = canvasHeight / canvasWidth;
+
+      width = canvasWidth > maxWidth ? maxWidth : canvasWidth;
+      height = width * proportionRatio;
+
+      returnObj = { width, height };
+    } catch {
+      console.log(
+        "Error in handling download click for a fileset in OpenSeadragon viewer"
+      );
+      returnObj = {};
+    }
+
+    return returnObj;
+  };
+
+  const handleDownloadCropClick = () => {
+    const { width, height } = calculateDownloadDimensions();
+
+    if (width && height) {
+      Canvas2Image.saveAsJPEG(
+        openSeadragonInstance.drawer.canvas,
+        // Title of downloaded image, based on current file set "label" property
+        currentFileset.label
+          ? currentFileset.label.split(" ").join("-")
+          : "openseadragon-react-viewer-download",
+        width,
+        height
+      );
+    }
+  };
+
+  const handleDownloadFullSize = () => {
+    const { width } = calculateDownloadDimensions();
+    const path = `${currentFileset.id}/full/${width},/0/default.jpg`;
+    window.open(path, "_blank");
+  };
 
   const handleFilesetSelectChange = id => {
     loadNewFileset(id);
@@ -114,9 +162,8 @@ const Viewer = ({ manifest }) => {
           >
             <Toolbar
               isMobile={false}
-              // TODO: Wire downloading up
-              // onDownloadCropClick={this.handleDownloadCropClick}
-              // onDownloadFullSize={this.handleDownloadFullSize}
+              onDownloadCropClick={handleDownloadCropClick}
+              onDownloadFullSize={handleDownloadFullSize}
             />
           </div>
         </div>
