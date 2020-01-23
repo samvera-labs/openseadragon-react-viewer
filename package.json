@@ -1,6 +1,6 @@
 {
   "name": "openseadragon-react-viewer",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A React wrapper around OpenSeadragon providing some additional fileset navigation.",
   "repository": {
     "type": "git",
