@@ -44,9 +44,6 @@ const Viewer = ({ manifest }) => {
         canvasWidth = openSeadragonInstance.drawer.canvas.width,
         proportionRatio = canvasHeight / canvasWidth;
 
-      if (canvasWidth > maxWidth) {
-        width = maxWidth;
-      }
       width = canvasWidth > maxWidth ? maxWidth : canvasWidth;
       height = width * proportionRatio;
 
