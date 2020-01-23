@@ -67,10 +67,12 @@ module.exports = {
   moduleFileExtensions: ["js", "json", "jsx"],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    "@reglendo(.*)": "<rootDir>/globalStub.js"
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
-  // modulePathIgnorePatterns: [],
+  //modulePathIgnorePatterns: [],
 
   // Activates notifications for test results
   // notify: false,
