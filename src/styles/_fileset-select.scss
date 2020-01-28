@@ -1,0 +1,12 @@
+// Fileset select
+.dropdown-select-wrapper {
+  width: 350px;
+  color: $rich-black-80;
+  margin: 1rem 0 1rem 1rem;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+.react-select-container {
+  text-align: left;
+}
