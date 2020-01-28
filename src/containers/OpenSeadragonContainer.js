@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Viewer from "../components/Viewer";
 import PropTypes from "prop-types";
-import axios from "axios";
 
 /**
  * Wrapper OpenSeadragon component
@@ -10,17 +9,32 @@ import axios from "axios";
  */
 const OpenSeadragonContainer = ({ manifestUrl }) => {
   const [manifest, setManifest] = useState();
+  const [error, setError] = useState();
 
   useEffect(() => {
     getManifest();
   }, []);
 
   async function getManifest() {
-    const response = await axios.get(manifestUrl);
+    try {
+      const response = await fetch(`${manifestUrl}`);
+      const data = await response.json();
 
-    //TODO:  Handle possible errors
+      setManifest(data);
+    } catch (e) {
+      console.log(`${e.name}: ${e.message}`);
+      setError(`${e.name}: ${e.message}`);
+      return Promise.resolve();
+    }
+  }
 
-    setManifest(response.data);
+  if (error) {
+    return (
+      <div className="notification is-danger">
+        <button className="delete" onClick={() => setError()}></button>
+        {error}
+      </div>
+    );
   }
 
   return manifest ? (

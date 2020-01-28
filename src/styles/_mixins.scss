@@ -1,0 +1,24 @@
+// Custom scrollbar for cross-browser consistency
+// https://css-tricks.com/the-current-state-of-styling-scrollbars/
+@mixin scrollbar() {
+  // --scrollbarBG: #bbb8b8;
+  --scrollbarBG: #342f2e;
+  --thumbBG: #716c6b;
+
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  scrollbar-width: auto;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+
+  &::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+  }
+}

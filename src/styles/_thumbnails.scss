@@ -1,0 +1,53 @@
+// Thumbnails
+.bottom-panel {
+  background-color: rgba(52, 47, 46, 0.5);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 130px;
+  z-index: 4;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.thumbnail-view {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  @include scrollbar;
+}
+.panel-listing-thumbs {
+  clear: both;
+  list-style: none;
+  padding: 0;
+  white-space: nowrap;
+  margin-top: 13px;
+  margin-bottom: 4px;
+
+  .active-thumb {
+    outline: 8px solid $light-grey;
+    cursor: pointer;
+    transition: outline 0.2s ease-in-out;
+  }
+
+  li {
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+    display: inline-block;
+
+    &.active {
+      img {
+        @extend .active-thumb;
+      }
+    }
+  }
+
+  img {
+    margin: 8px;
+    &:hover {
+      @extend .active-thumb;
+    }
+  }
+}
