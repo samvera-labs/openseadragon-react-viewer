@@ -64,7 +64,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@reglendo/canvas2image": "^1.0.5-2",
     "openseadragon": "^2.4.1",
-    "react-select": "^3.0.8",
-    "react-sizes": "^2.0.0"
+    "react-device-detect": "^1.11.14",
+    "react-select": "^3.0.8"
   }
 }
