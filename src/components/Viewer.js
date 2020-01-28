@@ -6,6 +6,7 @@ import Toolbar from "../components/Toolbar";
 import FilesetReactSelect from "../components/FilesetReactSelect";
 import Thumbnails from "../components/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
+import { isMobile } from "react-device-detect";
 
 /**
  * Viewer component
@@ -131,7 +132,8 @@ const Viewer = ({ manifest }) => {
         preserveViewport: true,
         referenceStripScroll: "vertical",
         sequenceMode: true,
-        showNavigator: true,
+        showFullPageControl: !isMobile,
+        showNavigator: !isMobile,
         showNavigationControl: true,
         showHomeControl: false,
         showReferenceStrip: false,
@@ -161,7 +163,6 @@ const Viewer = ({ manifest }) => {
             data-testid="toolbar-wrapper"
           >
             <Toolbar
-              isMobile={false}
               onDownloadCropClick={handleDownloadCropClick}
               onDownloadFullSize={handleDownloadFullSize}
             />

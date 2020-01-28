@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
+import { isMobile } from "react-device-detect";
 
-const Toolbar = ({ isMobile, onDownloadCropClick, onDownloadFullSize }) => {
+const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
   function handleDownloadClick(e) {
@@ -42,15 +43,17 @@ const Toolbar = ({ isMobile, onDownloadCropClick, onDownloadFullSize }) => {
       >
         <FontAwesomeIcon icon="search-minus" />
       </button>
-      <button
-        id="full-page"
-        data-testid="full-page"
-        href="#full-page"
-        className="toolbar-controls button-link"
-        title="Full Screen"
-      >
-        <FontAwesomeIcon icon="expand" />
-      </button>
+      {!isMobile && (
+        <button
+          id="full-page"
+          data-testid="full-page"
+          href="#full-page"
+          className="toolbar-controls button-link"
+          title="Full Screen"
+        >
+          <FontAwesomeIcon icon="expand" />
+        </button>
+      )}
 
       {!isMobile && (
         <div className="openseadragon-toolbar-dropdown-wrapper">
