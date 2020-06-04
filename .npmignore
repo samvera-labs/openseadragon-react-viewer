@@ -1,7 +1,6 @@
 src
-demo
 coverage
 .babelrc
 babel.config.js
 .gitignore
-webpack.config.js
+rollup.config.js

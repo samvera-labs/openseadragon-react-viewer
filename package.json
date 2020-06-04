@@ -1,70 +1,59 @@
 {
   "name": "openseadragon-react-viewer",
-  "version": "1.2.1",
-  "description": "A React wrapper around OpenSeadragon providing some additional fileset navigation.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/samvera-labs/openseadragon-react-viewer"
-  },
-  "keywords": [
-    "OpenSeadragon",
-    "Open Seadragon",
-    "Pyramidal tifs",
-    "React",
-    "IIIF",
-    "webpack",
-    "image viewer",
-    "zoomable"
-  ],
-  "main": "./lib/OpenSeadragonViewer.js",
-  "scripts": {
-    "test": "jest --coverage --colors",
-    "test:watch": "jest --watch",
-    "build": "webpack",
-    "prepublishOnly": "rm -rf ./lib && yarn run build"
-  },
-  "contributors": [
-    "Adam Arling <aarling@gmail.com>"
-  ],
-  "author": "Adam J. Arling",
-  "license": "ISC",
-  "peerDependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+  "version": "1.3.0",
+  "main": "dist/openseadragon-react-viewer.cjs.js",
+  "module": "dist/openseadragon-react-viewer.esm.js",
+  "browser": "dist/openseadragon-react-viewer.umd.js",
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.10",
+    "@reglendo/canvas2image": "^1.0.5-2",
+    "openseadragon": "^2.4.2",
+    "prop-types": "^15.7.2",
+    "react-device-detect": "^1.12.1",
+    "react-select": "^3.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-export-namespace-from": "^7.8.3",
-    "@babel/plugin-proposal-throw-expressions": "^7.8.3",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@babel/preset-react": "^7.8.3",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@types/jest": "^24.9.0",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "^8.0.6",
-    "css-loader": "^3.4.2",
-    "jest": "^24.9.0",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@rollup/plugin-babel": "^5.0.2",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-replace": "^2.3.2",
+    "@testing-library/jest-dom": "^5.9.0",
+    "@testing-library/react": "^10.0.6",
+    "@types/jest": "^25.2.3",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1",
     "jest-canvas-mock": "^2.2.0",
-    "node-sass": "^4.13.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.2",
-    "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "npm-run-all": "^4.1.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rollup": "^1.29.0",
+    "rollup-plugin-livereload": "^1.3.0",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-serve": "^1.0.1",
+    "serve": "^11.3.1"
   },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/react-fontawesome": "^0.1.8",
-    "@reglendo/canvas2image": "^1.0.5-2",
-    "openseadragon": "^2.4.1",
-    "react-device-detect": "^1.11.14",
-    "react-select": "^3.0.8"
-  }
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c",
+    "dev": "NODE_ENV=development rollup -c -w",
+    "serve": "npm-run-all --parallel start watch",
+    "test": "jest --coverage --colors",
+    "test:watch": "jest --watch"
+  },
+  "files": [
+    "dist"
+  ]
 }
