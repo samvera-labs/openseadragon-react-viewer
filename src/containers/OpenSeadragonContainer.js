@@ -48,6 +48,7 @@ const OpenSeadragonContainer = ({ manifestUrl }) => {
   return manifest ? (
     <ErrorBoundary>
       <div css={wrapper}>
+        <p>Ima Circle CI Test</p>
         <Viewer manifest={manifest} />
       </div>
     </ErrorBoundary>
