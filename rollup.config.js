@@ -5,26 +5,25 @@ import replace from "@rollup/plugin-replace";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
 import pkg from "./package.json";
+import { terser } from "rollup-plugin-terser";
 
 import react from "react";
 import reactDom from "react-dom";
 
-// `npm run build` -> `production` is true
-// `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 // CommonJS (for Node) and ES module (for bundlers) build.
-// (We could have three entries in the configuration array
-// instead of two, but it's quicker to generate multiple
-// builds from a single configuration where possible, using
-// an array for the `output` option, where we can specify
-// `file` and `format` for each target)
 let productionRollup = {
   input: "src/main.js",
-  external: ["react", "react-dom"],
+  external: ["@emotion/core", "openseadragon", "react", "react-dom"],
   output: [
     { file: pkg.main, format: "cjs" },
+    {
+      file: pkg.main.replace(/\.js$/, ".min.js"),
+      format: "cjs",
+      plugins: [terser()],
+    },
     { file: pkg.module, format: "es" },
     {
       file: pkg.browser,
@@ -41,9 +40,8 @@ let productionRollup = {
       babelHelpers: "bundled",
       exclude: "node_modules/**",
     }),
-    resolve(), // tells Rollup how to find date-fns in node_modules
-    commonjs(), // converts date-fns to ES modules
-    //production && terser(), // minify, but only in production
+    resolve(), // tells Rollup how to find packages in node_modules
+    commonjs(), // converts node_modules packages to ES modules
   ],
 };
 
@@ -76,14 +74,15 @@ let devRollup = {
       ],
       presets: ["@babel/preset-env", "@babel/preset-react"],
     }),
-    resolve(), // tells Rollup how to find date-fns in node_modules
+    resolve(),
     commonjs({
       include: "node_modules/**",
       namedExports: {
         react: Object.keys(react),
         "react-dom": Object.keys(reactDom),
       },
-    }), // converts date-fns to ES modules
+    }),
+    // Serve the app and live reload
     serve({ open: true, contentBase: "public" }),
     livereload(),
   ],
