@@ -33,14 +33,13 @@ const FilesetReactSelect = ({
   return (
     <div css={dropdownSelectWrapper} data-testid="react-select-wrapper">
       <Select
-        options={tileSources}
-        //value={currentTileSource}
-        onChange={handleChange}
-        isMulti={false}
-        isOptionSelected={(obj) => false}
-        css={reactSelectContainer}
         classNamePrefix="react-select"
+        css={reactSelectContainer}
+        getOptionValue={(option) => option.id}
+        isMulti={false}
         maxMenuHeight={600}
+        onChange={handleChange}
+        options={tileSources}
         placeholder="Filter work file sets"
         theme={(theme) => ({
           ...theme,
@@ -52,6 +51,7 @@ const FilesetReactSelect = ({
             primary25: "#bbb8b8",
           },
         })}
+        value={currentTileSource}
       />
     </div>
   );

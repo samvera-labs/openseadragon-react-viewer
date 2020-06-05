@@ -88,6 +88,12 @@ const Viewer = ({ manifest }) => {
     initOpenSeadragon();
   }, [canvasImageResources]);
 
+  useEffect(() => {
+    if (openSeadragonInstance) {
+      openSeadragonInstance.addHandler("page", handlePageChange);
+    }
+  }, [openSeadragonInstance]);
+
   const calculateDownloadDimensions = () => {
     let returnObj = {};
 
@@ -137,6 +143,10 @@ const Viewer = ({ manifest }) => {
 
   const handleFilesetSelectChange = (id) => {
     loadNewFileset(id);
+  };
+
+  const handlePageChange = ({ page }) => {
+    setCurrentFileset(canvasImageResources[page]);
   };
 
   const handleThumbClick = (id) => {
