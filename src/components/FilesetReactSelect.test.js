@@ -10,7 +10,7 @@ describe("WorkOpenSeadragonFilesetReactSelect", () => {
     props = {
       currentTileSource: mockTileSources[1],
       onFileSetChange: mockOnFileSetChange,
-      tileSources: mockTileSources
+      tileSources: mockTileSources,
     }
   ) {
     return render(<WorkOpenSeadragonFilesetReactSelect {...props} />);
@@ -24,17 +24,15 @@ describe("WorkOpenSeadragonFilesetReactSelect", () => {
   it("renders the react-select element and search box", () => {
     const { getByTestId } = setUpTest();
     const el = getByTestId("react-select-wrapper");
-    const elContainer = el.querySelector(".react-select-container");
 
     expect(el).toBeInTheDocument();
-    expect(elContainer).toBeInTheDocument();
   });
 
-  it("renders a placeholder in the filter box on initial load", () => {
+  it("renders first item in filter box on initial load", () => {
     const { getByTestId } = setUpTest();
     const el = getByTestId("react-select-wrapper");
-    const placeholderEl = el.querySelector(".react-select__placeholder");
-    expect(placeholderEl.innerHTML).toEqual("Filter work file sets");
+    const displayEl = el.querySelector(".react-select__single-value");
+    expect(displayEl.innerHTML).toEqual("Fileset 2");
   });
 
   it("renders the correct information in select options", () => {

@@ -11,7 +11,7 @@ This component is being extracted from Northwesten's Digital Collections app. Fo
 
 ## Installation and usage
 
-The easiest way to use `openseadragon-react-viewer` is to install it from npm and build it into your app with Webpack.
+The easiest way to use `openseadragon-react-viewer` is to install the package from npm and import the component into your React app.
 
 ```
 yarn add openseadragon-react-viewer
@@ -21,7 +21,7 @@ Then use it in your app:
 
 ```
 import React from 'react';
-import OpenSeadragonViewer from "openseadragon-react-viewer"
+import { OpenSeadragonViewer } from "openseadragon-react-viewer"
 
 const App = () => {
   // Get your manifest from somewhere
@@ -44,18 +44,9 @@ Props the component accepts:
 
 ## Development
 
-**TL/DR:** To spin up a live-reloading local development environment, from the project root directory run:
-
-```
-cd demo
-yarn start
-```
-
-Visit http://localhost:8080/ in your browser. Additional info below...
-
 ### Prerequisites
 
-You'll need to have `node` installed on your local machine. Also, preferably `yarn` (as a wrapper for npm commands) installed as well. You can check either with:
+You'll need to have `node` installed on your local machine. Also, preferably `yarn` installed as well. You can check either with:
 
 ```
 node --version
@@ -66,72 +57,27 @@ yarn --version
 
 1. Clone or fork this repository
 
-2. Install root-level project dependencies
+2. Install project dependencies
 
 ```
 yarn install
 ```
 
-3. Install _/demo_ dependencies
+### Start development environment
+
+To spin up the development environment run:
 
 ```
-cd demo
-yarn install
+yarn dev
 ```
 
-See `/demo/src/index.js` for an example IIIF manifest URL from Northwestern Libraries Digital Collections you can initially use.
+Visit http://localhost:10001/ in your browser.
 
-Note there are two environments, a bundling (`/`) and development (`/demo`) environent, each with their own `package.json` and `webpack.config.js` files.
+See `rollup.config.js` for development and packaging configuration details. Development environment runs from a `UMD` bundled file, which is saved to the `/public` folder for local development.
 
-```
-package.json
-webpack.config.js
-...
-// Edit files in the /scr directory when developing
-/src
+### Running the tests
 
-...
-// A conveniece directory for working on the component
-/demo
-/demo/package.json
-/demo/webpack.config.js
-```
-
-The `/demo` directory is a convenience directory mocking a consuming application. View `/demo/src/index.js` to see how the demo is `@import`ing the OpenSeadragonViewer component.
-
-### Running the demo
-
-From within `/demo`, run
-
-`yarn start`
-
-and the demo app will load in the browser. Any changes made to component files in `/src` will live reload in the browser.
-
-### Caveat
-
-Keep in mind the `/demo` is a convenience directory for developing an _unbundled_ component. By default, it's not importing the commonjs export. See https://github.com/samvera-labs/starter-react-component-npm for more details on how to sync webpack loaders in packaging and demo environments.
-
-## Contributing
-
-If you're working on PR for this project, branch off `master` and create a feature branch. Submit your PR to https://github.com/samvera-labs/openseadragon-react-viewer. You're awesome. Thanks!
-
-## Deployment
-
-If you forked this repo and want to publish your own version, here's some info on how the packaing works.
-
-### Bundling
-
-The following command creates a UMD module:
-
-```
-yarn build
-```
-
-This will output to the `/lib` folder. The OpenSeadragonViewer component is now ready to be imported directly as a package from any external React app.
-
-## Running the tests
-
-To run the tests, with a full coverage report:
+To run unit tests, with a full coverage report:
 
 ```
 yarn test
@@ -142,6 +88,20 @@ To run tests in `watch` mode:
 ```
 yarn test:watch
 ```
+
+## Deployment
+
+To deploy your forked version of this repo, run:
+
+```
+yarn build
+```
+
+This will create CommoneJS, ES Module, and UMD distribution files located in the `/dist/` directory.
+
+## Contributing
+
+If you're working on PR for this project, branch off `master` and create a feature branch. Submit your PR to https://github.com/samvera-labs/openseadragon-react-viewer. You're awesome. Thanks!
 
 ## Code style
 
@@ -154,8 +114,9 @@ Use [Prettier](https://prettier.io/).
 - [OpenSeadragon](https://openseadragon.github.io/) - OpenSeadragon
 - [IIIF](https://iiif.io/) - IIIF International Image Interoperability Framework
 - [React](https://reactjs.org/) - JavaScript component library
-- [Webpack](https://webpack.js.org/) - Webpack JavaScript bundler
+- [Rollup](https://rollupjs.org/) - JavaScript Bundler
 - [Jest](https://jestjs.io/) - Testing framework
+- [Emotion](https://emotion.sh/) - CSS in JS
 
 ## Versioning
 
@@ -169,5 +130,3 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments

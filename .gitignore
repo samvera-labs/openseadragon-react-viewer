@@ -1,5 +1,5 @@
 # Component lib directory
-lib
+dist
 
 # Logs
 logs
@@ -15,7 +15,7 @@ pids
 coverage
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+dist/Release
 
 # Dependency directories
 node_modules/
@@ -28,3 +28,6 @@ node_modules/
 
 #VSCode
 .vscode/
+
+public/bundle.js
+public/bundle.js.map

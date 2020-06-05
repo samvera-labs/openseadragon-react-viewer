@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Viewer from "../components/Viewer";
 import PropTypes from "prop-types";
+import registerFaIcons from "../registerFaIcons";
+import Notification from "../components/Notification";
+import ErrorBoundary from "../components/ErrorBoundary";
+
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
+
+const wrapper = css`
+  position: relative;
+`;
+
+// Instantiate FontAwesome icons
+registerFaIcons();
 
 /**
  * Wrapper OpenSeadragon component
@@ -29,23 +42,20 @@ const OpenSeadragonContainer = ({ manifestUrl }) => {
   }
 
   if (error) {
-    return (
-      <div className="notification is-danger">
-        <button className="delete" onClick={() => setError()}></button>
-        {error}
-      </div>
-    );
+    return <Notification error={error} />;
   }
 
   return manifest ? (
-    <div className="osdr-wrapper">
-      <Viewer manifest={manifest} />
-    </div>
+    <ErrorBoundary>
+      <div css={wrapper}>
+        <Viewer manifest={manifest} />
+      </div>
+    </ErrorBoundary>
   ) : null;
 };
 
 OpenSeadragonContainer.propTypes = {
-  manifestUrl: PropTypes.string
+  manifestUrl: PropTypes.string,
 };
 
 export default OpenSeadragonContainer;

@@ -10,7 +10,7 @@ describe("WorkOpenSeadragonToolbar component", () => {
     props = {
       isMobile: false,
       onDownloadCropClick: mockOnDownloadCropClick,
-      onDownloadFullSize: mockOnDownloadFullSizeClick
+      onDownloadFullSize: mockOnDownloadFullSizeClick,
     }
   ) {
     return render(<WorkOpenSeadragonToolbar {...props} />);
@@ -33,7 +33,7 @@ describe("WorkOpenSeadragonToolbar component", () => {
 
   it("Does not render a download link on mobile", () => {
     const { queryByTestId } = setUpTest({
-      isMobile: true
+      isMobile: true,
     });
     expect(queryByTestId("full-size-download")).not.toBeInTheDocument();
   });

@@ -8,6 +8,60 @@ import Thumbnails from "../components/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
 import { isMobile } from "react-device-detect";
 
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
+
+const openSeadragonContainer = css`
+  display: inline-block;
+  background: black;
+  width: 100%;
+  height: 800px;
+  padding-bottom: 50px;
+
+  @media screen and (max-width: 768px) {
+    height: 500px;
+  }
+`;
+const topBarWrapper = css`
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #e3e3e3;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+
+  select {
+    color: #e3e3e3;
+    background-color: #716c6b;
+    height: auto;
+    margin: 1rem 0 1rem 1rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    select {
+      display: none;
+    }
+  }
+`;
+const topBar = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &.centered {
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+`;
+const toolbar = css`
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+  }
+`;
+
 /**
  * Viewer component
  *
@@ -33,6 +87,12 @@ const Viewer = ({ manifest }) => {
     // Initialize OpenSeadragon instance
     initOpenSeadragon();
   }, [canvasImageResources]);
+
+  useEffect(() => {
+    if (openSeadragonInstance) {
+      openSeadragonInstance.addHandler("page", handlePageChange);
+    }
+  }, [openSeadragonInstance]);
 
   const calculateDownloadDimensions = () => {
     let returnObj = {};
@@ -81,16 +141,22 @@ const Viewer = ({ manifest }) => {
     window.open(path, "_blank");
   };
 
-  const handleFilesetSelectChange = id => {
+  const handleFilesetSelectChange = (id) => {
     loadNewFileset(id);
   };
 
-  const handleThumbClick = id => {
+  const handlePageChange = ({ page }) => {
+    setCurrentFileset(canvasImageResources[page]);
+  };
+
+  const handleThumbClick = (id) => {
     loadNewFileset(id);
   };
 
   function loadNewFileset(id) {
-    const index = canvasImageResources.findIndex(element => element.id === id);
+    const index = canvasImageResources.findIndex(
+      (element) => element.id === id
+    );
 
     setCurrentFileset(canvasImageResources[index]);
     openSeadragonInstance.goToPage(index);
@@ -107,7 +173,7 @@ const Viewer = ({ manifest }) => {
       //homeButton: "home",
       fullPageButton: "full-page",
       nextButton: "next",
-      previousButton: "previous"
+      previousButton: "previous",
     };
 
     setOpenSeadragonInstance(
@@ -119,7 +185,7 @@ const Viewer = ({ manifest }) => {
           scrollToZoom: false,
           clickToZoom: true,
           dblClickToZoom: true,
-          pinchToZoom: true
+          pinchToZoom: true,
         },
         id: "openseadragon1",
         loadTilesWithAjax: true,
@@ -138,17 +204,17 @@ const Viewer = ({ manifest }) => {
         showHomeControl: false,
         showReferenceStrip: false,
         toolbar: "toolbarDiv",
-        tileSources: canvasImageResources.map(t => t.id),
+        tileSources: canvasImageResources.map((t) => t.id),
         visibilityRatio: 1,
-        ...customControlIds
+        ...customControlIds,
       })
     );
   }
 
   return (
     <>
-      <div data-testid="viewer" className="osdr-top-bar-wrapper">
-        <div className={`osdr-top-bar`}>
+      <div data-testid="viewer" css={topBarWrapper}>
+        <div css={topBar}>
           <div data-testid="select-component-wrapper">
             <FilesetReactSelect
               currentTileSource={currentFileset}
@@ -157,11 +223,7 @@ const Viewer = ({ manifest }) => {
             />
           </div>
 
-          <div
-            id="toolbarDiv"
-            className="toolbar"
-            data-testid="toolbar-wrapper"
-          >
+          <div id="toolbarDiv" data-testid="toolbar-wrapper" css={toolbar}>
             <Toolbar
               onDownloadCropClick={handleDownloadCropClick}
               onDownloadFullSize={handleDownloadFullSize}
@@ -170,7 +232,7 @@ const Viewer = ({ manifest }) => {
         </div>
       </div>
 
-      <div id="openseadragon1" className="open-seadragon-container"></div>
+      <div id="openseadragon1" css={openSeadragonContainer}></div>
 
       {canvasImageResources.length > 1 && (
         <Thumbnails
@@ -184,7 +246,7 @@ const Viewer = ({ manifest }) => {
 };
 
 Viewer.propTypes = {
-  manifestUrl: PropTypes.string
+  manifestUrl: PropTypes.string,
 };
 
 export default Viewer;
