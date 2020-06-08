@@ -16,7 +16,7 @@ const NODE_ENV = process.env.NODE_ENV || "development";
 // CommonJS (for Node) and ES module (for bundlers) build.
 let productionRollup = {
   input: "src/main.js",
-  external: ["@emotion/core", "openseadragon", "react", "react-dom"],
+
   output: [
     { file: pkg.main, format: "cjs" },
     {
@@ -31,6 +31,10 @@ let productionRollup = {
       name: "openSeadragonViewer",
       globals: { react: "React", "react-dom": "ReactDOM" },
     },
+  ],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
   ],
   plugins: [
     replace({

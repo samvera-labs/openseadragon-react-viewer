@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Viewer from "../components/Viewer";
 import PropTypes from "prop-types";
 import registerFaIcons from "../registerFaIcons";
 import Notification from "../components/Notification";
 import ErrorBoundary from "../components/ErrorBoundary";
+import { ConfigContext } from "../config-context";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -20,7 +21,7 @@ registerFaIcons();
  * @param {Object} props - React props
  * @param {string} props.manifestUrl - something like "https://some-manifes-url"
  */
-const OpenSeadragonContainer = ({ manifestUrl }) => {
+const OpenSeadragonContainer = ({ manifestUrl, ...restProps }) => {
   const [manifest, setManifest] = useState();
   const [error, setError] = useState();
 
@@ -46,16 +47,21 @@ const OpenSeadragonContainer = ({ manifestUrl }) => {
   }
 
   return manifest ? (
-    <ErrorBoundary>
-      <div css={wrapper}>
-        <Viewer manifest={manifest} />
-      </div>
-    </ErrorBoundary>
+    <ConfigContext.Provider value={{ ...restProps }}>
+      <ErrorBoundary>
+        <div css={wrapper}>
+          <Viewer manifest={manifest} />
+        </div>
+      </ErrorBoundary>
+    </ConfigContext.Provider>
   ) : null;
 };
 
 OpenSeadragonContainer.propTypes = {
   manifestUrl: PropTypes.string,
+  showDropdown: PropTypes.bool,
+  showThumbnails: PropTypes.bool,
+  showToolbar: PropTypes.bool,
 };
 
 export default OpenSeadragonContainer;

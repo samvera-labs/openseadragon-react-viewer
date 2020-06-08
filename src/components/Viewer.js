@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
 import { getCanvasImageResources } from "../services/iiif-parser";
@@ -7,6 +7,7 @@ import FilesetReactSelect from "../components/FilesetReactSelect";
 import Thumbnails from "../components/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
 import { isMobile } from "react-device-detect";
+import { ConfigContext } from "../config-context";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -74,6 +75,8 @@ const Viewer = ({ manifest }) => {
   const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
   const [canvasImageResources, setCanvasImageResources] = useState([]);
   const [currentFileset, setCurrentFileset] = useState();
+
+  const configProps = useContext(ConfigContext);
 
   useEffect(() => {
     // Pull out tile sources from manifest
@@ -215,31 +218,37 @@ const Viewer = ({ manifest }) => {
     <>
       <div data-testid="viewer" css={topBarWrapper}>
         <div css={topBar}>
-          <div data-testid="select-component-wrapper">
-            <FilesetReactSelect
-              currentTileSource={currentFileset}
-              onFileSetChange={handleFilesetSelectChange}
-              tileSources={canvasImageResources}
-            />
-          </div>
+          {configProps.showDropdown && (
+            <div data-testid="select-component-wrapper">
+              <FilesetReactSelect
+                currentTileSource={currentFileset}
+                onFileSetChange={handleFilesetSelectChange}
+                tileSources={canvasImageResources}
+              />
+            </div>
+          )}
 
-          <div id="toolbarDiv" data-testid="toolbar-wrapper" css={toolbar}>
-            <Toolbar
-              onDownloadCropClick={handleDownloadCropClick}
-              onDownloadFullSize={handleDownloadFullSize}
-            />
-          </div>
+          {configProps.showToolBar && (
+            <div id="toolbarDiv" data-testid="toolbar-wrapper" css={toolbar}>
+              <Toolbar
+                onDownloadCropClick={handleDownloadCropClick}
+                onDownloadFullSize={handleDownloadFullSize}
+              />
+            </div>
+          )}
         </div>
       </div>
 
       <div id="openseadragon1" css={openSeadragonContainer}></div>
 
-      {canvasImageResources.length > 1 && (
-        <Thumbnails
-          currentFileset={currentFileset}
-          onThumbClick={handleThumbClick}
-          tileSources={canvasImageResources}
-        />
+      {configProps.showThumbnails && canvasImageResources.length > 1 && (
+        <div data-testid="thumbnails-wrapper">
+          <Thumbnails
+            currentFileset={currentFileset}
+            onThumbClick={handleThumbClick}
+            tileSources={canvasImageResources}
+          />
+        </div>
       )}
     </>
   );
