@@ -21,7 +21,7 @@ Then use it in your app:
 
 ```
 import React from 'react';
-import { OpenSeadragonViewer } from "openseadragon-react-viewer"
+import OpenSeadragonViewer from "openseadragon-react-viewer"
 
 const App = () => {
   // Get your manifest from somewhere

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -15,10 +16,13 @@ const danger = css`
   color: #fff;
 `;
 
-const Notification = ({
+export default function Notification({
   error = "An error occurred with no data passed to the notification",
-}) => {
+}) {
   return <div css={[notification, danger]}>{error}</div>;
-};
+}
 
-export default Notification;
+Notification.propTypes = {
+  /** Error message to display */
+  error: PropTypes.string,
+};

@@ -17,7 +17,7 @@ const reactSelectContainer = css`
   text-align: left;
 `;
 
-const FilesetReactSelect = ({
+const TileSourceSelect = ({
   currentTileSource,
   onFileSetChange,
   tileSources = [],
@@ -62,10 +62,10 @@ const tileSourceShape = {
   id: PropTypes.string,
 };
 
-FilesetReactSelect.propTypes = {
+TileSourceSelect.propTypes = {
   currentTileSource: PropTypes.shape(tileSourceShape),
   onFileSetChange: PropTypes.func,
   tileSources: PropTypes.array,
 };
 
-export default FilesetReactSelect;
+export default TileSourceSelect;

@@ -1,5 +1,5 @@
 import React from "react";
-import Notification from "./Notification";
+import Notification from "../Notification/Notification";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {

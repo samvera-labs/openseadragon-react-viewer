@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import WorkOpenSeadragonThumbnails from "./Thumbnails";
-import { mockTileSources } from "../services/testing-helpers";
+import { mockTileSources } from "../../services/testing-helpers";
 
 const mockOnThumbClick = jest.fn();
 

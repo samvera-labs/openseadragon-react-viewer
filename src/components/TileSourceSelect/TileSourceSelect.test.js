@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import WorkOpenSeadragonFilesetReactSelect from "./FilesetReactSelect";
-import { mockTileSources } from "../services/testing-helpers";
+import WorkOpenSeadragonFilesetReactSelect from "./TileSourceSelect";
+import { mockTileSources } from "../../services/testing-helpers";
 
 const mockOnFileSetChange = jest.fn();
 
