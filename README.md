@@ -52,7 +52,7 @@ Props the component accepts:
 - `manifestUrl` - {string} IIIF manifest url (required)
 - `options` - {object} An options config object whether to use custom features or OpenSeadragon features
 
-See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/docs/) for full configuration options.
+See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/) for full configuration options.
 
 ## Development
 
@@ -127,7 +127,7 @@ This will create CommoneJS, ES Module, and UMD distribution files located in the
 
 ## Documentation
 
-See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/docs/) for documentation on the components.
+See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/) for documentation on the components.
 
 ## Contributing
 
