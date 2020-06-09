@@ -8,7 +8,7 @@ import Thumbnails from "../Thumbnails/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
 import { isMobile } from "react-device-detect";
 import { ConfigContext } from "../../config-context";
-import "../services/url-script";
+import "../../services/url-script";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";

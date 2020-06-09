@@ -9,6 +9,7 @@ import OpenSeadragonViewer from "openseadragon-react-viewer";
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
+    supportUrlParams: true,
   }}
 />
 ```

@@ -1,3 +1,6 @@
+//This is a customization of the
+// https://github.com/openseadragon/bookmark-url plugin
+// with modifications to updateUrl() function to retain other hash values.
 import OpenSeadragon from "openseadragon";
 (function () {
   var $ = window.OpenSeadragon;

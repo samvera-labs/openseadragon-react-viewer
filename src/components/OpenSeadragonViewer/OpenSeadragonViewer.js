@@ -67,6 +67,8 @@ OpenSeadragonViewer.propTypes = {
     showThumbnails: PropTypes.bool,
     /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
     showToolbar: PropTypes.bool,
+    /** Display URL params for Zooming and selected fileset highlighting */
+    supportUrlParams: PropTypes.bool,
   }),
 };
 
@@ -75,5 +77,6 @@ OpenSeadragonViewer.defaultProps = {
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
+    supportUrlParams: true,
   },
 };
