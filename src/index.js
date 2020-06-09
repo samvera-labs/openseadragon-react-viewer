@@ -8,9 +8,11 @@ const manifestUrl =
 ReactDOM.render(
   <OpenSeadragonViewer
     manifestUrl={manifestUrl}
-    showDropdown
-    showThumbnails
-    showToolBar
+    options={{
+      showDropdown: true,
+      showThumbnails: true,
+      showToolbar: true,
+    }}
   />,
   document.getElementById("app")
 );

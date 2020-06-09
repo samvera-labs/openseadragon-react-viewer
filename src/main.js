@@ -1,7 +1,8 @@
-import OpenSeadragonContainer from "./containers/OpenSeadragonContainer";
-
-// Example: export individual package components (if we want to support this in the future)
-export { default as OpenSeadragonViewer } from "./containers/OpenSeadragonContainer";
+import OpenSeadragonViewer from "./components/OpenSeadragonViewer/OpenSeadragonViewer";
 
 // Default package export
-export default OpenSeadragonContainer;
+export default OpenSeadragonViewer;
+
+// Example: export individual package components (if we want to support this in the future)
+export { default as Toolbar } from "./components/Toolbar/Toolbar";
+export { default as Thumbnails } from "./components/Thumbnails/Thumbnails";

@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
-import { getCanvasImageResources } from "../services/iiif-parser";
-import Toolbar from "../components/Toolbar";
-import FilesetReactSelect from "../components/FilesetReactSelect";
-import Thumbnails from "../components/Thumbnails";
+import { getCanvasImageResources } from "../../services/iiif-parser";
+import Toolbar from "../Toolbar/Toolbar";
+import TileSourceSelect from "../TileSourceSelect/TileSourceSelect";
+import Thumbnails from "../Thumbnails/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
 import { isMobile } from "react-device-detect";
-import { ConfigContext } from "../config-context";
+import { ConfigContext } from "../../config-context";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -65,16 +65,13 @@ const toolbar = css`
 
 /**
  * Viewer component
- *
- * @param {Object} props - React props
- * @param {string} props.manifest - Url of public IIIF manifest which will provide data for the viewer
  */
 const Viewer = ({ manifest }) => {
   if (!manifest) return null;
 
   const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
   const [canvasImageResources, setCanvasImageResources] = useState([]);
-  const [currentFileset, setCurrentFileset] = useState();
+  const [currentTileSource, setCurrentTileSource] = useState();
 
   const configProps = useContext(ConfigContext);
 
@@ -84,7 +81,7 @@ const Viewer = ({ manifest }) => {
   }, []);
 
   useEffect(() => {
-    setCurrentFileset(
+    setCurrentTileSource(
       canvasImageResources.length > 0 ? canvasImageResources[0] : null
     );
     // Initialize OpenSeadragon instance
@@ -129,8 +126,8 @@ const Viewer = ({ manifest }) => {
       Canvas2Image.saveAsJPEG(
         openSeadragonInstance.drawer.canvas,
         // Title of downloaded image, based on current file set "label" property
-        currentFileset.label
-          ? currentFileset.label.split(" ").join("-")
+        currentTileSource.label
+          ? currentTileSource.label.split(" ").join("-")
           : "openseadragon-react-viewer-download",
         width,
         height
@@ -140,7 +137,7 @@ const Viewer = ({ manifest }) => {
 
   const handleDownloadFullSize = () => {
     const { width } = calculateDownloadDimensions();
-    const path = `${currentFileset.id}/full/${width},/0/default.jpg`;
+    const path = `${currentTileSource.id}/full/${width},/0/default.jpg`;
     window.open(path, "_blank");
   };
 
@@ -149,7 +146,7 @@ const Viewer = ({ manifest }) => {
   };
 
   const handlePageChange = ({ page }) => {
-    setCurrentFileset(canvasImageResources[page]);
+    setCurrentTileSource(canvasImageResources[page]);
   };
 
   const handleThumbClick = (id) => {
@@ -161,7 +158,7 @@ const Viewer = ({ manifest }) => {
       (element) => element.id === id
     );
 
-    setCurrentFileset(canvasImageResources[index]);
+    setCurrentTileSource(canvasImageResources[index]);
     openSeadragonInstance.goToPage(index);
   }
 
@@ -220,22 +217,24 @@ const Viewer = ({ manifest }) => {
         <div css={topBar}>
           {configProps.showDropdown && (
             <div data-testid="select-component-wrapper">
-              <FilesetReactSelect
-                currentTileSource={currentFileset}
+              <TileSourceSelect
+                currentTileSource={currentTileSource}
                 onFileSetChange={handleFilesetSelectChange}
                 tileSources={canvasImageResources}
               />
             </div>
           )}
 
-          {configProps.showToolBar && (
-            <div id="toolbarDiv" data-testid="toolbar-wrapper" css={toolbar}>
-              <Toolbar
-                onDownloadCropClick={handleDownloadCropClick}
-                onDownloadFullSize={handleDownloadFullSize}
-              />
-            </div>
-          )}
+          <div id="toolbarDiv" css={toolbar}>
+            {configProps.showToolbar && (
+              <div data-testid="toolbar-wrapper">
+                <Toolbar
+                  onDownloadCropClick={handleDownloadCropClick}
+                  onDownloadFullSize={handleDownloadFullSize}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -244,7 +243,7 @@ const Viewer = ({ manifest }) => {
       {configProps.showThumbnails && canvasImageResources.length > 1 && (
         <div data-testid="thumbnails-wrapper">
           <Thumbnails
-            currentFileset={currentFileset}
+            currentTileSource={currentTileSource}
             onThumbClick={handleThumbClick}
             tileSources={canvasImageResources}
           />

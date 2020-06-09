@@ -1,14 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Viewer from "./Viewer";
-import { ConfigContext } from "../config-context";
-import { mockManifest } from "../services/testing-helpers";
+import { ConfigContext } from "../../config-context";
+import { mockManifest } from "../../services/testing-helpers";
 import OpenSeadragon from "openseadragon";
 
 const defaultProps = {
   showDropdown: true,
   showThumbnails: true,
-  showToolBar: true,
+  showToolbar: true,
 };
 
 describe("Viewer", () => {
@@ -41,7 +41,7 @@ describe("Viewer", () => {
   it("doesn't render the tool bar if not configured", () => {
     const { queryByTestId } = setupTests({
       ...defaultProps,
-      showToolBar: false,
+      showToolbar: false,
     });
     expect(queryByTestId("toolbar-wrapper")).toBeNull();
   });

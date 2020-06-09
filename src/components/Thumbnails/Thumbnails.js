@@ -55,7 +55,11 @@ const panelListingThumbs = css`
   }
 `;
 
-const Thumbnails = ({ currentFileset, tileSources = [], onThumbClick }) => {
+export default function Thumbnails({
+  currentFileset,
+  tileSources = [],
+  onThumbClick,
+}) {
   return (
     <div data-testid="open-seadragon-thumbnails-container" css={bottomPanel}>
       <div css={thumbnailView}>
@@ -81,12 +85,13 @@ const Thumbnails = ({ currentFileset, tileSources = [], onThumbClick }) => {
       </div>
     </div>
   );
-};
+}
 
 Thumbnails.propTypes = {
+  /** Current tile source displayed in OpenSeadragon viewer */
   currentFileset: PropTypes.object,
+  /** Callback function executed when a thumbnail is clicked */
   onThumbClick: PropTypes.func,
+  /** All tilesources for the image resource */
   tileSources: PropTypes.array,
 };
-
-export default Thumbnails;
