@@ -12,6 +12,7 @@ ReactDOM.render(
       showDropdown: true,
       showThumbnails: true,
       showToolbar: true,
+      supportUrlParams: true,
     }}
   />,
   document.getElementById("app")
