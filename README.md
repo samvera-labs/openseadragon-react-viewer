@@ -1,5 +1,7 @@
 # OpenSeadragonViewer
 
+![Image of OpenSeadragon React Viewer](/screenshot.jpg)
+
 A React wrapper component around the OpenSeadragon viewer. Import the component into your React application, feed it a IIIF manifest URL via props (see below for example), and it will render an OpenSeadragon viewer with:
 
 - Alternative toolbar icons
@@ -27,20 +29,30 @@ const App = () => {
   // Get your manifest from somewhere
   const manifestUrl = "https://some-manifest-url-here.json";
 
+  // Options to show/hide extra UI features in the viewer
+  // All options default to 'true'
+  const options = {
+    showDropdown: true,
+    showThumbnails: false,
+    showToolbar: true
+  };
+
   return (
-    <OpenSeadragonViewer manifestUrl={manifestUrl} />
+    <OpenSeadragonViewer manifestUrl={manifestUrl} options={options} />
   );
 }
 
 export default App;
 ```
 
-### Props
+### Options / Props
 
 Props the component accepts:
 
 - `manifestUrl` - {string} IIIF manifest url (required)
-- `options` - {object} (coming soon...) An options config object whether to use custom features or OpenSeadragon features
+- `options` - {object} An options config object whether to use custom features or OpenSeadragon features
+
+See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/docs/) for full configuration options.
 
 ## Development
 
@@ -89,6 +101,20 @@ To run tests in `watch` mode:
 yarn test:watch
 ```
 
+### Styleguidist development
+
+Styleguidist, in addition to providing documentation, also offers an isolated development environment. To run the environment and test it out:
+
+```
+yarn styleguide
+```
+
+To build a static html version of the docs (which Github pages uses), run:
+
+```
+yarn styleguide:build
+```
+
 ## Deployment
 
 To deploy your forked version of this repo, run:
@@ -98,6 +124,10 @@ yarn build
 ```
 
 This will create CommoneJS, ES Module, and UMD distribution files located in the `/dist/` directory.
+
+## Documentation
+
+See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/docs/) for documentation on the components.
 
 ## Contributing
 
