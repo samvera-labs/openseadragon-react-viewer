@@ -9,6 +9,7 @@ import { jsx, css } from "@emotion/core";
 const toolbarWrapper = css`
   z-index: 100;
   margin: 0 2rem 0 0;
+  label: toolbarWrapper;
 `;
 const toolbarControl = css`
   color: #bbb8b8;
@@ -21,10 +22,12 @@ const toolbarControl = css`
   &:hover {
     opacity: 1;
   }
+  label: toolbarControl;
 `;
 const osdToolbarDropdownWrapper = css`
   position: relative;
   display: inline-block;
+  label: toolbarDropdownWrapper;
 `;
 const osdToolbarDropdown = css`
   position: absolute;
@@ -37,12 +40,13 @@ const osdToolbarDropdown = css`
   margin: 0;
   padding: 0;
   border: 1px solid #716c6b;
-  a {
+  label: toolbarDropdown;
+  button {
     padding: 0.75rem 1rem;
     color: #f0f0f0;
     display: inline-block;
     width: 100%;
-
+    font-size: 1rem;
     &:hover {
       background: #716c6b;
       transition: all 0.25s ease-in-out;

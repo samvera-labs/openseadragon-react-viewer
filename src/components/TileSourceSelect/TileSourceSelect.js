@@ -9,6 +9,7 @@ const dropdownSelectWrapper = css`
   width: 350px;
   color: #342f2e;
   margin: 1rem 0 1rem 1rem;
+  label: selectThumbnailWrapper;
   @media screen and (max-width: 767px) {
     display: none;
   }
