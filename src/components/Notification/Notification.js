@@ -10,10 +10,12 @@ const notification = css`
   padding: 1.25rem 2.5rem 1.25rem 1.5rem;
   position: relative;
   text-align: center;
+  label: notification;
 `;
 const danger = css`
   background-color: #f14668;
   color: #fff;
+  label: danger;
 `;
 
 export default function Notification({
