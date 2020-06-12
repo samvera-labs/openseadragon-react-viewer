@@ -8,6 +8,7 @@ import Thumbnails from "../Thumbnails/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
 import { isMobile } from "react-device-detect";
 import { ConfigContext } from "../../config-context";
+import "../../services/url-script";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -72,7 +73,7 @@ const Viewer = ({ manifest }) => {
   const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
   const [canvasImageResources, setCanvasImageResources] = useState([]);
   const [currentTileSource, setCurrentTileSource] = useState();
-
+  const [tileIndex, setTileIndex] = useState();
   const configProps = useContext(ConfigContext);
 
   useEffect(() => {
@@ -81,9 +82,14 @@ const Viewer = ({ manifest }) => {
   }, []);
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.hash);
+    const fileSet = params.get("fileset");
     setCurrentTileSource(
-      canvasImageResources.length > 0 ? canvasImageResources[0] : null
+      canvasImageResources.length > 0
+        ? canvasImageResources[fileSet || 0]
+        : null
     );
+    setTileIndex(fileSet || 0);
     // Initialize OpenSeadragon instance
     initOpenSeadragon();
   }, [canvasImageResources]);
@@ -91,6 +97,15 @@ const Viewer = ({ manifest }) => {
   useEffect(() => {
     if (openSeadragonInstance) {
       openSeadragonInstance.addHandler("page", handlePageChange);
+      if (configProps.supportUrlParams) {
+        openSeadragonInstance.addHandler("bookmark-url-change", function (
+          event
+        ) {});
+        openSeadragonInstance.bookmarkUrl();
+        if (tileIndex > 0) {
+          openSeadragonInstance.goToPage(tileIndex);
+        }
+      }
     }
   }, [openSeadragonInstance]);
 
@@ -147,6 +162,13 @@ const Viewer = ({ manifest }) => {
 
   const handlePageChange = ({ page }) => {
     setCurrentTileSource(canvasImageResources[page]);
+
+    if (configProps.supportUrlParams) {
+      let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
+      currentUrlParams.set("fileset", page);
+      const url = window.location.pathname + "#" + currentUrlParams.toString();
+      window.history.replaceState({}, "", url);
+    }
   };
 
   const handleThumbClick = (id) => {
