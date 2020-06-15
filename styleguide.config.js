@@ -4,6 +4,13 @@ module.exports = {
   exampleMode: "expand",
   skipComponentsWithoutExample: true,
   styleguideDir: "docs",
+  styles: {
+    Playground: {
+      preview: {
+        position: "relative",
+      },
+    },
+  },
   webpackConfig: {
     module: {
       rules: [

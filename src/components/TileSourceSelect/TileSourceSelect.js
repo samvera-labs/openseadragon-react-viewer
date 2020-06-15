@@ -65,7 +65,9 @@ const tileSourceShape = {
 
 TileSourceSelect.propTypes = {
   currentTileSource: PropTypes.shape(tileSourceShape),
+  /** Callback function executed when a thumbnail is clicked */
   onFileSetChange: PropTypes.func,
+  /** All tilesources for the thumbnails */
   tileSources: PropTypes.array,
 };
 
