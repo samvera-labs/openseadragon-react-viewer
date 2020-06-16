@@ -1,5 +1,5 @@
 ```js static
-import Thumbnails from "openseadragon-react-viewer";
+import { Thumbnails } from "openseadragon-react-viewer";
 ```
 
 ```jsx
@@ -23,6 +23,6 @@ import Thumbnails from "openseadragon-react-viewer";
   onThumbClick={() =>
     alert("Thumbnail icon clicked, and OpenSeadragon will load the new image")
   }
-  isPreview={true} // Must be false for other than Styleguidist preview
+  isPreview={true} // Used internally by the package for Styleguide preview only
 />
 ```

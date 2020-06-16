@@ -1,5 +1,5 @@
 ```js static
-import Notification from "openseadragon-react-viewer";
+import { Notification } from "openseadragon-react-viewer";
 ```
 
 ```jsx
