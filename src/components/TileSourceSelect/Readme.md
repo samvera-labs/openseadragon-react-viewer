@@ -1,3 +1,7 @@
+```js static
+import { TileSourceSelect } from "openseadragon-react-viewer";
+```
+
 ```jsx
 <TileSourceSelect
   currentTileSource={{

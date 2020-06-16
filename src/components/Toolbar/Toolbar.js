@@ -167,8 +167,11 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
 };
 
 Toolbar.propTypes = {
+  /** Show if the device is mobile using package `react-device-detect` */
   isMobile: PropTypes.bool,
+  /** Callback function executed when Dropdown Crop is clicked */
   onDownloadCropClick: PropTypes.func,
+  /** Callback function executed when Dropdown Full size is clicked */
   onDownloadFullSize: PropTypes.func,
 };
 

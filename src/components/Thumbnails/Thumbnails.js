@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-const bottomPanel = css`
+const bottomPanel = (props) => css`
   background-color: rgba(52, 47, 46, 0.5);
-  position: absolute;
+  position: ${props};
   bottom: 0;
   left: 0;
   right: 0;
@@ -61,9 +61,13 @@ export default function Thumbnails({
   currentTileSource,
   tileSources = [],
   onThumbClick,
+  isPreview = false,
 }) {
   return (
-    <div data-testid="open-seadragon-thumbnails-container" css={bottomPanel}>
+    <div
+      data-testid="open-seadragon-thumbnails-container"
+      css={bottomPanel(isPreview ? "relative" : "absolute")}
+    >
       <div css={thumbnailView}>
         <ul css={panelListingThumbs}>
           {tileSources.map((t) => (
@@ -98,4 +102,6 @@ Thumbnails.propTypes = {
   onThumbClick: PropTypes.func,
   /** All tilesources for the image resource */
   tileSources: PropTypes.array,
+  /** Boolean to check if this component is called from styleguidist preview mode */
+  isPreview: PropTypes.bool,
 };
