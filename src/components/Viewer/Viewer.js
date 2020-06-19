@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import OpenSeadragon from "openseadragon";
 import PropTypes from "prop-types";
 import { getCanvasImageResources } from "../../services/iiif-parser";
 import Toolbar from "../Toolbar/Toolbar";
@@ -8,7 +7,8 @@ import Thumbnails from "../Thumbnails/Thumbnails";
 import Canvas2Image from "@reglendo/canvas2image";
 import { isMobile } from "react-device-detect";
 import { ConfigContext } from "../../config-context";
-import "../../services/url-script";
+import { updateUrl, parseHash } from "../../services/url-script";
+import OpenSeadragon, { Point } from "openseadragon";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -74,6 +74,9 @@ const Viewer = ({ manifest }) => {
   const [canvasImageResources, setCanvasImageResources] = useState([]);
   const [currentTileSource, setCurrentTileSource] = useState();
   const [tileIndex, setTileIndex] = useState();
+  const [currentURLParams, setCurrentURLParams] = useState(
+    window.location.hash
+  );
   const configProps = useContext(ConfigContext);
 
   useEffect(() => {
@@ -82,14 +85,15 @@ const Viewer = ({ manifest }) => {
   }, []);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.hash);
-    const fileSet = params.get("fileset");
+    const params = parseHash();
+    const fileSet = params["fileset"];
     setCurrentTileSource(
       canvasImageResources.length > 0
         ? canvasImageResources[fileSet || 0]
         : null
     );
     setTileIndex(fileSet || 0);
+    setCurrentURLParams(params);
     // Initialize OpenSeadragon instance
     initOpenSeadragon();
   }, [canvasImageResources]);
@@ -97,17 +101,36 @@ const Viewer = ({ manifest }) => {
   useEffect(() => {
     if (openSeadragonInstance) {
       openSeadragonInstance.addHandler("page", handlePageChange);
-      if (configProps.supportUrlParams) {
-        openSeadragonInstance.addHandler("bookmark-url-change", function (
-          event
-        ) {});
-        openSeadragonInstance.bookmarkUrl();
-        if (tileIndex > 0) {
-          openSeadragonInstance.goToPage(tileIndex);
-        }
+
+      if (tileIndex > 0) {
+        openSeadragonInstance.goToPage(tileIndex);
+      }
+      if (configProps.deepLinking) {
+        openSeadragonInstance.addHandler("pan", handlePanZoomUpdate);
+        openSeadragonInstance.addHandler("zoom", handlePanZoomUpdate);
+        openSeadragonInstance.addOnceHandler("open", handleFullyLoaded);
       }
     }
   }, [openSeadragonInstance]);
+
+  const handlePanZoomUpdate = () => {
+    if (openSeadragonInstance) {
+      const pan = openSeadragonInstance.viewport.getCenter();
+      const zoom = openSeadragonInstance.viewport.getZoom();
+      updateUrl({ pan, zoom });
+    }
+  };
+
+  const handleFullyLoaded = () => {
+    const urlParams = currentURLParams;
+    const zoom = urlParams["zoom"] || openSeadragonInstance.viewport.getZoom();
+
+    const pan = openSeadragonInstance.viewport.getCenter();
+    const x = urlParams["x"] || pan.x;
+    const y = urlParams["y"] || pan.y;
+    openSeadragonInstance.viewport.panTo(new Point(x, y), true);
+    openSeadragonInstance.viewport.zoomTo(zoom, null, true);
+  };
 
   const calculateDownloadDimensions = () => {
     let returnObj = {};
@@ -163,11 +186,8 @@ const Viewer = ({ manifest }) => {
   const handlePageChange = ({ page }) => {
     setCurrentTileSource(canvasImageResources[page]);
 
-    if (configProps.supportUrlParams) {
-      let currentUrlParams = new URLSearchParams(window.location.hash.slice(1));
-      currentUrlParams.set("fileset", page);
-      const url = window.location.pathname + "#" + currentUrlParams.toString();
-      window.history.replaceState({}, "", url);
+    if (configProps.deepLinking) {
+      updateUrl({ tileSourceIndex: page });
     }
   };
 

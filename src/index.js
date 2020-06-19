@@ -12,7 +12,7 @@ ReactDOM.render(
       showDropdown: true,
       showThumbnails: true,
       showToolbar: true,
-      supportUrlParams: true,
+      deepLinking: true,
     }}
   />,
   document.getElementById("app")

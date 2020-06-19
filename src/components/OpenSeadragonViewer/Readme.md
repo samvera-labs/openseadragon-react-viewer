@@ -15,7 +15,7 @@ If you wanted to import individual components like `Thumbnails` or `Toolbar`, to
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
-    supportUrlParams: true,
+    deepLinking: true,
   }}
 />
 ```

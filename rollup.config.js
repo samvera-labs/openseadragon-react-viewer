@@ -84,6 +84,7 @@ let devRollup = {
       namedExports: {
         react: Object.keys(react),
         "react-dom": Object.keys(reactDom),
+        openseadragon: ["Point"],
       },
     }),
     // Serve the app and live reload
