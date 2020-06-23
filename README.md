@@ -2,28 +2,35 @@
 
 ![Image of OpenSeadragon React Viewer](/screenshot.jpg)
 
-A React wrapper component around the OpenSeadragon viewer. Import the component into your React application, feed it a IIIF manifest URL via props (see below for example), and it will render an OpenSeadragon viewer with:
+A React wrapper component around the OpenSeadragon viewer. Import the component into your React application, feed it a IIIF manifest URL via props, and it will render an OpenSeadragon viewer with:
 
 - Alternative toolbar icons
 - A searchable dropdown select menu for navigating an image with multiple tile source images.
 - A custom thumbnail navigator for an image with multiple tile source images.
-- Ability to download the currently zoomed canvas image, or be presented with a link to download the full-size image. _(coming soon...)_
-
-This component is being extracted from Northwesten's Digital Collections app. For an example: https://dc.library.northwestern.edu/items/f912a581-d9e8-43d6-a7c8-a8d46eff7517
+- Ability to download the currently zoomed canvas image, or be presented with a link to download the full-size image.
+- Support for deep linking, and saving URL parameters
 
 ## Installation and usage
 
-The easiest way to use `openseadragon-react-viewer` is to install the package from npm and import the component into your React app.
+The easiest way to use `openseadragon-react-viewer` is to install the package (and dependencies) from npm and import the component into your React app.
 
 ```
 yarn add openseadragon-react-viewer
+
+// Peer Dependencies (Purposely left out of openseadragon-react-viewer
+// to keep bundle size light)
+yarn add @emotion/core
+yarn add openseadragon
+yarn @reglendo/canvas2image // For downloading images
+yarn add react-device-detect // Handles mobile detection
+yarn add react-select // For the dropdown navigation
 ```
 
 Then use it in your app:
 
 ```
 import React from 'react';
-import OpenSeadragonViewer from "openseadragon-react-viewer"
+import { OpenSeadragonViewer } from "openseadragon-react-viewer"
 
 const App = () => {
   // Get your manifest from somewhere
@@ -34,7 +41,8 @@ const App = () => {
   const options = {
     showDropdown: true,
     showThumbnails: false,
-    showToolbar: true
+    showToolbar: true,
+    deepLinking: true
   };
 
   return (

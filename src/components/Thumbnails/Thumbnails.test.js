@@ -30,6 +30,6 @@ describe("WorkOpenSeadragonThumbnails component", () => {
 
   it("renders the correct number of thumbnails", () => {
     const { queryAllByTestId } = setUp();
-    expect(queryAllByTestId("fileset-thumbnail")).toHaveLength(3);
+    expect(queryAllByTestId("tile-source-thumbnail")).toHaveLength(3);
   });
 });

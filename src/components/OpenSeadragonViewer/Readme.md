@@ -1,7 +1,7 @@
 This is the top-most component to pull directly into your React app.
 
 ```js static
-import OpenSeadragonViewer from "openseadragon-react-viewer";
+import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 ```
 
 If you wanted to import individual components like `Thumbnails` or `Toolbar`, to customize, or for use outside this application, you can import those directly as well.

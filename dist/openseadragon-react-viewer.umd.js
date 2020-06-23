@@ -2146,7 +2146,7 @@
     }, tileSources.map(function (t) {
       return core.jsx("li", {
         key: t.id,
-        "data-testid": "fileset-thumbnail",
+        "data-testid": "tile-source-thumbnail",
         onClick: function onClick() {
           return onThumbClick(t.id);
         },
@@ -2212,7 +2212,7 @@
     }
 
     if (tileSourceIndex && tileSourceIndex > 0) {
-      currentUrlParams.set("fileset", tileSourceIndex);
+      currentUrlParams.set("tilesource", tileSourceIndex);
     }
 
     var url = window.location.pathname + "#" + currentUrlParams.toString();
@@ -2302,14 +2302,15 @@
     }, []);
     React.useEffect(function () {
       var params = parseHash();
-      var fileSet = params["fileset"];
-      setCurrentTileSource(canvasImageResources.length > 0 ? canvasImageResources[fileSet || 0] : null);
-      setTileIndex(fileSet || 0);
+      var tileSource = params["tilesource"];
+      setCurrentTileSource(canvasImageResources.length > 0 ? canvasImageResources[tileSource || 0] : null);
+      setTileIndex(tileSource || 0);
       setCurrentURLParams(params); // Initialize OpenSeadragon instance
 
       initOpenSeadragon();
     }, [canvasImageResources]);
     React.useEffect(function () {
+      // Add event handlers
       if (openSeadragonInstance) {
         openSeadragonInstance.addHandler("page", handlePageChange);
 
@@ -2322,7 +2323,15 @@
           openSeadragonInstance.addHandler("zoom", handlePanZoomUpdate);
           openSeadragonInstance.addOnceHandler("open", handleFullyLoaded);
         }
-      }
+      } // Remove event handlers when component unmounts
+
+
+      return function () {
+        if (openSeadragonInstance) {
+          openSeadragonInstance.removeHandler("pan", handlePanZoomUpdate);
+          openSeadragonInstance.removeHandler("zoom", handlePanZoomUpdate);
+        }
+      };
     }, [openSeadragonInstance]);
 
     var handlePanZoomUpdate = function handlePanZoomUpdate() {
@@ -2363,7 +2372,7 @@
           height: height
         };
       } catch (_unused) {
-        console.log("Error in handling download click for a fileset in OpenSeadragon viewer");
+        console.log("Error in handling download click for a tile source in OpenSeadragon viewer");
         returnObj = {};
       }
 
@@ -2746,7 +2755,7 @@
       /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
       showToolbar: propTypes.bool,
 
-      /** Display URL params for Zooming and selected fileset highlighting */
+      /** Display URL params for Zooming and selected tile source highlighting */
       deepLinking: propTypes.bool
     })
   };
@@ -2760,10 +2769,10 @@
   };
 
   exports.Notification = Notification;
+  exports.OpenSeadragonViewer = OpenSeadragonViewer;
   exports.Thumbnails = Thumbnails;
   exports.TileSourceSelect = TileSourceSelect;
   exports.Toolbar = Toolbar;
-  exports.default = OpenSeadragonViewer;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
