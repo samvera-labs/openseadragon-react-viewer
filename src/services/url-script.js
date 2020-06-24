@@ -29,7 +29,7 @@ export function updateUrl({ pan, tileSourceIndex, zoom }) {
     currentUrlParams.set("y", pan.y);
   }
   if (tileSourceIndex && tileSourceIndex > 0) {
-    currentUrlParams.set("fileset", tileSourceIndex);
+    currentUrlParams.set("tilesource", tileSourceIndex);
   }
   const url = window.location.pathname + "#" + currentUrlParams.toString();
 

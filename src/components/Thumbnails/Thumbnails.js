@@ -73,7 +73,7 @@ export default function Thumbnails({
           {tileSources.map((t) => (
             <li
               key={t.id}
-              data-testid="fileset-thumbnail"
+              data-testid="tile-source-thumbnail"
               onClick={() => onThumbClick(t.id)}
               aria-label="Thumbnail"
               className={

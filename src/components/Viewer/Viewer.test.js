@@ -50,12 +50,12 @@ describe("Viewer", () => {
 
   it("renders the correct number of canvas image resources in the viewer", () => {});
 
-  it("renders the fileset select if configured", () => {
+  it("renders the tile source select if configured", () => {
     let { getByTestId, debug } = setupTests();
     expect(getByTestId("select-component-wrapper")).toBeInTheDocument();
   });
 
-  it("doesn't render the fileset select if configured", () => {
+  it("doesn't render the tile source select if configured", () => {
     let { queryByTestId } = setupTests({
       ...defaultProps,
       showDropdown: false,

@@ -29,7 +29,15 @@ let productionRollup = {
       file: pkg.browser,
       format: "umd",
       name: "openSeadragonViewer",
-      globals: { react: "React", "react-dom": "ReactDOM" },
+      globals: {
+        react: "React",
+        "react-dom": "ReactDOM",
+        "react-device-detect": "reactDeviceDetect",
+        "@emotion/core": "core",
+        "react-select": "Select",
+        "@reglendo/canvas2image": "Canvas2Image",
+        openseadragon: "OpenSeadragon",
+      },
     },
   ],
   external: [

@@ -86,19 +86,20 @@ const Viewer = ({ manifest }) => {
 
   useEffect(() => {
     const params = parseHash();
-    const fileSet = params["fileset"];
+    const tileSource = params["tilesource"];
     setCurrentTileSource(
       canvasImageResources.length > 0
-        ? canvasImageResources[fileSet || 0]
+        ? canvasImageResources[tileSource || 0]
         : null
     );
-    setTileIndex(fileSet || 0);
+    setTileIndex(tileSource || 0);
     setCurrentURLParams(params);
     // Initialize OpenSeadragon instance
     initOpenSeadragon();
   }, [canvasImageResources]);
 
   useEffect(() => {
+    // Add event handlers
     if (openSeadragonInstance) {
       openSeadragonInstance.addHandler("page", handlePageChange);
 
@@ -111,6 +112,14 @@ const Viewer = ({ manifest }) => {
         openSeadragonInstance.addOnceHandler("open", handleFullyLoaded);
       }
     }
+
+    // Remove event handlers when component unmounts
+    return () => {
+      if (openSeadragonInstance) {
+        openSeadragonInstance.removeHandler("pan", handlePanZoomUpdate);
+        openSeadragonInstance.removeHandler("zoom", handlePanZoomUpdate);
+      }
+    };
   }, [openSeadragonInstance]);
 
   const handlePanZoomUpdate = () => {
@@ -149,7 +158,7 @@ const Viewer = ({ manifest }) => {
       returnObj = { width, height };
     } catch {
       console.log(
-        "Error in handling download click for a fileset in OpenSeadragon viewer"
+        "Error in handling download click for a tile source in OpenSeadragon viewer"
       );
       returnObj = {};
     }
