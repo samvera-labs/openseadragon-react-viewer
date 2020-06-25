@@ -9,6 +9,7 @@ import { isMobile } from "react-device-detect";
 import { ConfigContext } from "../../config-context";
 import { updateUrl, parseHash } from "../../services/url-script";
 import OpenSeadragon, { Point } from "openseadragon";
+import BarLoader from "react-spinners/BarLoader";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -74,6 +75,7 @@ const Viewer = ({ manifest }) => {
   const [canvasImageResources, setCanvasImageResources] = useState([]);
   const [currentTileSource, setCurrentTileSource] = useState();
   const [tileIndex, setTileIndex] = useState();
+  const [loading, setLoading] = useState(true);
   const [currentURLParams, setCurrentURLParams] = useState(
     window.location.hash
   );
@@ -139,6 +141,7 @@ const Viewer = ({ manifest }) => {
     const y = urlParams["y"] || pan.y;
     openSeadragonInstance.viewport.panTo(new Point(x, y), true);
     openSeadragonInstance.viewport.zoomTo(zoom, null, true);
+    setLoading(false);
   };
 
   const calculateDownloadDimensions = () => {
@@ -264,6 +267,9 @@ const Viewer = ({ manifest }) => {
 
   return (
     <>
+      <div align="center" css={{ margin: 20 }}>
+        <BarLoader width={300} height={4} color={"#4e2a84"} loading={loading} />
+      </div>
       <div data-testid="viewer" css={topBarWrapper}>
         <div css={topBar}>
           {configProps.showDropdown && (
