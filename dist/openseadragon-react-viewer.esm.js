@@ -2586,7 +2586,7 @@ function _templateObject2$4() {
 }
 
 function _templateObject$4() {
-  var data = _taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n"]);
+  var data = _taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"]);
 
   _templateObject$4 = function _templateObject() {
     return data;
@@ -2600,6 +2600,7 @@ function Notification(_ref) {
   var _ref$error = _ref.error,
       error = _ref$error === void 0 ? "An error occurred with no data passed to the notification" : _ref$error;
   return jsx("div", {
+    className: "osrv-error-message",
     css: [notification, danger]
   }, error);
 }
@@ -2739,14 +2740,14 @@ function OpenSeadragonViewer(_ref) {
 
   function _getManifest() {
     _getManifest = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var response, data;
+      var response, data, message;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return fetch("".concat(manifestUrl));
+              return fetch(manifestUrl);
 
             case 3:
               response = _context.sent;
@@ -2756,17 +2757,19 @@ function OpenSeadragonViewer(_ref) {
             case 6:
               data = _context.sent;
               setManifest(data);
-              _context.next = 15;
+              _context.next = 17;
               break;
 
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](0);
+              console.log("e", _context.t0);
               console.log("".concat(_context.t0.name, ": ").concat(_context.t0.message));
-              setError("".concat(_context.t0.name, ": ").concat(_context.t0.message));
+              message = _context.t0.message.includes("Unexpected token N in JSON at position") ? "Error fetching the manifest url, or the manifest is invalid.  View browser console for details." : "".concat(_context.t0.name, ": ").concat(_context.t0.message);
+              setError(message);
               return _context.abrupt("return", Promise.resolve());
 
-            case 15:
+            case 17:
             case "end":
               return _context.stop();
           }

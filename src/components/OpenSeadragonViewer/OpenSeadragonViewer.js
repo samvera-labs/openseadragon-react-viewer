@@ -41,8 +41,13 @@ export default function OpenSeadragonViewer({ manifestUrl, options }) {
       const data = await response.json();
       setManifest(data);
     } catch (e) {
+      console.log("e", e);
       console.log(`${e.name}: ${e.message}`);
-      setError(`${e.name}: ${e.message}`);
+      let message = e.message.includes("Unexpected token N in JSON at position")
+        ? "Error fetching the manifest url, or the manifest is invalid.  View browser console for details."
+        : `${e.name}: ${e.message}`;
+
+      setError(message);
       return Promise.resolve();
     }
   }
