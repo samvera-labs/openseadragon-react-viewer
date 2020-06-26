@@ -13,6 +13,7 @@ ReactDOM.render(
       showThumbnails: true,
       showToolbar: true,
       deepLinking: true,
+      height: 800,
     }}
   />,
   document.getElementById("app")

@@ -5,6 +5,7 @@ import registerFaIcons from "../../registerFaIcons";
 import Notification from "../Notification/Notification";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import { ConfigContext } from "../../config-context";
+import Loading from "../Loader/Loading";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
@@ -28,6 +29,11 @@ export default function OpenSeadragonViewer({ manifestUrl, options }) {
   useEffect(() => {
     getManifest();
   }, []);
+
+  const loaderWrapper = css`
+    text-align: center;
+    height: ${options.height ? options.height : 500}px;
+  `;
 
   async function getManifest() {
     try {
@@ -53,7 +59,11 @@ export default function OpenSeadragonViewer({ manifestUrl, options }) {
         </div>
       </ErrorBoundary>
     </ConfigContext.Provider>
-  ) : null;
+  ) : (
+    <div css={loaderWrapper}>
+      <Loading active={true} />
+    </div>
+  );
 }
 
 OpenSeadragonViewer.propTypes = {
@@ -69,6 +79,8 @@ OpenSeadragonViewer.propTypes = {
     showToolbar: PropTypes.bool,
     /** Display URL params for Zooming and selected tile source highlighting */
     deepLinking: PropTypes.bool,
+    /** Set Height in pixels for the viewer */
+    height: PropTypes.number,
   }),
 };
 
@@ -78,5 +90,6 @@ OpenSeadragonViewer.defaultProps = {
     showThumbnails: true,
     showToolbar: true,
     deepLinking: true,
+    height: 800,
   },
 };

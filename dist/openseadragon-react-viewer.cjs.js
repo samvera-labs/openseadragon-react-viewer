@@ -8,7 +8,6 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var reactDeviceDetect = require('react-device-detect');
 var core = require('@emotion/core');
-var core__default = _interopDefault(core);
 var Select = _interopDefault(require('react-select'));
 var Canvas2Image = _interopDefault(require('@reglendo/canvas2image'));
 var OpenSeadragon = require('openseadragon');
@@ -266,12 +265,6 @@ function _arrayLikeToArray(arr, len) {
 
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
 function createCommonjsModule(fn, module) {
@@ -2230,248 +2223,8 @@ function updateUrl(_ref) {
   window.history.replaceState({}, "", url);
 }
 
-var proptypes = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports, "__esModule", { value: true });
-var commonValues = {
-    loading: true,
-    color: "#000000",
-    css: ""
-};
-function sizeDefaults(sizeValue) {
-    return Object.assign({}, commonValues, { size: sizeValue });
-}
-exports.sizeDefaults = sizeDefaults;
-function sizeMarginDefaults(sizeValue) {
-    return Object.assign({}, sizeDefaults(sizeValue), {
-        margin: 2
-    });
-}
-exports.sizeMarginDefaults = sizeMarginDefaults;
-function heightWidthDefaults(height, width) {
-    return Object.assign({}, commonValues, {
-        height: height,
-        width: width
-    });
-}
-exports.heightWidthDefaults = heightWidthDefaults;
-function heightWidthRadiusDefaults(height, width, radius) {
-    if (radius === void 0) { radius = 2; }
-    return Object.assign({}, heightWidthDefaults(height, width), {
-        radius: radius,
-        margin: 2
-    });
-}
-exports.heightWidthRadiusDefaults = heightWidthRadiusDefaults;
-});
-
-unwrapExports(proptypes);
-var proptypes_1 = proptypes.sizeDefaults;
-var proptypes_2 = proptypes.sizeMarginDefaults;
-var proptypes_3 = proptypes.heightWidthDefaults;
-var proptypes_4 = proptypes.heightWidthRadiusDefaults;
-
-var colors = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports, "__esModule", { value: true });
-var BasicColors;
-(function (BasicColors) {
-    BasicColors["maroon"] = "#800000";
-    BasicColors["red"] = "#FF0000";
-    BasicColors["orange"] = "#FFA500";
-    BasicColors["yellow"] = "#FFFF00";
-    BasicColors["olive"] = "#808000";
-    BasicColors["green"] = "#008000";
-    BasicColors["purple"] = "#800080";
-    BasicColors["fuchsia"] = "#FF00FF";
-    BasicColors["lime"] = "#00FF00";
-    BasicColors["teal"] = "#008080";
-    BasicColors["aqua"] = "#00FFFF";
-    BasicColors["blue"] = "#0000FF";
-    BasicColors["navy"] = "#000080";
-    BasicColors["black"] = "#000000";
-    BasicColors["gray"] = "#808080";
-    BasicColors["silver"] = "#C0C0C0";
-    BasicColors["white"] = "#FFFFFF";
-})(BasicColors || (BasicColors = {}));
-exports.calculateRgba = function (color, opacity) {
-    if (Object.keys(BasicColors).includes(color)) {
-        color = BasicColors[color];
-    }
-    if (color[0] === "#") {
-        color = color.slice(1);
-    }
-    if (color.length === 3) {
-        var res_1 = "";
-        color.split("").forEach(function (c) {
-            res_1 += c;
-            res_1 += c;
-        });
-        color = res_1;
-    }
-    var rgbValues = color
-        .match(/.{2}/g)
-        .map(function (hex) { return parseInt(hex, 16); })
-        .join(", ");
-    return "rgba(" + rgbValues + ", " + opacity + ")";
-};
-});
-
-unwrapExports(colors);
-var colors_1 = colors.calculateRgba;
-
-var unitConverter = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports, "__esModule", { value: true });
-var cssUnit = {
-    cm: true,
-    mm: true,
-    in: true,
-    px: true,
-    pt: true,
-    pc: true,
-    em: true,
-    ex: true,
-    ch: true,
-    rem: true,
-    vw: true,
-    vh: true,
-    vmin: true,
-    vmax: true,
-    "%": true
-};
-/**
- * If size is a number, append px to the value as default unit.
- * If size is a string, validate against list of valid units.
- * If unit is valid, return size as is.
- * If unit is invalid, console warn issue, replace with px as the unit.
- *
- * @param {(number | string)} size
- * @return {LengthObject} LengthObject
- */
-function parseLengthAndUnit(size) {
-    if (typeof size === "number") {
-        return {
-            value: size,
-            unit: "px"
-        };
-    }
-    var value;
-    var valueString = size.match(/^[0-9.]*/).toString();
-    if (valueString.includes(".")) {
-        value = parseFloat(valueString);
-    }
-    else {
-        value = parseInt(valueString, 10);
-    }
-    var unit = size.match(/[^0-9]*$/).toString();
-    if (cssUnit[unit]) {
-        return {
-            value: value,
-            unit: unit
-        };
-    }
-    console.warn("React Spinners: " + size + " is not a valid css value. Defaulting to " + value + "px.");
-    return {
-        value: value,
-        unit: "px"
-    };
-}
-exports.parseLengthAndUnit = parseLengthAndUnit;
-/**
- * Take value as an input and return valid css value
- *
- * @param {(number | string)} value
- * @return {string} valid css value
- */
-function cssValue(value) {
-    var lengthWithunit = parseLengthAndUnit(value);
-    return "" + lengthWithunit.value + lengthWithunit.unit;
-}
-exports.cssValue = cssValue;
-});
-
-unwrapExports(unitConverter);
-var unitConverter_1 = unitConverter.parseLengthAndUnit;
-var unitConverter_2 = unitConverter.cssValue;
-
-var helpers = createCommonjsModule(function (module, exports) {
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(proptypes);
-__export(colors);
-__export(unitConverter);
-});
-
-unwrapExports(helpers);
-
-var BarLoader = createCommonjsModule(function (module, exports) {
-var __makeTemplateObject = (commonjsGlobal && commonjsGlobal.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
-var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __importStar = (commonjsGlobal && commonjsGlobal.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-    result["default"] = mod;
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-/** @jsx jsx */
-var React = __importStar(React__default);
-
-
-var long = core__default.keyframes(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  0% {left: -35%;right: 100%}\n  60% {left: 100%;right: -90%}\n  100% {left: 100%;right: -90%}\n"], ["\n  0% {left: -35%;right: 100%}\n  60% {left: 100%;right: -90%}\n  100% {left: 100%;right: -90%}\n"])));
-var short = core__default.keyframes(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  0% {left: -200%;right: 100%}\n  60% {left: 107%;right: -8%}\n  100% {left: 107%;right: -8%}\n"], ["\n  0% {left: -200%;right: 100%}\n  60% {left: 107%;right: -8%}\n  100% {left: 107%;right: -8%}\n"])));
-var Loader = /** @class */ (function (_super) {
-    __extends(Loader, _super);
-    function Loader() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.style = function (i) {
-            var _a = _this.props, height = _a.height, color = _a.color;
-            return core__default.css(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n      position: absolute;\n      height: ", ";\n      overflow: hidden;\n      background-color: ", ";\n      background-clip: padding-box;\n      display: block;\n      border-radius: 2px;\n      will-change: left, right;\n      animation-fill-mode: forwards;\n      animation: ", " 2.1s ", "\n        ", "\n        infinite;\n    "], ["\n      position: absolute;\n      height: ", ";\n      overflow: hidden;\n      background-color: ", ";\n      background-clip: padding-box;\n      display: block;\n      border-radius: 2px;\n      will-change: left, right;\n      animation-fill-mode: forwards;\n      animation: ", " 2.1s ", "\n        ",
-                "\n        infinite;\n    "])), helpers.cssValue(height), color, i === 1 ? long : short, i === 2 ? "1.15s" : "", i === 1
-                ? "cubic-bezier(0.65, 0.815, 0.735, 0.395)"
-                : "cubic-bezier(0.165, 0.84, 0.44, 1)");
-        };
-        _this.wrapper = function () {
-            var _a = _this.props, width = _a.width, height = _a.height, color = _a.color;
-            return core__default.css(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n      position: relative;\n      width: ", ";\n      height: ", ";\n      overflow: hidden;\n      background-color: ", ";\n      background-clip: padding-box;\n    "], ["\n      position: relative;\n      width: ", ";\n      height: ", ";\n      overflow: hidden;\n      background-color: ", ";\n      background-clip: padding-box;\n    "])), helpers.cssValue(width), helpers.cssValue(height), helpers.calculateRgba(color, 0.2));
-        };
-        return _this;
-    }
-    Loader.prototype.render = function () {
-        var _a = this.props, loading = _a.loading, css = _a.css;
-        return loading ? (core__default.jsx("div", { css: [this.wrapper(), css] },
-            core__default.jsx("div", { css: this.style(1) }),
-            core__default.jsx("div", { css: this.style(2) }))) : null;
-    };
-    Loader.defaultProps = helpers.heightWidthDefaults(4, 100);
-    return Loader;
-}(React.PureComponent));
-exports.Loader = Loader;
-exports.default = Loader;
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
-});
-
-var BarLoader$1 = unwrapExports(BarLoader);
-var BarLoader_1 = BarLoader.Loader;
-
 function _templateObject4$2() {
-  var data = _taggedTemplateLiteral(["\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "]);
 
   _templateObject4$2 = function _templateObject4() {
     return data;
@@ -2481,7 +2234,7 @@ function _templateObject4$2() {
 }
 
 function _templateObject3$2() {
-  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  &.centered {\n    justify-content: center;\n  }\n\n  @media screen and (max-width: 768px) {\n    justify-content: center;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
 
   _templateObject3$2 = function _templateObject3() {
     return data;
@@ -2491,7 +2244,7 @@ function _templateObject3$2() {
 }
 
 function _templateObject2$3() {
-  var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  background: rgba(0, 0, 0, 0.5);\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  &.centered {\n    justify-content: center;\n  }\n\n  @media screen and (max-width: 768px) {\n    justify-content: center;\n  }\n"]);
 
   _templateObject2$3 = function _templateObject2() {
     return data;
@@ -2501,7 +2254,7 @@ function _templateObject2$3() {
 }
 
 function _templateObject$3() {
-  var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  background: black;\n  width: 100%;\n  height: 800px;\n  padding-bottom: 50px;\n\n  @media screen and (max-width: 768px) {\n    height: 500px;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  background: rgba(0, 0, 0, 0.5);\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
 
   _templateObject$3 = function _templateObject() {
     return data;
@@ -2509,10 +2262,9 @@ function _templateObject$3() {
 
   return data;
 }
-var openSeadragonContainer = core.css(_templateObject$3());
-var topBarWrapper = core.css(_templateObject2$3());
-var topBar = core.css(_templateObject3$2());
-var toolbar = core.css(_templateObject4$2());
+var topBarWrapper = core.css(_templateObject$3());
+var topBar = core.css(_templateObject2$3());
+var toolbar = core.css(_templateObject3$2());
 /**
  * Viewer component
  */
@@ -2541,17 +2293,13 @@ var Viewer = function Viewer(_ref) {
       tileIndex = _useState8[0],
       setTileIndex = _useState8[1];
 
-  var _useState9 = React.useState(true),
+  var _useState9 = React.useState(window.location.hash),
       _useState10 = _slicedToArray(_useState9, 2),
-      loading = _useState10[0],
-      setLoading = _useState10[1];
-
-  var _useState11 = React.useState(window.location.hash),
-      _useState12 = _slicedToArray(_useState11, 2),
-      currentURLParams = _useState12[0],
-      setCurrentURLParams = _useState12[1];
+      currentURLParams = _useState10[0],
+      setCurrentURLParams = _useState10[1];
 
   var configProps = React.useContext(ConfigContext);
+  var openSeadragonContainer = core.css(_templateObject4$2(), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
   React.useEffect(function () {
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
@@ -2609,7 +2357,6 @@ var Viewer = function Viewer(_ref) {
     var y = urlParams["y"] || pan.y;
     openSeadragonInstance.viewport.panTo(new OpenSeadragon.Point(x, y), true);
     openSeadragonInstance.viewport.zoomTo(zoom, null, true);
-    setLoading(false);
   };
 
   var calculateDownloadDimensions = function calculateDownloadDimensions() {
@@ -2730,16 +2477,6 @@ var Viewer = function Viewer(_ref) {
   }
 
   return core.jsx(React__default.Fragment, null, core.jsx("div", {
-    align: "center",
-    css: {
-      margin: 20
-    }
-  }, core.jsx(BarLoader$1, {
-    width: 300,
-    height: 4,
-    color: "#4e2a84",
-    loading: loading
-  })), core.jsx("div", {
     "data-testid": "viewer",
     css: topBarWrapper
   }, core.jsx("div", {
@@ -2915,7 +2652,7 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
 }(React__default.Component);
 
 function _templateObject$5() {
-  var data = _taggedTemplateLiteral(["\n  position: relative;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"]);
 
   _templateObject$5 = function _templateObject() {
     return data;
@@ -2923,7 +2660,44 @@ function _templateObject$5() {
 
   return data;
 }
-var wrapper = core.css(_templateObject$5()); // Instantiate FontAwesome icons
+var LoadingStyles = core.css(_templateObject$5());
+function Loading(_ref) {
+  var _ref$active = _ref.active,
+      active = _ref$active === void 0 ? true : _ref$active;
+
+  if (!active) {
+    return core.jsx(React__default.Fragment, null);
+  }
+
+  return core.jsx("div", {
+    css: LoadingStyles
+  }, core.jsx("div", null), core.jsx("div", null), core.jsx("div", null), core.jsx("div", null));
+}
+Loading.propTypes = {
+  /** Error message to display */
+  active: propTypes.bool
+};
+
+function _templateObject2$5() {
+  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "]);
+
+  _templateObject2$5 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$6() {
+  var data = _taggedTemplateLiteral(["\n  position: relative;\n"]);
+
+  _templateObject$6 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var wrapper = core.css(_templateObject$6()); // Instantiate FontAwesome icons
 
 registerIcons();
 /**
@@ -2949,6 +2723,7 @@ function OpenSeadragonViewer(_ref) {
   React.useEffect(function () {
     getManifest();
   }, []);
+  var loaderWrapper = core.css(_templateObject2$5(), options.height ? options.height : 500);
 
   function getManifest() {
     return _getManifest.apply(this, arguments);
@@ -3005,7 +2780,11 @@ function OpenSeadragonViewer(_ref) {
     css: wrapper
   }, core.jsx(Viewer, {
     manifest: manifest
-  })))) : null;
+  })))) : core.jsx("div", {
+    css: loaderWrapper
+  }, core.jsx(Loading, {
+    active: true
+  }));
 }
 OpenSeadragonViewer.propTypes = {
   /** A valid IIIF manifest uri */
@@ -3023,7 +2802,10 @@ OpenSeadragonViewer.propTypes = {
     showToolbar: propTypes.bool,
 
     /** Display URL params for Zooming and selected tile source highlighting */
-    deepLinking: propTypes.bool
+    deepLinking: propTypes.bool,
+
+    /** Set Height in pixels for the viewer */
+    height: propTypes.number
   })
 };
 OpenSeadragonViewer.defaultProps = {
@@ -3031,7 +2813,8 @@ OpenSeadragonViewer.defaultProps = {
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
-    deepLinking: true
+    deepLinking: true,
+    height: 800
   }
 };
 

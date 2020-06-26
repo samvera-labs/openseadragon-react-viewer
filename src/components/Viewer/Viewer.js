@@ -9,22 +9,10 @@ import { isMobile } from "react-device-detect";
 import { ConfigContext } from "../../config-context";
 import { updateUrl, parseHash } from "../../services/url-script";
 import OpenSeadragon, { Point } from "openseadragon";
-import BarLoader from "react-spinners/BarLoader";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-const openSeadragonContainer = css`
-  display: inline-block;
-  background: black;
-  width: 100%;
-  height: 800px;
-  padding-bottom: 50px;
-
-  @media screen and (max-width: 768px) {
-    height: 500px;
-  }
-`;
 const topBarWrapper = css`
   font-size: 1rem;
   background: rgba(0, 0, 0, 0.5);
@@ -46,6 +34,7 @@ const topBarWrapper = css`
     }
   }
 `;
+
 const topBar = css`
   display: flex;
   justify-content: space-between;
@@ -75,11 +64,22 @@ const Viewer = ({ manifest }) => {
   const [canvasImageResources, setCanvasImageResources] = useState([]);
   const [currentTileSource, setCurrentTileSource] = useState();
   const [tileIndex, setTileIndex] = useState();
-  const [loading, setLoading] = useState(true);
   const [currentURLParams, setCurrentURLParams] = useState(
     window.location.hash
   );
   const configProps = useContext(ConfigContext);
+
+  const openSeadragonContainer = css`
+    display: inline-block;
+    background: black;
+    width: 100%;
+    height: ${configProps.height ? configProps.height : 800}px;
+    padding-bottom: 50px;
+
+    @media screen and (max-width: 768px) {
+      height: ${configProps.height ? configProps.height : 500}px;
+    }
+  `;
 
   useEffect(() => {
     // Pull out tile sources from manifest
@@ -114,7 +114,6 @@ const Viewer = ({ manifest }) => {
         openSeadragonInstance.addOnceHandler("open", handleFullyLoaded);
       }
     }
-
     // Remove event handlers when component unmounts
     return () => {
       if (openSeadragonInstance) {
@@ -141,7 +140,6 @@ const Viewer = ({ manifest }) => {
     const y = urlParams["y"] || pan.y;
     openSeadragonInstance.viewport.panTo(new Point(x, y), true);
     openSeadragonInstance.viewport.zoomTo(zoom, null, true);
-    setLoading(false);
   };
 
   const calculateDownloadDimensions = () => {
@@ -267,9 +265,6 @@ const Viewer = ({ manifest }) => {
 
   return (
     <>
-      <div align="center" css={{ margin: 20 }}>
-        <BarLoader width={300} height={4} color={"#4e2a84"} loading={loading} />
-      </div>
       <div data-testid="viewer" css={topBarWrapper}>
         <div css={topBar}>
           {configProps.showDropdown && (
