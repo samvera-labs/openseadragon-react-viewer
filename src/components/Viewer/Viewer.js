@@ -13,13 +13,42 @@ import OpenSeadragon, { Point } from "openseadragon";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-const topBarWrapper = css`
+const openSeadragonContainer = css`
+  display: inline-block;
+  background: black;
+  width: 100%;
+  height: 800px;
+  padding-bottom: 50px;
+
+  @media screen and (max-width: 768px) {
+    height: 500px;
+  }
+`;
+const osdTopRow = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 60px;
+`;
+const workTitle = css`
+  text-align: left;
+  color: white;
+  font-size: 1.25rem;
+  padding-left: 1rem;
+`;
+const toolBarWrapper = css`
   font-size: 1rem;
-  background: rgba(0, 0, 0, 0.5);
+  /* background: rgba(0, 0, 0, 0.5); */
   color: #e3e3e3;
   position: absolute;
   z-index: 10;
   width: 100%;
+  top: 80px;
+  padding-right: 1rem;
 
   select {
     color: #e3e3e3;
@@ -35,31 +64,13 @@ const topBarWrapper = css`
   }
 `;
 
-const topBar = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  &.centered {
-    justify-content: center;
-  }
-
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-  }
-`;
-const toolbar = css`
-  @media screen and (max-width: 768px) {
-    margin-right: 0;
-  }
-`;
-
 /**
  * Viewer component
  */
 const Viewer = ({ manifest }) => {
   if (!manifest) return null;
 
+  const title = manifest.label || "";
   const [openSeadragonInstance, setOpenSeadragonInstance] = useState();
   const [canvasImageResources, setCanvasImageResources] = useState([]);
   const [currentTileSource, setCurrentTileSource] = useState();
@@ -265,28 +276,30 @@ const Viewer = ({ manifest }) => {
 
   return (
     <>
-      <div data-testid="viewer" css={topBarWrapper}>
-        <div css={topBar}>
-          {configProps.showDropdown && (
-            <div data-testid="select-component-wrapper">
-              <TileSourceSelect
-                currentTileSource={currentTileSource}
-                onFileSetChange={handleFilesetSelectChange}
-                tileSources={canvasImageResources}
+      <div css={osdTopRow} className="osrv-top-row-wrapper">
+        <div css={workTitle} className="osrv-work-title">
+          {title}
+        </div>
+        {configProps.showDropdown && (
+          <div data-testid="select-component-wrapper">
+            <TileSourceSelect
+              currentTileSource={currentTileSource}
+              onFileSetChange={handleFilesetSelectChange}
+              tileSources={canvasImageResources}
+            />
+          </div>
+        )}
+      </div>
+      <div data-testid="toolbar-container" css={toolBarWrapper}>
+        <div id="toolbarDiv">
+          {configProps.showToolbar && (
+            <div data-testid="toolbar-wrapper">
+              <Toolbar
+                onDownloadCropClick={handleDownloadCropClick}
+                onDownloadFullSize={handleDownloadFullSize}
               />
             </div>
           )}
-
-          <div id="toolbarDiv" css={toolbar}>
-            {configProps.showToolbar && (
-              <div data-testid="toolbar-wrapper">
-                <Toolbar
-                  onDownloadCropClick={handleDownloadCropClick}
-                  onDownloadFullSize={handleDownloadFullSize}
-                />
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
