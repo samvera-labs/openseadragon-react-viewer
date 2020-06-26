@@ -10,6 +10,7 @@ const notification = css`
   padding: 1.25rem 2.5rem 1.25rem 1.5rem;
   position: relative;
   text-align: center;
+  font-size: 1rem;
 `;
 const danger = css`
   background-color: #f14668;
@@ -19,7 +20,11 @@ const danger = css`
 export default function Notification({
   error = "An error occurred with no data passed to the notification",
 }) {
-  return <div css={[notification, danger]}>{error}</div>;
+  return (
+    <div className="osrv-error-message" css={[notification, danger]}>
+      {error}
+    </div>
+  );
 }
 
 Notification.propTypes = {

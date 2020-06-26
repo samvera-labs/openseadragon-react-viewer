@@ -37,7 +37,7 @@ export default function OpenSeadragonViewer({ manifestUrl, options }) {
 
   async function getManifest() {
     try {
-      const response = await fetch(`${manifestUrl}`);
+      const response = await fetch(manifestUrl);
       const data = await response.json();
       setManifest(data);
     } catch (e) {
