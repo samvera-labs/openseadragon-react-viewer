@@ -31,7 +31,6 @@ const workTitle = css`
 `;
 const toolBarWrapper = css`
   font-size: 1rem;
-  /* background: rgba(0, 0, 0, 0.5); */
   color: #e3e3e3;
   position: absolute;
   z-index: 10;

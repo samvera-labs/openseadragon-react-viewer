@@ -2238,7 +2238,7 @@ function _templateObject4$2() {
 }
 
 function _templateObject3$2() {
-  var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  /* background: rgba(0, 0, 0, 0.5); */\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
 
   _templateObject3$2 = function _templateObject3() {
     return data;

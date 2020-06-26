@@ -17,13 +17,8 @@ The easiest way to use `openseadragon-react-viewer` is to install the package (a
 ```
 yarn add openseadragon-react-viewer
 
-// Peer Dependencies (Purposely left out of openseadragon-react-viewer
-// to keep bundle size light)
-yarn add @emotion/core
-yarn add openseadragon
-yarn @reglendo/canvas2image // For downloading images
-yarn add react-device-detect // Handles mobile detection
-yarn add react-select // For the dropdown navigation
+// And peer dependencies
+yarn add @emotion/core openseadragon
 ```
 
 Then use it in your app:
