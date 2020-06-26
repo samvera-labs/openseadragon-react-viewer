@@ -37,12 +37,14 @@ const App = () => {
   const manifestUrl = "https://some-manifest-url-here.json";
 
   // Options to show/hide extra UI features in the viewer
-  // All options default to 'true'
+  // height(in pixels) option is default to 800 for wide-screens and 500 for narrow-screens
+  // All other options default to 'true'
   const options = {
     showDropdown: true,
     showThumbnails: false,
     showToolbar: true,
-    deepLinking: true
+    deepLinking: true,
+    height: 800,
   };
 
   return (

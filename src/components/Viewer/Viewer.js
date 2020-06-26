@@ -13,17 +13,6 @@ import OpenSeadragon, { Point } from "openseadragon";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-const openSeadragonContainer = css`
-  display: inline-block;
-  background: black;
-  width: 100%;
-  height: 800px;
-  padding-bottom: 50px;
-
-  @media screen and (max-width: 768px) {
-    height: 500px;
-  }
-`;
 const topBarWrapper = css`
   font-size: 1rem;
   background: rgba(0, 0, 0, 0.5);
@@ -45,6 +34,7 @@ const topBarWrapper = css`
     }
   }
 `;
+
 const topBar = css`
   display: flex;
   justify-content: space-between;
@@ -79,6 +69,18 @@ const Viewer = ({ manifest }) => {
   );
   const configProps = useContext(ConfigContext);
 
+  const openSeadragonContainer = css`
+    display: inline-block;
+    background: black;
+    width: 100%;
+    height: ${configProps.height ? configProps.height : 800}px;
+    padding-bottom: 50px;
+
+    @media screen and (max-width: 768px) {
+      height: ${configProps.height ? configProps.height : 500}px;
+    }
+  `;
+
   useEffect(() => {
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
@@ -112,7 +114,6 @@ const Viewer = ({ manifest }) => {
         openSeadragonInstance.addOnceHandler("open", handleFullyLoaded);
       }
     }
-
     // Remove event handlers when component unmounts
     return () => {
       if (openSeadragonInstance) {

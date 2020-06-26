@@ -16,6 +16,7 @@ If you wanted to import individual components like `Thumbnails` or `Toolbar`, to
     showThumbnails: true,
     showToolbar: true,
     deepLinking: true,
+    height: 800,
   }}
 />
 ```

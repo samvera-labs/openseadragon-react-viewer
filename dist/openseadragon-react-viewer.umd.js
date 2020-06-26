@@ -2220,7 +2220,7 @@
   }
 
   function _templateObject4$2() {
-    var data = _taggedTemplateLiteral(["\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "]);
 
     _templateObject4$2 = function _templateObject4() {
       return data;
@@ -2230,7 +2230,7 @@
   }
 
   function _templateObject3$2() {
-    var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  &.centered {\n    justify-content: center;\n  }\n\n  @media screen and (max-width: 768px) {\n    justify-content: center;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
 
     _templateObject3$2 = function _templateObject3() {
       return data;
@@ -2240,7 +2240,7 @@
   }
 
   function _templateObject2$3() {
-    var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  background: rgba(0, 0, 0, 0.5);\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  &.centered {\n    justify-content: center;\n  }\n\n  @media screen and (max-width: 768px) {\n    justify-content: center;\n  }\n"]);
 
     _templateObject2$3 = function _templateObject2() {
       return data;
@@ -2250,7 +2250,7 @@
   }
 
   function _templateObject$3() {
-    var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  background: black;\n  width: 100%;\n  height: 800px;\n  padding-bottom: 50px;\n\n  @media screen and (max-width: 768px) {\n    height: 500px;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  background: rgba(0, 0, 0, 0.5);\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
 
     _templateObject$3 = function _templateObject() {
       return data;
@@ -2258,10 +2258,9 @@
 
     return data;
   }
-  var openSeadragonContainer = core.css(_templateObject$3());
-  var topBarWrapper = core.css(_templateObject2$3());
-  var topBar = core.css(_templateObject3$2());
-  var toolbar = core.css(_templateObject4$2());
+  var topBarWrapper = core.css(_templateObject$3());
+  var topBar = core.css(_templateObject2$3());
+  var toolbar = core.css(_templateObject3$2());
   /**
    * Viewer component
    */
@@ -2296,6 +2295,7 @@
         setCurrentURLParams = _useState10[1];
 
     var configProps = React.useContext(ConfigContext);
+    var openSeadragonContainer = core.css(_templateObject4$2(), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
     React.useEffect(function () {
       // Pull out tile sources from manifest
       setCanvasImageResources(getCanvasImageResources(manifest));
@@ -2648,7 +2648,7 @@
   }(React__default.Component);
 
   function _templateObject$5() {
-    var data = _taggedTemplateLiteral(["\n  position: relative;\n"]);
+    var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"]);
 
     _templateObject$5 = function _templateObject() {
       return data;
@@ -2656,7 +2656,44 @@
 
     return data;
   }
-  var wrapper = core.css(_templateObject$5()); // Instantiate FontAwesome icons
+  var LoadingStyles = core.css(_templateObject$5());
+  function Loading(_ref) {
+    var _ref$active = _ref.active,
+        active = _ref$active === void 0 ? true : _ref$active;
+
+    if (!active) {
+      return core.jsx(React__default.Fragment, null);
+    }
+
+    return core.jsx("div", {
+      css: LoadingStyles
+    }, core.jsx("div", null), core.jsx("div", null), core.jsx("div", null), core.jsx("div", null));
+  }
+  Loading.propTypes = {
+    /** Error message to display */
+    active: propTypes.bool
+  };
+
+  function _templateObject2$5() {
+    var data = _taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "]);
+
+    _templateObject2$5 = function _templateObject2() {
+      return data;
+    };
+
+    return data;
+  }
+
+  function _templateObject$6() {
+    var data = _taggedTemplateLiteral(["\n  position: relative;\n"]);
+
+    _templateObject$6 = function _templateObject() {
+      return data;
+    };
+
+    return data;
+  }
+  var wrapper = core.css(_templateObject$6()); // Instantiate FontAwesome icons
 
   registerIcons();
   /**
@@ -2682,6 +2719,7 @@
     React.useEffect(function () {
       getManifest();
     }, []);
+    var loaderWrapper = core.css(_templateObject2$5(), options.height ? options.height : 500);
 
     function getManifest() {
       return _getManifest.apply(this, arguments);
@@ -2738,7 +2776,11 @@
       css: wrapper
     }, core.jsx(Viewer, {
       manifest: manifest
-    })))) : null;
+    })))) : core.jsx("div", {
+      css: loaderWrapper
+    }, core.jsx(Loading, {
+      active: true
+    }));
   }
   OpenSeadragonViewer.propTypes = {
     /** A valid IIIF manifest uri */
@@ -2756,7 +2798,10 @@
       showToolbar: propTypes.bool,
 
       /** Display URL params for Zooming and selected tile source highlighting */
-      deepLinking: propTypes.bool
+      deepLinking: propTypes.bool,
+
+      /** Set Height in pixels for the viewer */
+      height: propTypes.number
     })
   };
   OpenSeadragonViewer.defaultProps = {
@@ -2764,7 +2809,8 @@
       showDropdown: true,
       showThumbnails: true,
       showToolbar: true,
-      deepLinking: true
+      deepLinking: true,
+      height: 800
     }
   };
 
