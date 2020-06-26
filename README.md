@@ -64,6 +64,20 @@ Props the component accepts:
 
 See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/) for full configuration options.
 
+### Custom styling
+
+CSS class names are provided for elements which allow for custom styling overrides.
+
+For example, to change the style of the title in the viewer, in your CSS define something like:
+
+```
+.osrv-work-title {
+  color: green;
+  font-family: "Verdana";
+  font-size: 2rem;
+}
+```
+
 ## Development
 
 ### Prerequisites

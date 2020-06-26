@@ -13,17 +13,6 @@ import OpenSeadragon, { Point } from "openseadragon";
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 
-const openSeadragonContainer = css`
-  display: inline-block;
-  background: black;
-  width: 100%;
-  height: 800px;
-  padding-bottom: 50px;
-
-  @media screen and (max-width: 768px) {
-    height: 500px;
-  }
-`;
 const osdTopRow = css`
   display: flex;
   justify-content: space-between;
