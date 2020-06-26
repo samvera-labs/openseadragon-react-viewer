@@ -17,13 +17,8 @@ The easiest way to use `openseadragon-react-viewer` is to install the package (a
 ```
 yarn add openseadragon-react-viewer
 
-// Peer Dependencies (Purposely left out of openseadragon-react-viewer
-// to keep bundle size light)
-yarn add @emotion/core
-yarn add openseadragon
-yarn @reglendo/canvas2image // For downloading images
-yarn add react-device-detect // Handles mobile detection
-yarn add react-select // For the dropdown navigation
+// And peer dependencies
+yarn add @emotion/core openseadragon
 ```
 
 Then use it in your app:
@@ -63,6 +58,20 @@ Props the component accepts:
 - `options` - {object} An options config object whether to use custom features or OpenSeadragon features
 
 See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/) for full configuration options.
+
+### Custom styling
+
+CSS class names are provided for elements which allow for custom styling overrides.
+
+For example, to change the style of the title in the viewer, in your CSS define something like:
+
+```
+.osrv-work-title {
+  color: green;
+  font-family: "Verdana";
+  font-size: 2rem;
+}
+```
 
 ## Development
 

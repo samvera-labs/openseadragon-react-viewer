@@ -1860,7 +1860,7 @@
   var convertCurry = convert.bind(null, React__default.createElement);
 
   function _templateObject4() {
-    var data = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n  label: toolbarDropdown;\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"]);
 
     _templateObject4 = function _templateObject4() {
       return data;
@@ -1870,7 +1870,7 @@
   }
 
   function _templateObject3() {
-    var data = _taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n  label: toolbarDropdownWrapper;\n"]);
+    var data = _taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"]);
 
     _templateObject3 = function _templateObject3() {
       return data;
@@ -1880,7 +1880,7 @@
   }
 
   function _templateObject2() {
-    var data = _taggedTemplateLiteral(["\n  color: #bbb8b8;\n  background: transparent;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n  opacity: 0.8;\n\n  &:hover {\n    opacity: 1;\n  }\n  label: toolbarControl;\n"]);
+    var data = _taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"]);
 
     _templateObject2 = function _templateObject2() {
       return data;
@@ -1890,7 +1890,7 @@
   }
 
   function _templateObject() {
-    var data = _taggedTemplateLiteral(["\n  z-index: 100;\n  margin: 0 2rem 0 0;\n  label: toolbarWrapper;\n"]);
+    var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
 
     _templateObject = function _templateObject() {
       return data;
@@ -1929,11 +1929,15 @@
       setDropDownOpen(false);
     }
 
-    return core.jsx("nav", null, core.jsx("button", {
+    return core.jsx("nav", {
+      css: toolbarWrapper,
+      className: "osrv-toolbar-wrapper"
+    }, core.jsx("button", {
       id: "zoom-in",
       "data-testid": "zoom-in",
       href: "#zoom-in",
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       title: "Zoom In"
     }, core.jsx(FontAwesomeIcon, {
       icon: "search-plus"
@@ -1942,6 +1946,7 @@
       "data-testid": "zoom-out",
       href: "#zoom-out",
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       title: "Zoom Out"
     }, core.jsx(FontAwesomeIcon, {
       icon: "search-minus"
@@ -1950,6 +1955,7 @@
       "data-testid": "full-page",
       href: "#full-page",
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       title: "Full Screen"
     }, core.jsx(FontAwesomeIcon, {
       icon: "expand"
@@ -1959,6 +1965,7 @@
       "data-testid": "download",
       onClick: handleDownloadClick,
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       "aria-haspopup": "true",
       "aria-expanded": dropDownOpen,
       title: "Download"
@@ -1970,17 +1977,20 @@
       "data-testid": "download-crop",
       title: "Download cropped canvas",
       onClick: handleDownloadCropClick,
-      css: toolbarControl
+      css: toolbarControl,
+      className: "osrv-toolbar-button"
     }, "Download crop")), core.jsx("li", null, core.jsx("button", {
       "data-testid": "download-full",
       onClick: handleDownloadFullSize,
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       title: "Download full size image"
     }, "Download full size")))), core.jsx("button", {
       id: "previous",
       "data-testid": "previous",
       href: "#previous",
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       title: "Previous"
     }, core.jsx(FontAwesomeIcon, {
       icon: "arrow-circle-left"
@@ -1989,6 +1999,7 @@
       "data-testid": "next",
       href: "#next",
       css: toolbarControl,
+      className: "osrv-toolbar-button",
       title: "Next"
     }, core.jsx(FontAwesomeIcon, {
       icon: "arrow-circle-right"
@@ -2017,7 +2028,7 @@
   }
 
   function _templateObject$1() {
-    var data = _taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  margin: 1rem 0 1rem 1rem;\n  label: selectThumbnailWrapper;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
 
     _templateObject$1 = function _templateObject() {
       return data;
@@ -2042,6 +2053,7 @@
 
     return core.jsx("div", {
       css: dropdownSelectWrapper,
+      className: "osrv-tilesource-select-wrapper",
       "data-testid": "react-select-wrapper"
     }, core.jsx(Select, {
       classNamePrefix: "react-select",
@@ -2083,7 +2095,7 @@
   };
 
   function _templateObject4$1() {
-    var data = _taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  label: thumbsList;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"]);
 
     _templateObject4$1 = function _templateObject4() {
       return data;
@@ -2103,7 +2115,7 @@
   }
 
   function _templateObject2$2() {
-    var data = _taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n  label: thumbnailView;\n"]);
+    var data = _taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"]);
 
     _templateObject2$2 = function _templateObject2() {
       return data;
@@ -2113,7 +2125,7 @@
   }
 
   function _templateObject$2() {
-    var data = _taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n  label: bottomPanel;\n"]);
+    var data = _taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"]);
 
     _templateObject$2 = function _templateObject() {
       return data;
@@ -2230,7 +2242,7 @@
   }
 
   function _templateObject3$2() {
-    var data = _taggedTemplateLiteral(["\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
 
     _templateObject3$2 = function _templateObject3() {
       return data;
@@ -2240,7 +2252,7 @@
   }
 
   function _templateObject2$3() {
-    var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n\n  &.centered {\n    justify-content: center;\n  }\n\n  @media screen and (max-width: 768px) {\n    justify-content: center;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"]);
 
     _templateObject2$3 = function _templateObject2() {
       return data;
@@ -2250,7 +2262,7 @@
   }
 
   function _templateObject$3() {
-    var data = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  background: rgba(0, 0, 0, 0.5);\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"]);
 
     _templateObject$3 = function _templateObject() {
       return data;
@@ -2258,9 +2270,9 @@
 
     return data;
   }
-  var topBarWrapper = core.css(_templateObject$3());
-  var topBar = core.css(_templateObject2$3());
-  var toolbar = core.css(_templateObject3$2());
+  var osdTopRow = core.css(_templateObject$3());
+  var workTitle = core.css(_templateObject2$3());
+  var toolBarWrapper = core.css(_templateObject3$2());
   /**
    * Viewer component
    */
@@ -2268,6 +2280,7 @@
   var Viewer = function Viewer(_ref) {
     var manifest = _ref.manifest;
     if (!manifest) return null;
+    var title = manifest.label || "";
 
     var _useState = React.useState(),
         _useState2 = _slicedToArray(_useState, 2),
@@ -2473,25 +2486,28 @@
     }
 
     return core.jsx(React__default.Fragment, null, core.jsx("div", {
-      "data-testid": "viewer",
-      css: topBarWrapper
+      css: osdTopRow,
+      className: "osrv-top-row-wrapper"
     }, core.jsx("div", {
-      css: topBar
-    }, configProps.showDropdown && core.jsx("div", {
+      css: workTitle,
+      className: "osrv-work-title"
+    }, title), configProps.showDropdown && core.jsx("div", {
       "data-testid": "select-component-wrapper"
     }, core.jsx(TileSourceSelect, {
       currentTileSource: currentTileSource,
       onFileSetChange: handleFilesetSelectChange,
       tileSources: canvasImageResources
-    })), core.jsx("div", {
-      id: "toolbarDiv",
-      css: toolbar
+    }))), core.jsx("div", {
+      "data-testid": "toolbar-container",
+      css: toolBarWrapper
+    }, core.jsx("div", {
+      id: "toolbarDiv"
     }, configProps.showToolbar && core.jsx("div", {
       "data-testid": "toolbar-wrapper"
     }, core.jsx(Toolbar, {
       onDownloadCropClick: handleDownloadCropClick,
       onDownloadFullSize: handleDownloadFullSize
-    }))))), core.jsx("div", {
+    })))), core.jsx("div", {
       id: "openseadragon1",
       css: openSeadragonContainer
     }), configProps.showThumbnails && canvasImageResources.length > 1 && core.jsx("div", {
@@ -2564,7 +2580,7 @@
   }
 
   function _templateObject2$4() {
-    var data = _taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n  label: danger;\n"]);
+    var data = _taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"]);
 
     _templateObject2$4 = function _templateObject2() {
       return data;
@@ -2574,7 +2590,7 @@
   }
 
   function _templateObject$4() {
-    var data = _taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  label: notification;\n"]);
+    var data = _taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n"]);
 
     _templateObject$4 = function _templateObject() {
       return data;

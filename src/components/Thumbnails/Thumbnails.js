@@ -14,7 +14,6 @@ const bottomPanel = (props) => css`
   z-index: 4;
   overflow: hidden;
   transition: transform 0.3s ease;
-  label: bottomPanel;
 `;
 const thumbnailView = css`
   position: absolute;
@@ -22,7 +21,6 @@ const thumbnailView = css`
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
-  label: thumbnailView;
 `;
 const activeThumb = css`
   outline: 8px solid #f0f0f0;
@@ -36,7 +34,6 @@ const panelListingThumbs = css`
   white-space: nowrap;
   margin-top: 13px;
   margin-bottom: 4px;
-  label: thumbsList;
   li {
     box-sizing: border-box;
     padding: 0 10px 0 10px;

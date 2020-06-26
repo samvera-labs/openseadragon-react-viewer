@@ -8,8 +8,7 @@ import { jsx, css } from "@emotion/core";
 const dropdownSelectWrapper = css`
   width: 350px;
   color: #342f2e;
-  margin: 1rem 0 1rem 1rem;
-  label: selectThumbnailWrapper;
+  padding-right: 1rem;
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -32,7 +31,11 @@ const TileSourceSelect = ({
   };
 
   return (
-    <div css={dropdownSelectWrapper} data-testid="react-select-wrapper">
+    <div
+      css={dropdownSelectWrapper}
+      className="osrv-tilesource-select-wrapper"
+      data-testid="react-select-wrapper"
+    >
       <Select
         classNamePrefix="react-select"
         css={reactSelectContainer}

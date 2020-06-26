@@ -7,27 +7,30 @@ import { isMobile } from "react-device-detect";
 import { jsx, css } from "@emotion/core";
 
 const toolbarWrapper = css`
-  z-index: 100;
-  margin: 0 2rem 0 0;
-  label: toolbarWrapper;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 1rem;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+  }
 `;
 const toolbarControl = css`
-  color: #bbb8b8;
-  background: transparent;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 14px;
   border: 0;
   font-size: 2rem;
   padding: 10px;
-  opacity: 0.8;
 
   &:hover {
-    opacity: 1;
+    background: rgba(0, 0, 0, 0.75);
   }
-  label: toolbarControl;
 `;
 const osdToolbarDropdownWrapper = css`
   position: relative;
   display: inline-block;
-  label: toolbarDropdownWrapper;
 `;
 const osdToolbarDropdown = css`
   position: absolute;
@@ -40,7 +43,7 @@ const osdToolbarDropdown = css`
   margin: 0;
   padding: 0;
   border: 1px solid #716c6b;
-  label: toolbarDropdown;
+
   button {
     padding: 0.75rem 1rem;
     color: #f0f0f0;
@@ -75,12 +78,13 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
   }
 
   return (
-    <nav>
+    <nav css={toolbarWrapper} className="osrv-toolbar-wrapper">
       <button
         id="zoom-in"
         data-testid="zoom-in"
         href="#zoom-in"
         css={toolbarControl}
+        className="osrv-toolbar-button"
         title="Zoom In"
       >
         <FontAwesomeIcon icon="search-plus" />
@@ -90,6 +94,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         data-testid="zoom-out"
         href="#zoom-out"
         css={toolbarControl}
+        className="osrv-toolbar-button"
         title="Zoom Out"
       >
         <FontAwesomeIcon icon="search-minus" />
@@ -100,6 +105,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
           data-testid="full-page"
           href="#full-page"
           css={toolbarControl}
+          className="osrv-toolbar-button"
           title="Full Screen"
         >
           <FontAwesomeIcon icon="expand" />
@@ -112,6 +118,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
             data-testid="download"
             onClick={handleDownloadClick}
             css={toolbarControl}
+            className="osrv-toolbar-button"
             aria-haspopup="true"
             aria-expanded={dropDownOpen}
             title="Download"
@@ -126,6 +133,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
                   title="Download cropped canvas"
                   onClick={handleDownloadCropClick}
                   css={toolbarControl}
+                  className="osrv-toolbar-button"
                 >
                   Download crop
                 </button>
@@ -135,6 +143,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
                   data-testid="download-full"
                   onClick={handleDownloadFullSize}
                   css={toolbarControl}
+                  className="osrv-toolbar-button"
                   title="Download full size image"
                 >
                   Download full size
@@ -149,6 +158,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         data-testid="previous"
         href="#previous"
         css={toolbarControl}
+        className="osrv-toolbar-button"
         title="Previous"
       >
         <FontAwesomeIcon icon="arrow-circle-left" />
@@ -158,6 +168,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         data-testid="next"
         href="#next"
         css={toolbarControl}
+        className="osrv-toolbar-button"
         title="Next"
       >
         <FontAwesomeIcon icon="arrow-circle-right" />

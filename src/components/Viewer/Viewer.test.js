@@ -28,9 +28,9 @@ describe("Viewer", () => {
     expect(render(<Viewer />));
   });
 
-  it("renders the Viewer wrapper component", () => {
+  it("renders the Toolbar container component", () => {
     const { getByTestId, debug } = setupTests();
-    expect(getByTestId("viewer")).toBeInTheDocument();
+    expect(getByTestId("toolbar-container")).toBeInTheDocument();
   });
 
   it("renders the tool bar only if configured", () => {
