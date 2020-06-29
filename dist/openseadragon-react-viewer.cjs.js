@@ -2654,11 +2654,7 @@ function _templateObject2$1() {
 }
 
 function _templateObject$1() {
-<<<<<<< HEAD
-  var data = _taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
-=======
-  var data = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
->>>>>>> Update babel config that was throwing a runtime generator error for using async stuff
+  var data = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
 
   _templateObject$1 = function _templateObject() {
     return data;
