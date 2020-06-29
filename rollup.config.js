@@ -57,7 +57,7 @@ let productionRollup = {
   ],
 };
 
-// browser-friendly UMD build used for development
+//browser-friendly UMD build used for development
 let devRollup = {
   input: "src/index.js",
   output: {
@@ -96,8 +96,8 @@ let devRollup = {
       },
     }),
     // Serve the app and live reload
-    serve({ open: true, contentBase: "public" }),
-    livereload(),
+    !production && serve({ open: true, contentBase: "public" }),
+    !production && livereload(),
   ],
 };
 
