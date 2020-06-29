@@ -9,6 +9,7 @@ const dropdownSelectWrapper = css`
   width: 350px;
   color: #342f2e;
   padding-right: 1rem;
+  font-size: 1rem;
   @media screen and (max-width: 767px) {
     display: none;
   }

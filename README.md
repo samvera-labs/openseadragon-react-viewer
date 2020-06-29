@@ -174,7 +174,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 - **Adam J. Arling** - UI Developer - [Northwestern University](https://github.com/adamjarling)
-- (Your name here)
+- **Divya R. Katpally** - Front-end Developer - [Northwestern University](https://github.com/katdivyareddy10)
 
 ## License
 
