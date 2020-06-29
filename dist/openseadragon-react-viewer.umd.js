@@ -2028,7 +2028,7 @@
   }
 
   function _templateObject$1() {
-    var data = _taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
+    var data = _taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
 
     _templateObject$1 = function _templateObject() {
       return data;
