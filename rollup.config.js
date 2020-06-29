@@ -49,7 +49,8 @@ let productionRollup = {
       "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
     }),
     babel({
-      babelHelpers: "bundled",
+      babelHelpers: "runtime",
+      babelrc: true,
       exclude: "node_modules/**",
     }),
     resolve(), // tells Rollup how to find packages in node_modules
@@ -72,19 +73,8 @@ let devRollup = {
     }),
     babel({
       babelHelpers: "runtime",
-      babelrc: false,
+      babelrc: true,
       exclude: "node_modules/**",
-      plugins: [
-        // Need runtime here to handle async await
-        [
-          "@babel/plugin-transform-runtime",
-          {
-            helpers: true,
-            regenerator: true,
-          },
-        ],
-      ],
-      presets: ["@babel/preset-env", "@babel/preset-react"],
     }),
     resolve(),
     commonjs({
