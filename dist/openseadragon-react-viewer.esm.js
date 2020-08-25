@@ -2504,7 +2504,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -2555,7 +2555,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Zoom In"
   }, jsx(FontAwesomeIcon, {
     icon: "search-plus"
-  })), jsx("button", {
+  }), jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Zoom In")), jsx("button", {
     id: "zoom-out",
     "data-testid": "zoom-out",
     href: "#zoom-out",
@@ -2564,7 +2566,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Zoom Out"
   }, jsx(FontAwesomeIcon, {
     icon: "search-minus"
-  })), !isMobile && jsx("button", {
+  }), jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Zoom Out")), !isMobile && jsx("button", {
     id: "full-page",
     "data-testid": "full-page",
     href: "#full-page",
@@ -2573,7 +2577,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Full Screen"
   }, jsx(FontAwesomeIcon, {
     icon: "expand"
-  })), !isMobile && jsx("div", {
+  }), jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Full Screen")), !isMobile && jsx("div", {
     css: osdToolbarDropdownWrapper
   }, jsx("button", {
     "data-testid": "download",
@@ -2585,7 +2591,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Download"
   }, jsx(FontAwesomeIcon, {
     icon: "download"
-  })), dropDownOpen && jsx("ul", {
+  }), jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Download Image")), dropDownOpen && jsx("ul", {
     css: osdToolbarDropdown
   }, jsx("li", null, jsx("button", {
     "data-testid": "download-crop",
@@ -2608,7 +2616,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Previous"
   }, jsx(FontAwesomeIcon, {
     icon: "arrow-circle-left"
-  })), jsx("button", {
+  }), jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Previous")), jsx("button", {
     id: "next",
     "data-testid": "next",
     href: "#next",
@@ -2617,7 +2627,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Next"
   }, jsx(FontAwesomeIcon, {
     icon: "arrow-circle-right"
-  })));
+  }), jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Next")));
 };
 
 Toolbar.propTypes = {
@@ -2694,6 +2706,7 @@ var TileSourceSelect = function TileSourceSelect(_ref) {
         })
       });
     },
+    "aria-label": "Select file set",
     value: currentTileSource
   }));
 };

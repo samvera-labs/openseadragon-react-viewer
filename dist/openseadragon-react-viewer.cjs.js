@@ -2512,7 +2512,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
+  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -2563,7 +2563,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Zoom In"
   }, core.jsx(FontAwesomeIcon, {
     icon: "search-plus"
-  })), core.jsx("button", {
+  }), core.jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Zoom In")), core.jsx("button", {
     id: "zoom-out",
     "data-testid": "zoom-out",
     href: "#zoom-out",
@@ -2572,7 +2574,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Zoom Out"
   }, core.jsx(FontAwesomeIcon, {
     icon: "search-minus"
-  })), !reactDeviceDetect.isMobile && core.jsx("button", {
+  }), core.jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Zoom Out")), !reactDeviceDetect.isMobile && core.jsx("button", {
     id: "full-page",
     "data-testid": "full-page",
     href: "#full-page",
@@ -2581,7 +2585,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Full Screen"
   }, core.jsx(FontAwesomeIcon, {
     icon: "expand"
-  })), !reactDeviceDetect.isMobile && core.jsx("div", {
+  }), core.jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Full Screen")), !reactDeviceDetect.isMobile && core.jsx("div", {
     css: osdToolbarDropdownWrapper
   }, core.jsx("button", {
     "data-testid": "download",
@@ -2593,7 +2599,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Download"
   }, core.jsx(FontAwesomeIcon, {
     icon: "download"
-  })), dropDownOpen && core.jsx("ul", {
+  }), core.jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Download Image")), dropDownOpen && core.jsx("ul", {
     css: osdToolbarDropdown
   }, core.jsx("li", null, core.jsx("button", {
     "data-testid": "download-crop",
@@ -2616,7 +2624,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Previous"
   }, core.jsx(FontAwesomeIcon, {
     icon: "arrow-circle-left"
-  })), core.jsx("button", {
+  }), core.jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Previous")), core.jsx("button", {
     id: "next",
     "data-testid": "next",
     href: "#next",
@@ -2625,7 +2635,9 @@ var Toolbar = function Toolbar(_ref) {
     title: "Next"
   }, core.jsx(FontAwesomeIcon, {
     icon: "arrow-circle-right"
-  })));
+  }), core.jsx("span", {
+    className: "osrv-toolbar-button-text"
+  }, "Next")));
 };
 
 Toolbar.propTypes = {
@@ -2702,6 +2714,7 @@ var TileSourceSelect = function TileSourceSelect(_ref) {
         })
       });
     },
+    "aria-label": "Select file set",
     value: currentTileSource
   }));
 };

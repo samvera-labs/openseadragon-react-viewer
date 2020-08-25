@@ -11,7 +11,9 @@ const toolbarWrapper = css`
   justify-content: flex-end;
   align-items: center;
   margin-right: 1rem;
-
+  .osrv-toolbar-button-text {
+    display: none;
+  }
   @media screen and (max-width: 768px) {
     margin-right: 0;
   }
@@ -88,6 +90,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         title="Zoom In"
       >
         <FontAwesomeIcon icon="search-plus" />
+        <span className="osrv-toolbar-button-text">Zoom In</span>
       </button>
       <button
         id="zoom-out"
@@ -98,6 +101,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         title="Zoom Out"
       >
         <FontAwesomeIcon icon="search-minus" />
+        <span className="osrv-toolbar-button-text">Zoom Out</span>
       </button>
       {!isMobile && (
         <button
@@ -109,6 +113,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
           title="Full Screen"
         >
           <FontAwesomeIcon icon="expand" />
+          <span className="osrv-toolbar-button-text">Full Screen</span>
         </button>
       )}
 
@@ -124,6 +129,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
             title="Download"
           >
             <FontAwesomeIcon icon="download" />
+            <span className="osrv-toolbar-button-text">Download Image</span>
           </button>
           {dropDownOpen && (
             <ul css={osdToolbarDropdown}>
@@ -162,6 +168,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         title="Previous"
       >
         <FontAwesomeIcon icon="arrow-circle-left" />
+        <span className="osrv-toolbar-button-text">Previous</span>
       </button>
       <button
         id="next"
@@ -172,6 +179,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         title="Next"
       >
         <FontAwesomeIcon icon="arrow-circle-right" />
+        <span className="osrv-toolbar-button-text">Next</span>
       </button>
     </nav>
   );
