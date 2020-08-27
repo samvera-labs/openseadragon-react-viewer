@@ -56,6 +56,7 @@ const TileSourceSelect = ({
             primary25: "#bbb8b8",
           },
         })}
+        aria-label="Select file set"
         value={currentTileSource}
       />
     </div>
