@@ -2,19 +2,32 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
 var React = require('react');
-var React__default = _interopDefault(React);
 var reactDeviceDetect = require('react-device-detect');
 var core = require('@emotion/core');
-var Select = _interopDefault(require('react-select'));
-var Canvas2Image = _interopDefault(require('@reglendo/canvas2image'));
+var Select = require('react-select');
+var Canvas2Image = require('@reglendo/canvas2image');
 var OpenSeadragon = require('openseadragon');
-var OpenSeadragon__default = _interopDefault(OpenSeadragon);
 
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var Select__default = /*#__PURE__*/_interopDefaultLegacy(Select);
+var Canvas2Image__default = /*#__PURE__*/_interopDefaultLegacy(Canvas2Image);
+var OpenSeadragon__default = /*#__PURE__*/_interopDefaultLegacy(OpenSeadragon);
+
+function createCommonjsModule(fn, basedir, module) {
+	return module = {
+	  path: basedir,
+	  exports: {},
+	  require: function (path, base) {
+      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+    }
+	}, fn(module, module.exports), module.exports;
+}
+
+function commonjsRequire () {
+	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
 }
 
 var runtime_1 = createCommonjsModule(function (module) {
@@ -960,7 +973,7 @@ var propTypes = createCommonjsModule(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
-{
+var ReactIs, throwOnDirectAccess; {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
   module.exports = factoryWithThrowingShims();
@@ -2479,7 +2492,7 @@ FontAwesomeIcon.defaultProps = {
   transform: null,
   swapOpacity: false
 };
-var convertCurry = convert.bind(null, React__default.createElement);
+var convertCurry = convert.bind(null, React__default['default'].createElement);
 
 function _templateObject4() {
   var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"]);
@@ -2693,7 +2706,7 @@ var TileSourceSelect = function TileSourceSelect(_ref) {
     css: dropdownSelectWrapper,
     className: "osrv-tilesource-select-wrapper",
     "data-testid": "react-select-wrapper"
-  }, core.jsx(Select, {
+  }, core.jsx(Select__default['default'], {
     classNamePrefix: "react-select",
     css: reactSelectContainer,
     getOptionValue: function getOptionValue(option) {
@@ -2824,7 +2837,7 @@ Thumbnails.propTypes = {
   isPreview: propTypes.bool
 };
 
-var ConfigContext = React__default.createContext();
+var ConfigContext = /*#__PURE__*/React__default['default'].createContext();
 
 function parseHash() {
   var params = {};
@@ -3041,7 +3054,7 @@ var Viewer = function Viewer(_ref) {
         height = _calculateDownloadDim.height;
 
     if (width && height) {
-      Canvas2Image.saveAsJPEG(openSeadragonInstance.drawer.canvas, // Title of downloaded image, based on current file set "label" property
+      Canvas2Image__default['default'].saveAsJPEG(openSeadragonInstance.drawer.canvas, // Title of downloaded image, based on current file set "label" property
       currentTileSource.label ? currentTileSource.label.split(" ").join("-") : "openseadragon-react-viewer-download", width, height);
     }
   };
@@ -3094,7 +3107,7 @@ var Viewer = function Viewer(_ref) {
       nextButton: "next",
       previousButton: "previous"
     };
-    setOpenSeadragonInstance(OpenSeadragon__default(_objectSpread$2({
+    setOpenSeadragonInstance(OpenSeadragon__default['default'](_objectSpread$2({
       ajaxWithCredentials: true,
       crossOriginPolicy: "Anonymous",
       defaultZoomLevel: 0,
@@ -3128,7 +3141,7 @@ var Viewer = function Viewer(_ref) {
     }, customControlIds)));
   }
 
-  return core.jsx(React__default.Fragment, null, core.jsx("div", {
+  return core.jsx(React__default['default'].Fragment, null, core.jsx("div", {
     css: osdTopRow,
     className: "osrv-top-row-wrapper"
   }, core.jsx("div", {
@@ -3397,7 +3410,7 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       if (this.state.hasError) {
         // You can render any custom fallback UI
-        return /*#__PURE__*/React__default.createElement(Notification, {
+        return /*#__PURE__*/React__default['default'].createElement(Notification, {
           error: this.state.error.message
         });
       }
@@ -3416,7 +3429,7 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return ErrorBoundary;
-}(React__default.Component);
+}(React__default['default'].Component);
 
 function _templateObject$5() {
   var data = taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"]);
@@ -3433,7 +3446,7 @@ function Loading(_ref) {
       active = _ref$active === void 0 ? true : _ref$active;
 
   if (!active) {
-    return core.jsx(React__default.Fragment, null);
+    return core.jsx(React__default['default'].Fragment, null);
   }
 
   return core.jsx("div", {

@@ -5,8 +5,18 @@ import Select from 'react-select';
 import Canvas2Image from '@reglendo/canvas2image';
 import OpenSeadragon, { Point } from 'openseadragon';
 
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+function createCommonjsModule(fn, basedir, module) {
+	return module = {
+	  path: basedir,
+	  exports: {},
+	  require: function (path, base) {
+      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+    }
+	}, fn(module, module.exports), module.exports;
+}
+
+function commonjsRequire () {
+	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
 }
 
 var runtime_1 = createCommonjsModule(function (module) {
@@ -952,7 +962,7 @@ var propTypes = createCommonjsModule(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
-{
+var ReactIs, throwOnDirectAccess; {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
   module.exports = factoryWithThrowingShims();
@@ -2816,7 +2826,7 @@ Thumbnails.propTypes = {
   isPreview: propTypes.bool
 };
 
-var ConfigContext = React.createContext();
+var ConfigContext = /*#__PURE__*/React.createContext();
 
 function parseHash() {
   var params = {};
