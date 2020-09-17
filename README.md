@@ -1,6 +1,6 @@
 # OpenSeadragonViewer
 
-![Image of OpenSeadragon React Viewer](https://imgur.com/6PbYcbE)
+![Image of OpenSeadragon React Viewer](https://i.imgur.com/6PbYcbE.jpg)
 
 A React wrapper component around the OpenSeadragon viewer. Feed `OpenSeadragonViewer` a IIIF manifest URL, and it will render an OpenSeadragon viewer with:
 
