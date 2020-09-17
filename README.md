@@ -1,6 +1,6 @@
 # OpenSeadragonViewer
 
-![Image of OpenSeadragon React Viewer](/screenshot.jpg)
+![Image of OpenSeadragon React Viewer](https://imgur.com/6PbYcbE)
 
 A React wrapper component around the OpenSeadragon viewer. Feed `OpenSeadragonViewer` a IIIF manifest URL, and it will render an OpenSeadragon viewer with:
 
@@ -71,6 +71,24 @@ For example, to change the style of the title in the viewer, in your CSS define 
 }
 ```
 
+### Getting help
+
+If you need help with `openseadragon-react-viewer`, [submit an issue](https://github.com/samvera-labs/openseadragon-react-viewer/issues).
+
+### Cross-site Requests
+
+** This info pulled from the [Diva.js](https://github.com/ddmal/diva.js) package**
+
+You may receive an error that looks something like this:
+
+```bash
+XMLHttpRequest cannot load http://example.com/demo/imagefiles.json. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8000' is therefore not allowed access.
+```
+
+This is a security precaution that all browsers use to prevent cross-site request forgeries. If you receive this message it is because your `manifestUrl` prop and the server used to serve the OpenSeadragon React Viewer are not at the same server address.
+
+To fix this you must ensure that the OpenSeadragon React Viewer host's React application, and the location pointed to by the `manifestUrl` prop are being served by the same server, or you must create an exception using the Access-Control-Allow-Origin header on your server to explicitly white-list the `manifestUrl` location.
+
 ## Development
 
 ### Prerequisites
@@ -123,6 +141,8 @@ yarn test:watch
 Styleguidist, in addition to providing documentation, also offers an isolated development environment. To run the environment and test it out:
 
 ```
+yarn dev
+// or
 yarn styleguide
 ```
 
@@ -164,10 +184,6 @@ Use [Prettier](https://prettier.io/).
 - [Rollup](https://rollupjs.org/) - JavaScript Bundler
 - [Jest](https://jestjs.io/) - Testing framework
 - [Emotion](https://emotion.sh/) - CSS in JS
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your-name-or-organization/your-repository-name/tags).
 
 ## Authors
 
