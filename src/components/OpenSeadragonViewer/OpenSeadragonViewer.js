@@ -22,12 +22,20 @@ registerFaIcons();
  *
  * @visibleName OpenSeadragonViewer
  */
-export default function OpenSeadragonViewer({ manifestUrl, options }) {
+export default function OpenSeadragonViewer({
+  manifest: manifestObj = {},
+  manifestUrl,
+  options,
+}) {
   const [manifest, setManifest] = useState();
   const [error, setError] = useState();
 
   useEffect(() => {
-    getManifest();
+    if (Object.keys(manifestObj).length === 0) {
+      getManifest();
+      return;
+    }
+    setManifest(manifestObj);
   }, []);
 
   const loaderWrapper = css`
@@ -72,6 +80,8 @@ export default function OpenSeadragonViewer({ manifestUrl, options }) {
 }
 
 OpenSeadragonViewer.propTypes = {
+  /** A IIIF manifest object.  This will take precendence over manifestUrl if present */
+  manifest: PropTypes.object,
   /** A valid IIIF manifest uri */
   manifestUrl: PropTypes.string,
   /** Configurable options */

@@ -7,11 +7,11 @@ import OpenSeadragon, { Point } from 'openseadragon';
 
 function createCommonjsModule(fn, basedir, module) {
 	return module = {
-	  path: basedir,
-	  exports: {},
-	  require: function (path, base) {
-      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-    }
+		path: basedir,
+		exports: {},
+		require: function (path, base) {
+			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+		}
 	}, fn(module, module.exports), module.exports;
 }
 
@@ -36,6 +36,24 @@ var runtime = (function (exports) {
   var iteratorSymbol = $Symbol.iterator || "@@iterator";
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
   var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
 
   function wrap(innerFn, outerFn, self, tryLocsList) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
@@ -107,16 +125,19 @@ var runtime = (function (exports) {
     Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
+  GeneratorFunction.displayName = define(
+    GeneratorFunctionPrototype,
+    toStringTagSymbol,
+    "GeneratorFunction"
+  );
 
   // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
+      define(prototype, method, function(arg) {
         return this._invoke(method, arg);
-      };
+      });
     });
   }
 
@@ -135,9 +156,7 @@ var runtime = (function (exports) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
       genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
     }
     genFun.prototype = Object.create(Gp);
     return genFun;
@@ -407,7 +426,7 @@ var runtime = (function (exports) {
   // unified ._invoke helper method.
   defineIteratorMethods(Gp);
 
-  Gp[toStringTagSymbol] = "Generator";
+  define(Gp, toStringTagSymbol, "Generator");
 
   // A Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
@@ -731,7 +750,7 @@ var runtime = (function (exports) {
   // as the regeneratorRuntime namespace. Otherwise create a new empty
   // object. Either way, the resulting object will be used to initialize
   // the regeneratorRuntime variable at the top of this file.
-   module.exports 
+  module.exports 
 ));
 
 try {
@@ -962,7 +981,7 @@ var propTypes = createCommonjsModule(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
-var ReactIs, throwOnDirectAccess; {
+{
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
   module.exports = factoryWithThrowingShims();
@@ -991,6 +1010,11 @@ function getCanvasImageResources(manifest) {
   });
   return tileSources;
 }
+
+/*!
+ * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -1110,21 +1134,21 @@ var _ref = _WINDOW.navigator || {},
 var WINDOW = _WINDOW;
 var DOCUMENT = _DOCUMENT;
 var PERFORMANCE = _PERFORMANCE;
-var IS_BROWSER = !!WINDOW.document;
+!!WINDOW.document;
 var IS_DOM = !!DOCUMENT.documentElement && !!DOCUMENT.head && typeof DOCUMENT.addEventListener === 'function' && typeof DOCUMENT.createElement === 'function';
-var IS_IE = ~userAgent.indexOf('MSIE') || ~userAgent.indexOf('Trident/');
+~userAgent.indexOf('MSIE') || ~userAgent.indexOf('Trident/');
 
 var NAMESPACE_IDENTIFIER = '___FONT_AWESOME___';
 var DEFAULT_FAMILY_PREFIX = 'fa';
 var DEFAULT_REPLACEMENT_CLASS = 'svg-inline--fa';
 var DATA_FA_I2SVG = 'data-fa-i2svg';
-var PRODUCTION = function () {
+(function () {
   try {
     return "production" === 'production';
   } catch (e) {
     return false;
   }
-}();
+})();
 var DUOTONE_CLASSES = {
   GROUP: 'group',
   SWAP_OPACITY: 'swap-opacity',
@@ -1213,8 +1237,8 @@ if (IS_DOM) {
   if (!loaded) DOCUMENT.addEventListener('DOMContentLoaded', listener);
 }
 
-var isNode = typeof global !== 'undefined' && typeof global.process !== 'undefined' && typeof global.process.emit === 'function';
-var asyncSetTimer = typeof setImmediate === 'undefined' ? setTimeout : setImmediate;
+typeof global !== 'undefined' && typeof global.process !== 'undefined' && typeof global.process.emit === 'function';
+typeof setImmediate === 'undefined' ? setTimeout : setImmediate;
 var meaninglessTransform = {
   size: 16,
   x: 0,
@@ -1503,9 +1527,12 @@ function makeInlineSvgAbstract(params) {
       width = _ref.width,
       height = _ref.height;
 
-  var widthClass = "fa-w-".concat(Math.ceil(width / height * 16));
+  var isUploadedIcon = prefix === 'fak';
+  var widthClass = isUploadedIcon ? '' : "fa-w-".concat(Math.ceil(width / height * 16));
   var attrClass = [config.replacementClass, iconName ? "".concat(config.familyPrefix, "-").concat(iconName) : '', widthClass].filter(function (c) {
     return extra.classes.indexOf(c) === -1;
+  }).filter(function (c) {
+    return c !== '' || !!c;
   }).concat(extra.classes).join(' ');
   var content = {
     children: [],
@@ -1518,6 +1545,9 @@ function makeInlineSvgAbstract(params) {
       'viewBox': "0 0 ".concat(width, " ").concat(height)
     })
   };
+  var uploadedIconWidthStyle = isUploadedIcon && !~extra.classes.indexOf('fa-fw') ? {
+    width: "".concat(width / height * 16 * 0.0625, "em")
+  } : {};
 
   if (watchable) {
     content.attributes[DATA_FA_I2SVG] = '';
@@ -1539,7 +1569,7 @@ function makeInlineSvgAbstract(params) {
     maskId: maskId,
     transform: transform,
     symbol: symbol,
-    styles: extra.styles
+    styles: _objectSpread({}, uploadedIconWidthStyle, extra.styles)
   });
 
   var _ref2 = mask.found && main.found ? makeIconMasking(args) : makeIconStandard(args),
@@ -1558,7 +1588,7 @@ function makeInlineSvgAbstract(params) {
 
 var noop$1 = function noop() {};
 
-var p = config.measurePerformance && PERFORMANCE && PERFORMANCE.mark && PERFORMANCE.measure ? PERFORMANCE : {
+config.measurePerformance && PERFORMANCE && PERFORMANCE.mark && PERFORMANCE.measure ? PERFORMANCE : {
   mark: noop$1,
   measure: noop$1
 };
@@ -1648,9 +1678,6 @@ function defineIcons(prefix, icons) {
 
 var styles = namespace.styles,
     shims = namespace.shims;
-var _byUnicode = {};
-var _byLigature = {};
-var _byOldName = {};
 var build = function build() {
   var lookup = function lookup(reducer) {
     return reduce(styles, function (o, style, prefix) {
@@ -1659,14 +1686,14 @@ var build = function build() {
     }, {});
   };
 
-  _byUnicode = lookup(function (acc, icon, iconName) {
+  lookup(function (acc, icon, iconName) {
     if (icon[3]) {
       acc[icon[3]] = iconName;
     }
 
     return acc;
   });
-  _byLigature = lookup(function (acc, icon, iconName) {
+  lookup(function (acc, icon, iconName) {
     var ligatures = icon[2];
     acc[iconName] = iconName;
     ligatures.forEach(function (ligature) {
@@ -1675,7 +1702,7 @@ var build = function build() {
     return acc;
   });
   var hasRegular = 'far' in styles;
-  _byOldName = reduce(shims, function (acc, shim) {
+  reduce(shims, function (acc, shim) {
     var oldName = shim[0];
     var prefix = shim[1];
     var iconName = shim[2];
@@ -1693,7 +1720,7 @@ var build = function build() {
 };
 build();
 
-var styles$1 = namespace.styles;
+namespace.styles;
 function iconFromMapping(mapping, prefix, iconName) {
   if (mapping && mapping[prefix] && mapping[prefix][iconName]) {
     return {
@@ -1803,18 +1830,18 @@ var ANIMATION_BASE = {
   repeatCount: 'indefinite',
   dur: '2s'
 };
-var RING = {
+({
   tag: 'path',
   attributes: _objectSpread({}, FILL, {
     d: 'M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z'
   })
-};
+});
 
 var OPACITY_ANIMATE = _objectSpread({}, ANIMATION_BASE, {
   attributeName: 'opacity'
 });
 
-var DOT = {
+({
   tag: 'circle',
   attributes: _objectSpread({}, FILL, {
     cx: '256',
@@ -1833,8 +1860,8 @@ var DOT = {
       values: '1;0;1;1;0;1;'
     })
   }]
-};
-var QUESTION = {
+});
+({
   tag: 'path',
   attributes: _objectSpread({}, FILL, {
     opacity: '1',
@@ -1846,8 +1873,8 @@ var QUESTION = {
       values: '1;0;0;0;0;1;'
     })
   }]
-};
-var EXCLAMATION = {
+});
+({
   tag: 'path',
   attributes: _objectSpread({}, FILL, {
     opacity: '0',
@@ -1859,9 +1886,9 @@ var EXCLAMATION = {
       values: '0;0;1;1;0;0;'
     })
   }]
-};
+});
 
-var styles$2 = namespace.styles;
+namespace.styles;
 function asFoundIcon(icon) {
   var width = icon[0];
   var height = icon[1];
@@ -1912,7 +1939,7 @@ function asFoundIcon(icon) {
   };
 }
 
-var styles$3 = namespace.styles;
+namespace.styles;
 
 var baseStyles = "svg:not(:root).svg-inline--fa {\n  overflow: visible;\n}\n\n.svg-inline--fa {\n  display: inline-block;\n  font-size: inherit;\n  height: 1em;\n  overflow: visible;\n  vertical-align: -0.125em;\n}\n.svg-inline--fa.fa-lg {\n  vertical-align: -0.225em;\n}\n.svg-inline--fa.fa-w-1 {\n  width: 0.0625em;\n}\n.svg-inline--fa.fa-w-2 {\n  width: 0.125em;\n}\n.svg-inline--fa.fa-w-3 {\n  width: 0.1875em;\n}\n.svg-inline--fa.fa-w-4 {\n  width: 0.25em;\n}\n.svg-inline--fa.fa-w-5 {\n  width: 0.3125em;\n}\n.svg-inline--fa.fa-w-6 {\n  width: 0.375em;\n}\n.svg-inline--fa.fa-w-7 {\n  width: 0.4375em;\n}\n.svg-inline--fa.fa-w-8 {\n  width: 0.5em;\n}\n.svg-inline--fa.fa-w-9 {\n  width: 0.5625em;\n}\n.svg-inline--fa.fa-w-10 {\n  width: 0.625em;\n}\n.svg-inline--fa.fa-w-11 {\n  width: 0.6875em;\n}\n.svg-inline--fa.fa-w-12 {\n  width: 0.75em;\n}\n.svg-inline--fa.fa-w-13 {\n  width: 0.8125em;\n}\n.svg-inline--fa.fa-w-14 {\n  width: 0.875em;\n}\n.svg-inline--fa.fa-w-15 {\n  width: 0.9375em;\n}\n.svg-inline--fa.fa-w-16 {\n  width: 1em;\n}\n.svg-inline--fa.fa-w-17 {\n  width: 1.0625em;\n}\n.svg-inline--fa.fa-w-18 {\n  width: 1.125em;\n}\n.svg-inline--fa.fa-w-19 {\n  width: 1.1875em;\n}\n.svg-inline--fa.fa-w-20 {\n  width: 1.25em;\n}\n.svg-inline--fa.fa-pull-left {\n  margin-right: 0.3em;\n  width: auto;\n}\n.svg-inline--fa.fa-pull-right {\n  margin-left: 0.3em;\n  width: auto;\n}\n.svg-inline--fa.fa-border {\n  height: 1.5em;\n}\n.svg-inline--fa.fa-li {\n  width: 2em;\n}\n.svg-inline--fa.fa-fw {\n  width: 1.25em;\n}\n\n.fa-layers svg.svg-inline--fa {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.fa-layers {\n  display: inline-block;\n  height: 1em;\n  position: relative;\n  text-align: center;\n  vertical-align: -0.125em;\n  width: 1em;\n}\n.fa-layers svg.svg-inline--fa {\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n\n.fa-layers-counter, .fa-layers-text {\n  display: inline-block;\n  position: absolute;\n  text-align: center;\n}\n\n.fa-layers-text {\n  left: 50%;\n  top: 50%;\n  -webkit-transform: translate(-50%, -50%);\n          transform: translate(-50%, -50%);\n  -webkit-transform-origin: center center;\n          transform-origin: center center;\n}\n\n.fa-layers-counter {\n  background-color: #ff253a;\n  border-radius: 1em;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  color: #fff;\n  height: 1.5em;\n  line-height: 1;\n  max-width: 5em;\n  min-width: 1.5em;\n  overflow: hidden;\n  padding: 0.25em;\n  right: 0;\n  text-overflow: ellipsis;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top right;\n          transform-origin: top right;\n}\n\n.fa-layers-bottom-right {\n  bottom: 0;\n  right: 0;\n  top: auto;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: bottom right;\n          transform-origin: bottom right;\n}\n\n.fa-layers-bottom-left {\n  bottom: 0;\n  left: 0;\n  right: auto;\n  top: auto;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: bottom left;\n          transform-origin: bottom left;\n}\n\n.fa-layers-top-right {\n  right: 0;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top right;\n          transform-origin: top right;\n}\n\n.fa-layers-top-left {\n  left: 0;\n  right: auto;\n  top: 0;\n  -webkit-transform: scale(0.25);\n          transform: scale(0.25);\n  -webkit-transform-origin: top left;\n          transform-origin: top left;\n}\n\n.fa-lg {\n  font-size: 1.3333333333em;\n  line-height: 0.75em;\n  vertical-align: -0.0667em;\n}\n\n.fa-xs {\n  font-size: 0.75em;\n}\n\n.fa-sm {\n  font-size: 0.875em;\n}\n\n.fa-1x {\n  font-size: 1em;\n}\n\n.fa-2x {\n  font-size: 2em;\n}\n\n.fa-3x {\n  font-size: 3em;\n}\n\n.fa-4x {\n  font-size: 4em;\n}\n\n.fa-5x {\n  font-size: 5em;\n}\n\n.fa-6x {\n  font-size: 6em;\n}\n\n.fa-7x {\n  font-size: 7em;\n}\n\n.fa-8x {\n  font-size: 8em;\n}\n\n.fa-9x {\n  font-size: 9em;\n}\n\n.fa-10x {\n  font-size: 10em;\n}\n\n.fa-fw {\n  text-align: center;\n  width: 1.25em;\n}\n\n.fa-ul {\n  list-style-type: none;\n  margin-left: 2.5em;\n  padding-left: 0;\n}\n.fa-ul > li {\n  position: relative;\n}\n\n.fa-li {\n  left: -2em;\n  position: absolute;\n  text-align: center;\n  width: 2em;\n  line-height: inherit;\n}\n\n.fa-border {\n  border: solid 0.08em #eee;\n  border-radius: 0.1em;\n  padding: 0.2em 0.25em 0.15em;\n}\n\n.fa-pull-left {\n  float: left;\n}\n\n.fa-pull-right {\n  float: right;\n}\n\n.fa.fa-pull-left,\n.fas.fa-pull-left,\n.far.fa-pull-left,\n.fal.fa-pull-left,\n.fab.fa-pull-left {\n  margin-right: 0.3em;\n}\n.fa.fa-pull-right,\n.fas.fa-pull-right,\n.far.fa-pull-right,\n.fal.fa-pull-right,\n.fab.fa-pull-right {\n  margin-left: 0.3em;\n}\n\n.fa-spin {\n  -webkit-animation: fa-spin 2s infinite linear;\n          animation: fa-spin 2s infinite linear;\n}\n\n.fa-pulse {\n  -webkit-animation: fa-spin 1s infinite steps(8);\n          animation: fa-spin 1s infinite steps(8);\n}\n\n@-webkit-keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n\n@keyframes fa-spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg);\n  }\n}\n.fa-rotate-90 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=1)\";\n  -webkit-transform: rotate(90deg);\n          transform: rotate(90deg);\n}\n\n.fa-rotate-180 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)\";\n  -webkit-transform: rotate(180deg);\n          transform: rotate(180deg);\n}\n\n.fa-rotate-270 {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)\";\n  -webkit-transform: rotate(270deg);\n          transform: rotate(270deg);\n}\n\n.fa-flip-horizontal {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)\";\n  -webkit-transform: scale(-1, 1);\n          transform: scale(-1, 1);\n}\n\n.fa-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(1, -1);\n          transform: scale(1, -1);\n}\n\n.fa-flip-both, .fa-flip-horizontal.fa-flip-vertical {\n  -ms-filter: \"progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)\";\n  -webkit-transform: scale(-1, -1);\n          transform: scale(-1, -1);\n}\n\n:root .fa-rotate-90,\n:root .fa-rotate-180,\n:root .fa-rotate-270,\n:root .fa-flip-horizontal,\n:root .fa-flip-vertical,\n:root .fa-flip-both {\n  -webkit-filter: none;\n          filter: none;\n}\n\n.fa-stack {\n  display: inline-block;\n  height: 2em;\n  position: relative;\n  width: 2.5em;\n}\n\n.fa-stack-1x,\n.fa-stack-2x {\n  bottom: 0;\n  left: 0;\n  margin: auto;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n\n.svg-inline--fa.fa-stack-1x {\n  height: 1em;\n  width: 1.25em;\n}\n.svg-inline--fa.fa-stack-2x {\n  height: 2em;\n  width: 2.5em;\n}\n\n.fa-inverse {\n  color: #fff;\n}\n\n.sr-only {\n  border: 0;\n  clip: rect(0, 0, 0, 0);\n  height: 1px;\n  margin: -1px;\n  overflow: hidden;\n  padding: 0;\n  position: absolute;\n  width: 1px;\n}\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  clip: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  position: static;\n  width: auto;\n}\n\n.svg-inline--fa .fa-primary {\n  fill: var(--fa-primary-color, currentColor);\n  opacity: 1;\n  opacity: var(--fa-primary-opacity, 1);\n}\n\n.svg-inline--fa .fa-secondary {\n  fill: var(--fa-secondary-color, currentColor);\n  opacity: 0.4;\n  opacity: var(--fa-secondary-opacity, 0.4);\n}\n\n.svg-inline--fa.fa-swap-opacity .fa-primary {\n  opacity: 0.4;\n  opacity: var(--fa-secondary-opacity, 0.4);\n}\n\n.svg-inline--fa.fa-swap-opacity .fa-secondary {\n  opacity: 1;\n  opacity: var(--fa-primary-opacity, 1);\n}\n\n.svg-inline--fa mask .fa-primary,\n.svg-inline--fa mask .fa-secondary {\n  fill: black;\n}\n\n.fad.fa-inverse {\n  color: #fff;\n}";
 
@@ -2352,23 +2379,26 @@ function convert(createElement, element) {
   return createElement.apply(void 0, [element.tag, _objectSpread2({}, mixins.attrs, {}, remaining)].concat(_toConsumableArray(children)));
 }
 
-var PRODUCTION$1 = false;
+var PRODUCTION = false;
 
 try {
-  PRODUCTION$1 = "production" === 'production';
+  PRODUCTION = "production" === 'production';
 } catch (e) {}
 
 function log () {
-  if (!PRODUCTION$1 && console && typeof console.error === 'function') {
+  if (!PRODUCTION && console && typeof console.error === 'function') {
     var _console;
 
     (_console = console).error.apply(_console, arguments);
   }
 }
 
-// Normalize icon arguments
 function normalizeIconArgs(icon) {
-  // if the icon is null, there's nothing to do
+  if (parse.icon) {
+    return parse.icon(icon);
+  } // if the icon is null, there's nothing to do
+
+
   if (icon === null) {
     return null;
   } // if the icon is an object and has a prefix and an icon name, return it
@@ -2415,14 +2445,16 @@ function FontAwesomeIcon(_ref) {
       maskArgs = props.mask,
       symbol = props.symbol,
       className = props.className,
-      title = props.title;
+      title = props.title,
+      titleId = props.titleId;
   var iconLookup = normalizeIconArgs(iconArgs);
   var classes = objectWithKey('classes', [].concat(_toConsumableArray(classList(props)), _toConsumableArray(className.split(' '))));
   var transform = objectWithKey('transform', typeof props.transform === 'string' ? parse.transform(props.transform) : props.transform);
   var mask = objectWithKey('mask', normalizeIconArgs(maskArgs));
   var renderedIcon = icon(iconLookup, _objectSpread2({}, classes, {}, transform, {}, mask, {
     symbol: symbol,
-    title: title
+    title: title,
+    titleId: titleId
   }));
 
   if (!renderedIcon) {
@@ -2483,49 +2515,11 @@ FontAwesomeIcon.defaultProps = {
 };
 var convertCurry = convert.bind(null, React.createElement);
 
-function _templateObject4() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"]);
-
-  _templateObject4 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"]);
-
-  _templateObject3 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2() {
-  var data = taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"]);
-
-  _templateObject2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var toolbarWrapper = css$1(_templateObject());
-var toolbarControl = css$1(_templateObject2());
-var osdToolbarDropdownWrapper = css$1(_templateObject3());
-var osdToolbarDropdown = css$1(_templateObject4());
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var toolbarWrapper = css$1(_templateObject || (_templateObject = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"])));
+var toolbarControl = css$1(_templateObject2 || (_templateObject2 = taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"])));
+var osdToolbarDropdownWrapper = css$1(_templateObject3 || (_templateObject3 = taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"])));
+var osdToolbarDropdown = css$1(_templateObject4 || (_templateObject4 = taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"])));
 
 var Toolbar = function Toolbar(_ref) {
   var onDownloadCropClick = _ref.onDownloadCropClick,
@@ -2653,31 +2647,13 @@ Toolbar.propTypes = {
   onDownloadFullSize: propTypes.func
 };
 
+var _templateObject$1, _templateObject2$1;
+
 function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _templateObject2$1() {
-  var data = taggedTemplateLiteral(["\n  text-align: left;\n"]);
-
-  _templateObject2$1 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$1() {
-  var data = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"]);
-
-  _templateObject$1 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var dropdownSelectWrapper = css$1(_templateObject$1());
-var reactSelectContainer = css$1(_templateObject2$1());
+var dropdownSelectWrapper = css$1(_templateObject$1 || (_templateObject$1 = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"])));
+var reactSelectContainer = css$1(_templateObject2$1 || (_templateObject2$1 = taggedTemplateLiteral(["\n  text-align: left;\n"])));
 
 var TileSourceSelect = function TileSourceSelect(_ref) {
   var currentTileSource = _ref.currentTileSource,
@@ -2735,53 +2711,15 @@ TileSourceSelect.propTypes = {
   tileSources: propTypes.array
 };
 
-function _templateObject4$1() {
-  var data = taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"]);
-
-  _templateObject4$1 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3$1() {
-  var data = taggedTemplateLiteral(["\n  outline: 8px solid #f0f0f0;\n  cursor: pointer;\n  transition: outline 0.2s ease-in-out;\n"]);
-
-  _templateObject3$1 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2$2() {
-  var data = taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"]);
-
-  _templateObject2$2 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$2() {
-  var data = taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"]);
-
-  _templateObject$2 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
+var _templateObject$2, _templateObject2$2, _templateObject3$1, _templateObject4$1;
 
 var bottomPanel = function bottomPanel(props) {
-  return css$1(_templateObject$2(), props);
+  return css$1(_templateObject$2 || (_templateObject$2 = taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
 };
 
-var thumbnailView = css$1(_templateObject2$2());
-var activeThumb = css$1(_templateObject3$1());
-var panelListingThumbs = css$1(_templateObject4$1(), activeThumb, activeThumb);
+var thumbnailView = css$1(_templateObject2$2 || (_templateObject2$2 = taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"])));
+var activeThumb = css$1(_templateObject3$1 || (_templateObject3$1 = taggedTemplateLiteral(["\n  outline: 8px solid #f0f0f0;\n  cursor: pointer;\n  transition: outline 0.2s ease-in-out;\n"])));
+var panelListingThumbs = css$1(_templateObject4$1 || (_templateObject4$1 = taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"])), activeThumb, activeThumb);
 function Thumbnails(_ref) {
   var currentTileSource = _ref.currentTileSource,
       _ref$tileSources = _ref.tileSources,
@@ -2872,52 +2810,14 @@ function updateUrl(_ref) {
   window.history.replaceState({}, "", url);
 }
 
+var _templateObject$3, _templateObject2$3, _templateObject3$2, _templateObject4$2;
+
 function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _templateObject4$2() {
-  var data = taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "]);
-
-  _templateObject4$2 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3$2() {
-  var data = taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"]);
-
-  _templateObject3$2 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2$3() {
-  var data = taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"]);
-
-  _templateObject2$3 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$3() {
-  var data = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"]);
-
-  _templateObject$3 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var osdTopRow = css$1(_templateObject$3());
-var workTitle = css$1(_templateObject2$3());
-var toolBarWrapper = css$1(_templateObject3$2());
+var osdTopRow = css$1(_templateObject$3 || (_templateObject$3 = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"])));
+var workTitle = css$1(_templateObject2$3 || (_templateObject2$3 = taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"])));
+var toolBarWrapper = css$1(_templateObject3$2 || (_templateObject3$2 = taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"])));
 /**
  * Viewer component
  */
@@ -2953,7 +2853,7 @@ var Viewer = function Viewer(_ref) {
       setCurrentURLParams = _useState10[1];
 
   var configProps = useContext(ConfigContext);
-  var openSeadragonContainer = css$1(_templateObject4$2(), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
+  var openSeadragonContainer = css$1(_templateObject4$2 || (_templateObject4$2 = taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
   useEffect(function () {
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
@@ -3168,6 +3068,10 @@ Viewer.propTypes = {
   manifestUrl: propTypes.string
 };
 
+/*!
+ * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
 var faArrowCircleLeft = {
   prefix: 'fas',
   iconName: 'arrow-circle-left',
@@ -3224,27 +3128,9 @@ function registerIcons() {
   library.add(faPen, faSave, faTrash, faSearchPlus, faSearchMinus, faExpand, faDownload, faArrowCircleLeft, faArrowCircleRight, faHome);
 }
 
-function _templateObject2$4() {
-  var data = taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"]);
-
-  _templateObject2$4 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$4() {
-  var data = taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"]);
-
-  _templateObject$4 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var notification = css$1(_templateObject$4());
-var danger = css$1(_templateObject2$4());
+var _templateObject$4, _templateObject2$4;
+var notification = css$1(_templateObject$4 || (_templateObject$4 = taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"])));
+var danger = css$1(_templateObject2$4 || (_templateObject2$4 = taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"])));
 function Notification(_ref) {
   var _ref$error = _ref.error,
       error = _ref$error === void 0 ? "An error occurred with no data passed to the notification" : _ref$error;
@@ -3420,16 +3306,8 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
   return ErrorBoundary;
 }(React.Component);
 
-function _templateObject$5() {
-  var data = taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"]);
-
-  _templateObject$5 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var LoadingStyles = css$1(_templateObject$5());
+var _templateObject$5;
+var LoadingStyles = css$1(_templateObject$5 || (_templateObject$5 = taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"])));
 function Loading(_ref) {
   var _ref$active = _ref.active,
       active = _ref$active === void 0 ? true : _ref$active;
@@ -3447,30 +3325,12 @@ Loading.propTypes = {
   active: propTypes.bool
 };
 
+var _templateObject$6, _templateObject2$5;
+
 function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _templateObject2$5() {
-  var data = taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "]);
-
-  _templateObject2$5 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject$6() {
-  var data = taggedTemplateLiteral(["\n  position: relative;\n"]);
-
-  _templateObject$6 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var wrapper = css$1(_templateObject$6()); // Instantiate FontAwesome icons
+var wrapper = css$1(_templateObject$6 || (_templateObject$6 = taggedTemplateLiteral(["\n  position: relative;\n"]))); // Instantiate FontAwesome icons
 
 registerIcons();
 /**
@@ -3480,7 +3340,9 @@ registerIcons();
  */
 
 function OpenSeadragonViewer(_ref) {
-  var manifestUrl = _ref.manifestUrl,
+  var _ref$manifest = _ref.manifest,
+      manifestObj = _ref$manifest === void 0 ? {} : _ref$manifest,
+      manifestUrl = _ref.manifestUrl,
       options = _ref.options;
 
   var _useState = useState(),
@@ -3494,9 +3356,14 @@ function OpenSeadragonViewer(_ref) {
       setError = _useState4[1];
 
   useEffect(function () {
-    getManifest();
+    if (Object.keys(manifestObj).length === 0) {
+      getManifest();
+      return;
+    }
+
+    setManifest(manifestObj);
   }, []);
-  var loaderWrapper = css$1(_templateObject2$5(), options.height ? options.height : 500);
+  var loaderWrapper = css$1(_templateObject2$5 || (_templateObject2$5 = taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "])), options.height ? options.height : 500);
 
   function getManifest() {
     return _getManifest.apply(this, arguments);
@@ -3562,6 +3429,9 @@ function OpenSeadragonViewer(_ref) {
   }));
 }
 OpenSeadragonViewer.propTypes = {
+  /** A IIIF manifest object.  This will take precendence over manifestUrl if present */
+  manifest: propTypes.object,
+
   /** A valid IIIF manifest uri */
   manifestUrl: propTypes.string,
 
