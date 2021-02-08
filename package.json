@@ -43,9 +43,12 @@
     "webpack": "^5.21.2"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.1.5",
     "openseadragon": "^2.4.0",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-device-detect": "^1.12.1",
+    "react-select": "^4.1.0"
   },
   "scripts": {
     "build": "NODE_ENV=production rollup -c && styleguidist build",
