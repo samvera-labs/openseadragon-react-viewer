@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-device-detect'), require('@emotion/core'), require('react-select'), require('@reglendo/canvas2image'), require('openseadragon')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-device-detect', '@emotion/core', 'react-select', '@reglendo/canvas2image', 'openseadragon'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.openSeadragonViewer = {}, global.React, global.reactDeviceDetect, global.core, global.Select, global.Canvas2Image, global.OpenSeadragon));
-}(this, (function (exports, React, reactDeviceDetect, core, Select, Canvas2Image, OpenSeadragon) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('react'), require('react-device-detect'), require('@emotion/react'), require('react-select'), require('@reglendo/canvas2image'), require('openseadragon')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'react', 'react-device-detect', '@emotion/react', 'react-select', '@reglendo/canvas2image', 'openseadragon'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.openSeadragonViewer = {}, global.React, global.reactDeviceDetect, global.react, global.Select, global.Canvas2Image, global.OpenSeadragon));
+}(this, (function (exports, React, reactDeviceDetect, react, Select, Canvas2Image, OpenSeadragon) { 'use strict';
 
 	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -11,21 +11,11 @@
 	var Canvas2Image__default = /*#__PURE__*/_interopDefaultLegacy(Canvas2Image);
 	var OpenSeadragon__default = /*#__PURE__*/_interopDefaultLegacy(OpenSeadragon);
 
-	function createCommonjsModule(fn, basedir, module) {
-		return module = {
-			path: basedir,
-			exports: {},
-			require: function (path, base) {
-				return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-			}
-		}, fn(module, module.exports), module.exports;
+	function createCommonjsModule(fn) {
+	  var module = { exports: {} };
+		return fn(module, module.exports), module.exports;
 	}
 
-	function commonjsRequire () {
-		throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-	}
-
-	var runtime_1 = createCommonjsModule(function (module) {
 	/**
 	 * Copyright (c) 2014-present, Facebook, Inc.
 	 *
@@ -33,6 +23,7 @@
 	 * LICENSE file in the root directory of this source tree.
 	 */
 
+	var runtime_1 = createCommonjsModule(function (module) {
 	var runtime = (function (exports) {
 
 	  var Op = Object.prototype;
@@ -927,6 +918,15 @@
 
 	var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
+	/**
+	 * Copyright (c) 2013-present, Facebook, Inc.
+	 *
+	 * This source code is licensed under the MIT license found in the
+	 * LICENSE file in the root directory of this source tree.
+	 */
+
+
+
 	function emptyFunction() {}
 	function emptyFunctionWithReset() {}
 	emptyFunctionWithReset.resetWarningCache = emptyFunction;
@@ -979,7 +979,6 @@
 	  return ReactPropTypes;
 	};
 
-	var propTypes = createCommonjsModule(function (module) {
 	/**
 	 * Copyright (c) 2013-present, Facebook, Inc.
 	 *
@@ -987,6 +986,7 @@
 	 * LICENSE file in the root directory of this source tree.
 	 */
 
+	var propTypes = createCommonjsModule(function (module) {
 	{
 	  // By explicitly using `prop-types` you are opting into new production behavior.
 	  // http://fb.me/prop-types-in-prod
@@ -2522,10 +2522,10 @@
 	var convertCurry = convert.bind(null, React__default['default'].createElement);
 
 	var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-	var toolbarWrapper = core.css(_templateObject || (_templateObject = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"])));
-	var toolbarControl = core.css(_templateObject2 || (_templateObject2 = taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"])));
-	var osdToolbarDropdownWrapper = core.css(_templateObject3 || (_templateObject3 = taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"])));
-	var osdToolbarDropdown = core.css(_templateObject4 || (_templateObject4 = taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"])));
+	var toolbarWrapper = react.css(_templateObject || (_templateObject = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"])));
+	var toolbarControl = react.css(_templateObject2 || (_templateObject2 = taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"])));
+	var osdToolbarDropdownWrapper = react.css(_templateObject3 || (_templateObject3 = taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"])));
+	var osdToolbarDropdown = react.css(_templateObject4 || (_templateObject4 = taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"])));
 
 	var Toolbar = function Toolbar(_ref) {
 	  var onDownloadCropClick = _ref.onDownloadCropClick,
@@ -2553,45 +2553,45 @@
 	    setDropDownOpen(false);
 	  }
 
-	  return core.jsx("nav", {
+	  return react.jsx("nav", {
 	    css: toolbarWrapper,
 	    className: "osrv-toolbar-wrapper"
-	  }, core.jsx("button", {
+	  }, react.jsx("button", {
 	    id: "zoom-in",
 	    "data-testid": "zoom-in",
 	    href: "#zoom-in",
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button",
 	    title: "Zoom In"
-	  }, core.jsx(FontAwesomeIcon, {
+	  }, react.jsx(FontAwesomeIcon, {
 	    icon: "search-plus"
-	  }), core.jsx("span", {
+	  }), react.jsx("span", {
 	    className: "osrv-toolbar-button-text"
-	  }, "Zoom In")), core.jsx("button", {
+	  }, "Zoom In")), react.jsx("button", {
 	    id: "zoom-out",
 	    "data-testid": "zoom-out",
 	    href: "#zoom-out",
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button",
 	    title: "Zoom Out"
-	  }, core.jsx(FontAwesomeIcon, {
+	  }, react.jsx(FontAwesomeIcon, {
 	    icon: "search-minus"
-	  }), core.jsx("span", {
+	  }), react.jsx("span", {
 	    className: "osrv-toolbar-button-text"
-	  }, "Zoom Out")), !reactDeviceDetect.isMobile && core.jsx("button", {
+	  }, "Zoom Out")), !reactDeviceDetect.isMobile && react.jsx("button", {
 	    id: "full-page",
 	    "data-testid": "full-page",
 	    href: "#full-page",
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button",
 	    title: "Full Screen"
-	  }, core.jsx(FontAwesomeIcon, {
+	  }, react.jsx(FontAwesomeIcon, {
 	    icon: "expand"
-	  }), core.jsx("span", {
+	  }), react.jsx("span", {
 	    className: "osrv-toolbar-button-text"
-	  }, "Full Screen")), !reactDeviceDetect.isMobile && core.jsx("div", {
+	  }, "Full Screen")), !reactDeviceDetect.isMobile && react.jsx("div", {
 	    css: osdToolbarDropdownWrapper
-	  }, core.jsx("button", {
+	  }, react.jsx("button", {
 	    "data-testid": "download",
 	    onClick: handleDownloadClick,
 	    css: toolbarControl,
@@ -2599,45 +2599,45 @@
 	    "aria-haspopup": "true",
 	    "aria-expanded": dropDownOpen,
 	    title: "Download"
-	  }, core.jsx(FontAwesomeIcon, {
+	  }, react.jsx(FontAwesomeIcon, {
 	    icon: "download"
-	  }), core.jsx("span", {
+	  }), react.jsx("span", {
 	    className: "osrv-toolbar-button-text"
-	  }, "Download Image")), dropDownOpen && core.jsx("ul", {
+	  }, "Download Image")), dropDownOpen && react.jsx("ul", {
 	    css: osdToolbarDropdown
-	  }, core.jsx("li", null, core.jsx("button", {
+	  }, react.jsx("li", null, react.jsx("button", {
 	    "data-testid": "download-crop",
 	    title: "Download cropped canvas",
 	    onClick: handleDownloadCropClick,
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button"
-	  }, "Download crop")), core.jsx("li", null, core.jsx("button", {
+	  }, "Download crop")), react.jsx("li", null, react.jsx("button", {
 	    "data-testid": "download-full",
 	    onClick: handleDownloadFullSize,
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button",
 	    title: "Download full size image"
-	  }, "Download full size")))), core.jsx("button", {
+	  }, "Download full size")))), react.jsx("button", {
 	    id: "previous",
 	    "data-testid": "previous",
 	    href: "#previous",
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button",
 	    title: "Previous"
-	  }, core.jsx(FontAwesomeIcon, {
+	  }, react.jsx(FontAwesomeIcon, {
 	    icon: "arrow-circle-left"
-	  }), core.jsx("span", {
+	  }), react.jsx("span", {
 	    className: "osrv-toolbar-button-text"
-	  }, "Previous")), core.jsx("button", {
+	  }, "Previous")), react.jsx("button", {
 	    id: "next",
 	    "data-testid": "next",
 	    href: "#next",
 	    css: toolbarControl,
 	    className: "osrv-toolbar-button",
 	    title: "Next"
-	  }, core.jsx(FontAwesomeIcon, {
+	  }, react.jsx(FontAwesomeIcon, {
 	    icon: "arrow-circle-right"
-	  }), core.jsx("span", {
+	  }), react.jsx("span", {
 	    className: "osrv-toolbar-button-text"
 	  }, "Next")));
 	};
@@ -2658,8 +2658,8 @@
 	function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-	var dropdownSelectWrapper = core.css(_templateObject$1 || (_templateObject$1 = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"])));
-	var reactSelectContainer = core.css(_templateObject2$1 || (_templateObject2$1 = taggedTemplateLiteral(["\n  text-align: left;\n"])));
+	var dropdownSelectWrapper = react.css(_templateObject$1 || (_templateObject$1 = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"])));
+	var reactSelectContainer = react.css(_templateObject2$1 || (_templateObject2$1 = taggedTemplateLiteral(["\n  text-align: left;\n"])));
 
 	var TileSourceSelect = function TileSourceSelect(_ref) {
 	  var currentTileSource = _ref.currentTileSource,
@@ -2673,11 +2673,11 @@
 	    onFileSetChange(value.id);
 	  };
 
-	  return core.jsx("div", {
+	  return react.jsx("div", {
 	    css: dropdownSelectWrapper,
 	    className: "osrv-tilesource-select-wrapper",
 	    "data-testid": "react-select-wrapper"
-	  }, core.jsx(Select__default['default'], {
+	  }, react.jsx(Select__default['default'], {
 	    classNamePrefix: "react-select",
 	    css: reactSelectContainer,
 	    getOptionValue: function getOptionValue(option) {
@@ -2720,12 +2720,12 @@
 	var _templateObject$2, _templateObject2$2, _templateObject3$1, _templateObject4$1;
 
 	var bottomPanel = function bottomPanel(props) {
-	  return core.css(_templateObject$2 || (_templateObject$2 = taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
+	  return react.css(_templateObject$2 || (_templateObject$2 = taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
 	};
 
-	var thumbnailView = core.css(_templateObject2$2 || (_templateObject2$2 = taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"])));
-	var activeThumb = core.css(_templateObject3$1 || (_templateObject3$1 = taggedTemplateLiteral(["\n  outline: 8px solid #f0f0f0;\n  cursor: pointer;\n  transition: outline 0.2s ease-in-out;\n"])));
-	var panelListingThumbs = core.css(_templateObject4$1 || (_templateObject4$1 = taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"])), activeThumb, activeThumb);
+	var thumbnailView = react.css(_templateObject2$2 || (_templateObject2$2 = taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"])));
+	var activeThumb = react.css(_templateObject3$1 || (_templateObject3$1 = taggedTemplateLiteral(["\n  outline: 8px solid #f0f0f0;\n  cursor: pointer;\n  transition: outline 0.2s ease-in-out;\n"])));
+	var panelListingThumbs = react.css(_templateObject4$1 || (_templateObject4$1 = taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"])), activeThumb, activeThumb);
 	function Thumbnails(_ref) {
 	  var currentTileSource = _ref.currentTileSource,
 	      _ref$tileSources = _ref.tileSources,
@@ -2733,15 +2733,15 @@
 	      onThumbClick = _ref.onThumbClick,
 	      _ref$isPreview = _ref.isPreview,
 	      isPreview = _ref$isPreview === void 0 ? false : _ref$isPreview;
-	  return core.jsx("div", {
+	  return react.jsx("div", {
 	    "data-testid": "open-seadragon-thumbnails-container",
 	    css: bottomPanel(isPreview ? "relative" : "absolute")
-	  }, core.jsx("div", {
+	  }, react.jsx("div", {
 	    css: thumbnailView
-	  }, core.jsx("ul", {
+	  }, react.jsx("ul", {
 	    css: panelListingThumbs
 	  }, tileSources.map(function (t) {
-	    return core.jsx("li", {
+	    return react.jsx("li", {
 	      key: t.id,
 	      "data-testid": "tile-source-thumbnail",
 	      onClick: function onClick() {
@@ -2749,7 +2749,7 @@
 	      },
 	      "aria-label": "Thumbnail",
 	      className: currentTileSource && currentTileSource.id === t.id ? "active" : ""
-	    }, core.jsx("img", {
+	    }, react.jsx("img", {
 	      src: "".concat(t.id, "/square/70,70/0/default.jpg"),
 	      "data-testid": "thumbnail-image",
 	      alt: t.label
@@ -2821,9 +2821,9 @@
 	function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-	var osdTopRow = core.css(_templateObject$3 || (_templateObject$3 = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"])));
-	var workTitle = core.css(_templateObject2$3 || (_templateObject2$3 = taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"])));
-	var toolBarWrapper = core.css(_templateObject3$2 || (_templateObject3$2 = taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"])));
+	var osdTopRow = react.css(_templateObject$3 || (_templateObject$3 = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"])));
+	var workTitle = react.css(_templateObject2$3 || (_templateObject2$3 = taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"])));
+	var toolBarWrapper = react.css(_templateObject3$2 || (_templateObject3$2 = taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"])));
 	/**
 	 * Viewer component
 	 */
@@ -2859,7 +2859,7 @@
 	      setCurrentURLParams = _useState10[1];
 
 	  var configProps = React.useContext(ConfigContext);
-	  var openSeadragonContainer = core.css(_templateObject4$2 || (_templateObject4$2 = taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
+	  var openSeadragonContainer = react.css(_templateObject4$2 || (_templateObject4$2 = taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
 	  React.useEffect(function () {
 	    // Pull out tile sources from manifest
 	    setCanvasImageResources(getCanvasImageResources(manifest));
@@ -3036,34 +3036,34 @@
 	    }, customControlIds)));
 	  }
 
-	  return core.jsx(React__default['default'].Fragment, null, core.jsx("div", {
+	  return react.jsx(React__default['default'].Fragment, null, react.jsx("div", {
 	    css: osdTopRow,
 	    className: "osrv-top-row-wrapper"
-	  }, core.jsx("div", {
+	  }, react.jsx("div", {
 	    css: workTitle,
 	    className: "osrv-work-title"
-	  }, title), configProps.showDropdown && core.jsx("div", {
+	  }, title), configProps.showDropdown && react.jsx("div", {
 	    "data-testid": "select-component-wrapper"
-	  }, core.jsx(TileSourceSelect, {
+	  }, react.jsx(TileSourceSelect, {
 	    currentTileSource: currentTileSource,
 	    onFileSetChange: handleFilesetSelectChange,
 	    tileSources: canvasImageResources
-	  }))), core.jsx("div", {
+	  }))), react.jsx("div", {
 	    "data-testid": "toolbar-container",
 	    css: toolBarWrapper
-	  }, core.jsx("div", {
+	  }, react.jsx("div", {
 	    id: "toolbarDiv"
-	  }, configProps.showToolbar && core.jsx("div", {
+	  }, configProps.showToolbar && react.jsx("div", {
 	    "data-testid": "toolbar-wrapper"
-	  }, core.jsx(Toolbar, {
+	  }, react.jsx(Toolbar, {
 	    onDownloadCropClick: handleDownloadCropClick,
 	    onDownloadFullSize: handleDownloadFullSize
-	  })))), core.jsx("div", {
+	  })))), react.jsx("div", {
 	    id: "openseadragon1",
 	    css: openSeadragonContainer
-	  }), configProps.showThumbnails && canvasImageResources.length > 1 && core.jsx("div", {
+	  }), configProps.showThumbnails && canvasImageResources.length > 1 && react.jsx("div", {
 	    "data-testid": "thumbnails-wrapper"
-	  }, core.jsx(Thumbnails, {
+	  }, react.jsx(Thumbnails, {
 	    currentTileSource: currentTileSource,
 	    onThumbClick: handleThumbClick,
 	    tileSources: canvasImageResources
@@ -3135,12 +3135,12 @@
 	}
 
 	var _templateObject$4, _templateObject2$4;
-	var notification = core.css(_templateObject$4 || (_templateObject$4 = taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"])));
-	var danger = core.css(_templateObject2$4 || (_templateObject2$4 = taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"])));
+	var notification = react.css(_templateObject$4 || (_templateObject$4 = taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"])));
+	var danger = react.css(_templateObject2$4 || (_templateObject2$4 = taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"])));
 	function Notification(_ref) {
 	  var _ref$error = _ref.error,
 	      error = _ref$error === void 0 ? "An error occurred with no data passed to the notification" : _ref$error;
-	  return core.jsx("div", {
+	  return react.jsx("div", {
 	    className: "osrv-error-message",
 	    css: [notification, danger]
 	  }, error);
@@ -3313,18 +3313,18 @@
 	}(React__default['default'].Component);
 
 	var _templateObject$5;
-	var LoadingStyles = core.css(_templateObject$5 || (_templateObject$5 = taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"])));
+	var LoadingStyles = react.css(_templateObject$5 || (_templateObject$5 = taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"])));
 	function Loading(_ref) {
 	  var _ref$active = _ref.active,
 	      active = _ref$active === void 0 ? true : _ref$active;
 
 	  if (!active) {
-	    return core.jsx(React__default['default'].Fragment, null);
+	    return react.jsx(React__default['default'].Fragment, null);
 	  }
 
-	  return core.jsx("div", {
+	  return react.jsx("div", {
 	    css: LoadingStyles
-	  }, core.jsx("div", null), core.jsx("div", null), core.jsx("div", null), core.jsx("div", null));
+	  }, react.jsx("div", null), react.jsx("div", null), react.jsx("div", null), react.jsx("div", null));
 	}
 	Loading.propTypes = {
 	  /** Error message to display */
@@ -3336,7 +3336,7 @@
 	function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 	function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-	var wrapper = core.css(_templateObject$6 || (_templateObject$6 = taggedTemplateLiteral(["\n  position: relative;\n"]))); // Instantiate FontAwesome icons
+	var wrapper = react.css(_templateObject$6 || (_templateObject$6 = taggedTemplateLiteral(["\n  position: relative;\n"]))); // Instantiate FontAwesome icons
 
 	registerIcons();
 	/**
@@ -3369,7 +3369,7 @@
 
 	    setManifest(manifestObj);
 	  }, []);
-	  var loaderWrapper = core.css(_templateObject2$5 || (_templateObject2$5 = taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "])), options.height ? options.height : 500);
+	  var loaderWrapper = react.css(_templateObject2$5 || (_templateObject2$5 = taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "])), options.height ? options.height : 500);
 
 	  function getManifest() {
 	    return _getManifest.apply(this, arguments);
@@ -3417,20 +3417,20 @@
 	  }
 
 	  if (error) {
-	    return core.jsx(Notification, {
+	    return react.jsx(Notification, {
 	      error: error
 	    });
 	  }
 
-	  return manifest ? core.jsx(ConfigContext.Provider, {
+	  return manifest ? react.jsx(ConfigContext.Provider, {
 	    value: _objectSpread$3({}, options)
-	  }, core.jsx(ErrorBoundary, null, core.jsx("div", {
+	  }, react.jsx(ErrorBoundary, null, react.jsx("div", {
 	    css: wrapper
-	  }, core.jsx(Viewer, {
+	  }, react.jsx(Viewer, {
 	    manifest: manifest
-	  })))) : core.jsx("div", {
+	  })))) : react.jsx("div", {
 	    css: loaderWrapper
-	  }, core.jsx(Loading, {
+	  }, react.jsx(Loading, {
 	    active: true
 	  }));
 	}

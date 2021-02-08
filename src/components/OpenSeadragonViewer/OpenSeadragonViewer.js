@@ -8,7 +8,7 @@ import { ConfigContext } from "../../config-context";
 import Loading from "../Loader/Loading";
 
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 
 const wrapper = css`
   position: relative;

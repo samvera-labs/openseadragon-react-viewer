@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 
 const notification = css`
   background-color: #f5f5f5;

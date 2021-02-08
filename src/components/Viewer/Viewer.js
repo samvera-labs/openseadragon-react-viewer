@@ -11,7 +11,7 @@ import { updateUrl, parseHash } from "../../services/url-script";
 import OpenSeadragon, { Point } from "openseadragon";
 
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 
 const osdTopRow = css`
   display: flex;

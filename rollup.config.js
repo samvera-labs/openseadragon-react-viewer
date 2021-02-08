@@ -33,7 +33,7 @@ let productionRollup = {
         react: "React",
         "react-dom": "ReactDOM",
         "react-device-detect": "reactDeviceDetect",
-        "@emotion/core": "core",
+        "@emotion/react": "react",
         "react-select": "Select",
         "@reglendo/canvas2image": "Canvas2Image",
         openseadragon: "OpenSeadragon",

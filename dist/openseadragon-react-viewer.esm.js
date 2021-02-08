@@ -1,25 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
-import { css as css$1, jsx } from '@emotion/core';
+import { css as css$1, jsx } from '@emotion/react';
 import Select from 'react-select';
 import Canvas2Image from '@reglendo/canvas2image';
 import OpenSeadragon, { Point } from 'openseadragon';
 
-function createCommonjsModule(fn, basedir, module) {
-	return module = {
-		path: basedir,
-		exports: {},
-		require: function (path, base) {
-			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-		}
-	}, fn(module, module.exports), module.exports;
+function createCommonjsModule(fn) {
+  var module = { exports: {} };
+	return fn(module, module.exports), module.exports;
 }
 
-function commonjsRequire () {
-	throw new Error('Dynamic requires are not currently supported by @rollup/plugin-commonjs');
-}
-
-var runtime_1 = createCommonjsModule(function (module) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -27,6 +17,7 @@ var runtime_1 = createCommonjsModule(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
+var runtime_1 = createCommonjsModule(function (module) {
 var runtime = (function (exports) {
 
   var Op = Object.prototype;
@@ -921,6 +912,15 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 var ReactPropTypesSecret_1 = ReactPropTypesSecret;
 
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
 emptyFunctionWithReset.resetWarningCache = emptyFunction;
@@ -973,7 +973,6 @@ var factoryWithThrowingShims = function() {
   return ReactPropTypes;
 };
 
-var propTypes = createCommonjsModule(function (module) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -981,6 +980,7 @@ var propTypes = createCommonjsModule(function (module) {
  * LICENSE file in the root directory of this source tree.
  */
 
+var propTypes = createCommonjsModule(function (module) {
 {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod

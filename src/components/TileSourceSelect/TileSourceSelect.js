@@ -3,7 +3,7 @@ import Select from "react-select";
 import PropTypes from "prop-types";
 
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 
 const dropdownSelectWrapper = css`
   width: 350px;

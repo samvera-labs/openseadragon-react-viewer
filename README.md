@@ -16,7 +16,7 @@ A React wrapper component around the OpenSeadragon viewer. Feed `OpenSeadragonVi
 yarn add openseadragon-react-viewer
 
 // And peer dependencies
-yarn add @emotion/core openseadragon
+yarn add @emotion/react openseadragon
 ```
 
 Then use it in your app:

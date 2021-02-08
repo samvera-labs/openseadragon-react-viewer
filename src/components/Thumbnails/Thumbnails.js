@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 
 const bottomPanel = (props) => css`
   background-color: rgba(52, 47, 46, 0.5);

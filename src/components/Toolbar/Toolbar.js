@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { isMobile } from "react-device-detect";
 
 /** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { jsx, css } from "@emotion/react";
 
 const toolbarWrapper = css`
   display: flex;
