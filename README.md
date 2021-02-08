@@ -26,7 +26,10 @@ import React from 'react';
 import { OpenSeadragonViewer } from "openseadragon-react-viewer"
 
 const App = () => {
-  // Get your manifest from somewhere
+  // Provide either a local IIIF manifest object
+  const manifest = MY_AWESOME_MANIFEST;
+
+  // Or, provide a publicly accessible URL of a IIIF manifest
   const manifestUrl = "https://some-manifest-url-here.json";
 
   // Options to show/hide extra UI features in the viewer
@@ -40,8 +43,9 @@ const App = () => {
     height: 800,
   };
 
+  // A local manifest will take precedence over manifestUrl if both props are supplied
   return (
-    <OpenSeadragonViewer manifestUrl={manifestUrl} options={options} />
+    <OpenSeadragonViewer manifest={manifest} manifestUrl={manifestUrl} options={options} />
   );
 }
 
@@ -52,10 +56,11 @@ export default App;
 
 Props the component accepts:
 
-- `manifestUrl` - {string} IIIF manifest url (required)
+- `manifest` - {object} IIIF manifest
+- `manifestUrl` - {string} IIIF manifest url
 - `options` - {object} An options config object whether to use custom features or OpenSeadragon features
 
-See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-viewer/) for full configuration options.
+View [full configuration options](https://samvera-labs.github.io/openseadragon-react-viewer/) and a playground.
 
 ### Custom styling
 
@@ -91,15 +96,6 @@ To fix this you must ensure that the OpenSeadragon React Viewer host's React app
 
 ## Development
 
-### Prerequisites
-
-You'll need to have `node` installed on your local machine. Also, preferably `yarn` installed as well. You can check either with:
-
-```
-node --version
-yarn --version
-```
-
 ### Installing
 
 1. Clone or fork this repository
@@ -112,13 +108,13 @@ yarn install
 
 ### Start development environment
 
-To spin up the development environment run:
+To spin up the development environment (which is a Styleguidiest dev environment) run:
 
 ```
 yarn dev
 ```
 
-Visit http://localhost:10001/ in your browser.
+Visit http://localhost:6060/ (Styleguidist's default port) in your browser.
 
 See `rollup.config.js` for development and packaging configuration details. Development environment runs from a `UMD` bundled file, which is saved to the `/public` folder for local development.
 
@@ -188,7 +184,6 @@ Use [Prettier](https://prettier.io/).
 ## Authors
 
 - **Adam J. Arling** - UI Developer - [Northwestern University](https://github.com/adamjarling)
-- **Divya R. Katpally** - Front-end Developer - [Northwestern University](https://github.com/katdivyareddy10)
 
 ## License
 
