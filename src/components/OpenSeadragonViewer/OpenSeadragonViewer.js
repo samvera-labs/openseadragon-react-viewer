@@ -86,25 +86,28 @@ OpenSeadragonViewer.propTypes = {
   manifestUrl: PropTypes.string,
   /** Configurable options */
   options: PropTypes.shape({
+    /** Render URL hash params which represent Zoom levels and invididual tile sources.  Useful for sharing a URL where you want to show a particular Zoom level and tile source. */
+    deepLinking: PropTypes.bool,
+    /** Set Height in pixels for the viewer */
+    height: PropTypes.number,
+    /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
+    openSeadragonOptions: PropTypes.object,
     /** Display the dropdown menu for navigating tile sources */
     showDropdown: PropTypes.bool,
     /** Display tile source thumbnails preview images in a row  */
     showThumbnails: PropTypes.bool,
     /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
     showToolbar: PropTypes.bool,
-    /** Display URL params for Zooming and selected tile source highlighting */
-    deepLinking: PropTypes.bool,
-    /** Set Height in pixels for the viewer */
-    height: PropTypes.number,
   }),
 };
 
 OpenSeadragonViewer.defaultProps = {
   options: {
+    deepLinking: true,
+    height: 800,
+    openSeadragonOptions: {},
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
-    deepLinking: true,
-    height: 800,
   },
 };

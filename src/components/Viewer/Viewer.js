@@ -227,6 +227,12 @@ const Viewer = ({ manifest }) => {
       previousButton: "previous",
     };
 
+    // Include any user passed in Open Seadragon config options
+    const getOsdConfig = () => {
+      const options = configProps?.openSeadragonOptions;
+      return options && Object.keys(options).length > 0 ? options : {};
+    };
+
     setOpenSeadragonInstance(
       OpenSeadragon({
         ajaxWithCredentials: true,
@@ -258,6 +264,7 @@ const Viewer = ({ manifest }) => {
         tileSources: canvasImageResources.map((t) => t.id),
         visibilityRatio: 1,
         ...customControlIds,
+        ...getOsdConfig(),
       })
     );
   }

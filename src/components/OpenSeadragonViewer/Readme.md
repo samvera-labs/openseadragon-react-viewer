@@ -26,6 +26,11 @@ import { horse } from "../../manifests/horse";
     showToolbar: true,
     deepLinking: true,
     height: 800,
+    openSeadragonOptions: {
+      gestureSettingsMouse: {
+        scrollToZoom: true,
+      },
+    },
   }}
 />;
 ```
