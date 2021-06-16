@@ -43,9 +43,30 @@ const App = () => {
     height: 800,
   };
 
-  // A local manifest will take precedence over manifestUrl if both props are supplied
+  // Pass through any OpenSeadragon config options you'd like to override
+  const openSeadragonOptions = {
+    gestureSettingsMouse: {
+      scrollToZoom: true,
+    }
+  };
+
+  // Customize which tool bar controls are displayed
+  const toolBarOptions = {
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true,
+  };
+
+  // Note: A local manifest will take precedence over manifestUrl if both props are supplied
   return (
-    <OpenSeadragonViewer manifest={manifest} manifestUrl={manifestUrl} options={options} />
+    <OpenSeadragonViewer
+      manifest={manifest}
+      manifestUrl={manifestUrl}
+      options,
+      openSeadragonOptions, // Optional
+      toolBarOptions // Optional
+      />
   );
 }
 
@@ -54,27 +75,11 @@ export default App;
 
 ### Options / Props
 
-Props the component accepts:
-
-- `manifest` - {object} IIIF manifest
-- `manifestUrl` - {string} IIIF manifest url
-- `options` - {object} An options config object whether to use custom features or OpenSeadragon features
-
-View [full configuration options](https://samvera-labs.github.io/openseadragon-react-viewer/) and a playground.
+View [documentation](https://samvera-labs.github.io/openseadragon-react-viewer/) for all configuration options.
 
 ### Custom styling
 
-CSS class names are provided for elements which allow for custom styling overrides.
-
-For example, to change the style of the title in the viewer, in your CSS define something like:
-
-```
-.osrv-work-title {
-  color: green;
-  font-family: "Verdana";
-  font-size: 2rem;
-}
-```
+View [documentation](https://samvera-labs.github.io/openseadragon-react-viewer/) for a list of CSS classes you can target to add custom styles.
 
 ### Getting help
 

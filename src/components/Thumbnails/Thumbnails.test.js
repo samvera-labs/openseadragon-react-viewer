@@ -1,14 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import WorkOpenSeadragonThumbnails from "./Thumbnails";
+import Thumbnails from "./Thumbnails";
 import { mockTileSources } from "../../services/testing-helpers";
 
 const mockOnThumbClick = jest.fn();
 
-describe("WorkOpenSeadragonThumbnails component", () => {
+describe("Thumbnails component", () => {
   function setUp() {
     return render(
-      <WorkOpenSeadragonThumbnails
+      <Thumbnails
         tileSources={mockTileSources}
         onThumbClick={mockOnThumbClick}
       />
@@ -16,7 +16,7 @@ describe("WorkOpenSeadragonThumbnails component", () => {
   }
 
   it("renders without crashing", () => {
-    const { container } = render(<WorkOpenSeadragonThumbnails />);
+    const { container } = render(<Thumbnails />);
     expect(container).toBeTruthy();
   });
 

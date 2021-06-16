@@ -63,6 +63,7 @@ export default function Thumbnails({
   return (
     <div
       data-testid="open-seadragon-thumbnails-container"
+      className="osrv-thumbnails-wrapper"
       css={bottomPanel(isPreview ? "relative" : "absolute")}
     >
       <div css={thumbnailView}>

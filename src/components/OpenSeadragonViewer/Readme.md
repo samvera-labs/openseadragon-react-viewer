@@ -1,10 +1,26 @@
-This is the top-most component to pull directly into your React app.
+### Usage
+
+The `OpenSeadragonViewer` package is designed to render an OpenSeadragon viewer React component, which gets its data from a [IIIF manifest](https://iiif.io/api/presentation/3.0/). The manifest JSON file drives the viewer.
+
+Note: The component accepts either a manifest object, or a manifest url in its `props`. If both are supplied, precedence is given to the manifest object.
+
+### Customizing
+
+To customize the CSS styling of the viewer, the following helper CSS target classes are provided. You can inspect the HTML in your browser's Console for more info...
+
+```bash
+// Helper CSS classes
+
+osrv-top-row-wrapper
+osrv-work-title
+osrv-toolbar-wrapper
+osrv-tilesource-select-wrapper
+osrv-thumbnails-wrapper
+```
 
 ```js static
 import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 ```
-
-If you wanted to import individual components like `Thumbnails` or `Toolbar`, to customize, or for use outside this application, you can import those directly as well.
 
 ```jsx
 /**
@@ -24,13 +40,19 @@ import { horse } from "../../manifests/horse";
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
-    deepLinking: true,
+    deepLinking: false,
     height: 800,
-    openSeadragonOptions: {
-      gestureSettingsMouse: {
-        scrollToZoom: true,
-      },
+  }}
+  openSeadragonOptions={{
+    gestureSettingsMouse: {
+      scrollToZoom: true,
     },
+  }}
+  toolBarOptions={{
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true,
   }}
 />;
 ```

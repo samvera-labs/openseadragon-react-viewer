@@ -9,23 +9,18 @@ import Loading from "../Loader/Loading";
 
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
-
 const wrapper = css`
   position: relative;
 `;
 
-// Instantiate FontAwesome icons
 registerFaIcons();
 
-/**
- * Wrapper component around the OpenSeadragon viewer
- *
- * @visibleName OpenSeadragonViewer
- */
 export default function OpenSeadragonViewer({
   manifest: manifestObj = {},
   manifestUrl,
   options,
+  openSeadragonOptions,
+  toolBarOptions,
 }) {
   const [manifest, setManifest] = useState();
   const [error, setError] = useState();
@@ -65,7 +60,9 @@ export default function OpenSeadragonViewer({
   }
 
   return manifest ? (
-    <ConfigContext.Provider value={{ ...options }}>
+    <ConfigContext.Provider
+      value={{ ...options, openSeadragonOptions, toolBarOptions }}
+    >
       <ErrorBoundary>
         <div css={wrapper}>
           <Viewer manifest={manifest} />
@@ -90,14 +87,21 @@ OpenSeadragonViewer.propTypes = {
     deepLinking: PropTypes.bool,
     /** Set Height in pixels for the viewer */
     height: PropTypes.number,
-    /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
-    openSeadragonOptions: PropTypes.object,
     /** Display the dropdown menu for navigating tile sources */
     showDropdown: PropTypes.bool,
     /** Display tile source thumbnails preview images in a row  */
     showThumbnails: PropTypes.bool,
     /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
     showToolbar: PropTypes.bool,
+  }),
+  /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
+  openSeadragonOptions: PropTypes.object,
+  /** Configure display of controls on the toolbar */
+  toolBarOptions: PropTypes.shape({
+    showZoom: PropTypes.bool,
+    showFullScreen: PropTypes.bool,
+    showDownload: PropTypes.bool,
+    showPreviousNext: PropTypes.bool,
   }),
 };
 
@@ -110,4 +114,10 @@ OpenSeadragonViewer.defaultProps = {
     showThumbnails: true,
     showToolbar: true,
   },
+  toolBarOptions: PropTypes.shape({
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true,
+  }),
 };

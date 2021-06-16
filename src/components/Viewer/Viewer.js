@@ -157,7 +157,7 @@ const Viewer = ({ manifest }) => {
 
       returnObj = { width, height };
     } catch {
-      console.log(
+      console.error(
         "Error in handling download click for a tile source in OpenSeadragon viewer"
       );
       returnObj = {};
@@ -292,6 +292,7 @@ const Viewer = ({ manifest }) => {
               <Toolbar
                 onDownloadCropClick={handleDownloadCropClick}
                 onDownloadFullSize={handleDownloadFullSize}
+                toolBarOptions={configProps.toolBarOptions}
               />
             </div>
           )}

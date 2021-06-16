@@ -59,7 +59,11 @@ const osdToolbarDropdown = css`
   }
 `;
 
-const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
+const Toolbar = ({
+  onDownloadCropClick,
+  onDownloadFullSize,
+  toolBarOptions = {},
+}) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
   function handleDownloadClick(e) {
@@ -81,29 +85,34 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
 
   return (
     <nav css={toolbarWrapper} className="osrv-toolbar-wrapper">
-      <button
-        id="zoom-in"
-        data-testid="zoom-in"
-        href="#zoom-in"
-        css={toolbarControl}
-        className="osrv-toolbar-button"
-        title="Zoom In"
-      >
-        <FontAwesomeIcon icon="search-plus" />
-        <span className="osrv-toolbar-button-text">Zoom In</span>
-      </button>
-      <button
-        id="zoom-out"
-        data-testid="zoom-out"
-        href="#zoom-out"
-        css={toolbarControl}
-        className="osrv-toolbar-button"
-        title="Zoom Out"
-      >
-        <FontAwesomeIcon icon="search-minus" />
-        <span className="osrv-toolbar-button-text">Zoom Out</span>
-      </button>
-      {!isMobile && (
+      {toolBarOptions?.showZoom && (
+        <>
+          <button
+            id="zoom-in"
+            data-testid="zoom-in"
+            href="#zoom-in"
+            css={toolbarControl}
+            className="osrv-toolbar-button"
+            title="Zoom In"
+          >
+            <FontAwesomeIcon icon="search-plus" />
+            <span className="osrv-toolbar-button-text">Zoom In</span>
+          </button>
+          <button
+            id="zoom-out"
+            data-testid="zoom-out"
+            href="#zoom-out"
+            css={toolbarControl}
+            className="osrv-toolbar-button"
+            title="Zoom Out"
+          >
+            <FontAwesomeIcon icon="search-minus" />
+            <span className="osrv-toolbar-button-text">Zoom Out</span>
+          </button>
+        </>
+      )}
+
+      {!isMobile && toolBarOptions?.showFullScreen && (
         <button
           id="full-page"
           data-testid="full-page"
@@ -117,7 +126,7 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
         </button>
       )}
 
-      {!isMobile && (
+      {!isMobile && toolBarOptions?.showDownload && (
         <div css={osdToolbarDropdownWrapper}>
           <button
             data-testid="download"
@@ -159,28 +168,32 @@ const Toolbar = ({ onDownloadCropClick, onDownloadFullSize }) => {
           )}
         </div>
       )}
-      <button
-        id="previous"
-        data-testid="previous"
-        href="#previous"
-        css={toolbarControl}
-        className="osrv-toolbar-button"
-        title="Previous"
-      >
-        <FontAwesomeIcon icon="arrow-circle-left" />
-        <span className="osrv-toolbar-button-text">Previous</span>
-      </button>
-      <button
-        id="next"
-        data-testid="next"
-        href="#next"
-        css={toolbarControl}
-        className="osrv-toolbar-button"
-        title="Next"
-      >
-        <FontAwesomeIcon icon="arrow-circle-right" />
-        <span className="osrv-toolbar-button-text">Next</span>
-      </button>
+      {toolBarOptions?.showPreviousNext && (
+        <>
+          <button
+            id="previous"
+            data-testid="previous"
+            href="#previous"
+            css={toolbarControl}
+            className="osrv-toolbar-button"
+            title="Previous"
+          >
+            <FontAwesomeIcon icon="arrow-circle-left" />
+            <span className="osrv-toolbar-button-text">Previous</span>
+          </button>
+          <button
+            id="next"
+            data-testid="next"
+            href="#next"
+            css={toolbarControl}
+            className="osrv-toolbar-button"
+            title="Next"
+          >
+            <FontAwesomeIcon icon="arrow-circle-right" />
+            <span className="osrv-toolbar-button-text">Next</span>
+          </button>
+        </>
+      )}
     </nav>
   );
 };
@@ -192,6 +205,22 @@ Toolbar.propTypes = {
   onDownloadCropClick: PropTypes.func,
   /** Callback function executed when Dropdown Full size is clicked */
   onDownloadFullSize: PropTypes.func,
+  /** Configuration options for the toolbar */
+  toolBarOptions: PropTypes.shape({
+    showDownload: PropTypes.bool,
+    showFullScreen: PropTypes.bool,
+    showPreviousNext: PropTypes.bool,
+    showZoom: PropTypes.bool,
+  }),
+};
+
+Toolbar.defaultProps = {
+  toolBarOptions: {
+    showDownload: true,
+    showFullScreen: true,
+    showPreviousNext: true,
+    showZoom: true,
+  },
 };
 
 export default Toolbar;

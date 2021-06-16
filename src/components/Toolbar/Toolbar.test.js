@@ -1,11 +1,11 @@
 import React from "react";
-import WorkOpenSeadragonToolbar from "./Toolbar";
+import Toolbar from "./Toolbar";
 import { render, fireEvent } from "@testing-library/react";
 
 const mockOnDownloadCropClick = jest.fn();
 const mockOnDownloadFullSizeClick = jest.fn();
 
-describe("WorkOpenSeadragonToolbar component", () => {
+describe("Toolbar component", () => {
   function setUpTest(
     props = {
       isMobile: false,
@@ -13,7 +13,7 @@ describe("WorkOpenSeadragonToolbar component", () => {
       onDownloadFullSize: mockOnDownloadFullSizeClick,
     }
   ) {
-    return render(<WorkOpenSeadragonToolbar {...props} />);
+    return render(<Toolbar {...props} />);
   }
 
   it("renders without crashing", () => {

@@ -16,10 +16,131 @@ var Select__default = /*#__PURE__*/_interopDefaultLegacy(Select);
 var Canvas2Image__default = /*#__PURE__*/_interopDefaultLegacy(Canvas2Image);
 var OpenSeadragon__default = /*#__PURE__*/_interopDefaultLegacy(OpenSeadragon);
 
-function createCommonjsModule(fn) {
-  var module = { exports: {} };
-	return fn(module, module.exports), module.exports;
+function _defineProperty$2(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
 }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+        args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+
+      _next(undefined);
+    });
+  };
+}
+
+function _arrayWithHoles$1(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit$1(arr, i) {
+  var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+  if (_i == null) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+
+  var _s, _e;
+
+  try {
+    for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _nonIterableRest$1() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _slicedToArray$1(arr, i) {
+  return _arrayWithHoles$1(arr) || _iterableToArrayLimit$1(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest$1();
+}
+
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+var runtime = {exports: {}};
 
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
@@ -28,7 +149,7 @@ function createCommonjsModule(fn) {
  * LICENSE file in the root directory of this source tree.
  */
 
-var runtime_1 = createCommonjsModule(function (module) {
+(function (module) {
 var runtime = (function (exports) {
 
   var Op = Object.prototype;
@@ -769,148 +890,11 @@ try {
   // problems, please detail your unique predicament in a GitHub issue.
   Function("r", "regeneratorRuntime = r")(runtime);
 }
-});
+}(runtime));
 
-var regenerator = runtime_1;
+var regenerator = runtime.exports;
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var defineProperty = _defineProperty;
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-var asyncToGenerator = _asyncToGenerator;
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-var arrayWithHoles = _arrayWithHoles;
-
-function _iterableToArrayLimit(arr, i) {
-  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-var iterableToArrayLimit = _iterableToArrayLimit;
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-var arrayLikeToArray = _arrayLikeToArray;
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-var unsupportedIterableToArray = _unsupportedIterableToArray;
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-var nonIterableRest = _nonIterableRest;
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-
-var slicedToArray = _slicedToArray;
-
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
-var taggedTemplateLiteral = _taggedTemplateLiteral;
+var propTypes = {exports: {}};
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -919,9 +903,9 @@ var taggedTemplateLiteral = _taggedTemplateLiteral;
  * LICENSE file in the root directory of this source tree.
  */
 
-var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+var ReactPropTypesSecret$1 = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
-var ReactPropTypesSecret_1 = ReactPropTypesSecret;
+var ReactPropTypesSecret_1 = ReactPropTypesSecret$1;
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -930,7 +914,7 @@ var ReactPropTypesSecret_1 = ReactPropTypesSecret;
  * LICENSE file in the root directory of this source tree.
  */
 
-
+var ReactPropTypesSecret = ReactPropTypesSecret_1;
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -938,7 +922,7 @@ emptyFunctionWithReset.resetWarningCache = emptyFunction;
 
 var factoryWithThrowingShims = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
-    if (secret === ReactPropTypesSecret_1) {
+    if (secret === ReactPropTypesSecret) {
       // It is still safe when called from React.
       return;
     }
@@ -991,13 +975,13 @@ var factoryWithThrowingShims = function() {
  * LICENSE file in the root directory of this source tree.
  */
 
-var propTypes = createCommonjsModule(function (module) {
 {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = factoryWithThrowingShims();
+  propTypes.exports = factoryWithThrowingShims();
 }
-});
+
+var PropTypes = propTypes.exports;
 
 /**
  * Extract tile source urls from a IIIF manifest
@@ -1023,17 +1007,17 @@ function getCanvasImageResources(manifest) {
 }
 
 /*!
- * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
-function _classCallCheck(instance, Constructor) {
+function _classCallCheck$1(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-function _defineProperties(target, props) {
+function _defineProperties$1(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -1043,9 +1027,9 @@ function _defineProperties(target, props) {
   }
 }
 
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
+function _createClass$1(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$1(Constructor, staticProps);
   return Constructor;
 }
 
@@ -1064,7 +1048,7 @@ function _defineProperty$1(obj, key, value) {
   return obj;
 }
 
-function _objectSpread(target) {
+function _objectSpread$3(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
     var ownKeys = Object.keys(source);
@@ -1083,15 +1067,15 @@ function _objectSpread(target) {
   return target;
 }
 
-function _slicedToArray$1(arr, i) {
-  return _arrayWithHoles$1(arr) || _iterableToArrayLimit$1(arr, i) || _nonIterableRest$1();
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
 }
 
-function _arrayWithHoles$1(arr) {
+function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 
-function _iterableToArrayLimit$1(arr, i) {
+function _iterableToArrayLimit(arr, i) {
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -1117,7 +1101,7 @@ function _iterableToArrayLimit$1(arr, i) {
   return _arr;
 }
 
-function _nonIterableRest$1() {
+function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
@@ -1190,7 +1174,7 @@ function coerce(val) {
 if (DOCUMENT && typeof DOCUMENT.querySelector === 'function') {
   var attrs = [['data-family-prefix', 'familyPrefix'], ['data-replacement-class', 'replacementClass'], ['data-auto-replace-svg', 'autoReplaceSvg'], ['data-auto-add-css', 'autoAddCss'], ['data-auto-a11y', 'autoA11y'], ['data-search-pseudo-elements', 'searchPseudoElements'], ['data-observe-mutations', 'observeMutations'], ['data-mutate-approach', 'mutateApproach'], ['data-keep-original-source', 'keepOriginalSource'], ['data-measure-performance', 'measurePerformance'], ['data-show-missing-icons', 'showMissingIcons']];
   attrs.forEach(function (_ref) {
-    var _ref2 = _slicedToArray$1(_ref, 2),
+    var _ref2 = _slicedToArray(_ref, 2),
         attr = _ref2[0],
         key = _ref2[1];
 
@@ -1216,11 +1200,11 @@ var _default = {
   showMissingIcons: true
 };
 
-var _config = _objectSpread({}, _default, initial);
+var _config = _objectSpread$3({}, _default, initial);
 
 if (!_config.autoReplaceSvg) _config.observeMutations = false;
 
-var config = _objectSpread({}, _config);
+var config = _objectSpread$3({}, _config);
 
 WINDOW.FontAwesomeConfig = config;
 
@@ -1374,7 +1358,7 @@ function makeIconMasking (_ref) {
   });
   var maskRect = {
     tag: 'rect',
-    attributes: _objectSpread({}, ALL_SPACE, {
+    attributes: _objectSpread$3({}, ALL_SPACE, {
       fill: 'white'
     })
   };
@@ -1383,22 +1367,22 @@ function makeIconMasking (_ref) {
   } : {};
   var maskInnerGroup = {
     tag: 'g',
-    attributes: _objectSpread({}, trans.inner),
-    children: [fillBlack(_objectSpread({
+    attributes: _objectSpread$3({}, trans.inner),
+    children: [fillBlack(_objectSpread$3({
       tag: mainPath.tag,
-      attributes: _objectSpread({}, mainPath.attributes, trans.path)
+      attributes: _objectSpread$3({}, mainPath.attributes, trans.path)
     }, maskInnerGroupChildrenMixin))]
   };
   var maskOuterGroup = {
     tag: 'g',
-    attributes: _objectSpread({}, trans.outer),
+    attributes: _objectSpread$3({}, trans.outer),
     children: [maskInnerGroup]
   };
   var maskId = "mask-".concat(explicitMaskId || nextUniqueId());
   var clipId = "clip-".concat(explicitMaskId || nextUniqueId());
   var maskTag = {
     tag: 'mask',
-    attributes: _objectSpread({}, ALL_SPACE, {
+    attributes: _objectSpread$3({}, ALL_SPACE, {
       id: maskId,
       maskUnits: 'userSpaceOnUse',
       maskContentUnits: 'userSpaceOnUse'
@@ -1417,7 +1401,7 @@ function makeIconMasking (_ref) {
   };
   children.push(defs, {
     tag: 'rect',
-    attributes: _objectSpread({
+    attributes: _objectSpread$3({
       fill: 'currentColor',
       'clip-path': "url(#".concat(clipId, ")"),
       mask: "url(#".concat(maskId, ")")
@@ -1449,14 +1433,14 @@ function makeIconStandard (_ref) {
     });
     children.push({
       tag: 'g',
-      attributes: _objectSpread({}, trans.outer),
+      attributes: _objectSpread$3({}, trans.outer),
       children: [{
         tag: 'g',
-        attributes: _objectSpread({}, trans.inner),
+        attributes: _objectSpread$3({}, trans.inner),
         children: [{
           tag: main.icon.tag,
           children: main.icon.children,
-          attributes: _objectSpread({}, main.icon.attributes, trans.path)
+          attributes: _objectSpread$3({}, main.icon.attributes, trans.path)
         }]
       }]
     });
@@ -1485,7 +1469,7 @@ function asIcon (_ref) {
       x: width / height / 2,
       y: 0.5
     };
-    attributes['style'] = joinStyles(_objectSpread({}, styles, {
+    attributes['style'] = joinStyles(_objectSpread$3({}, styles, {
       'transform-origin': "".concat(offset.x + transform.x / 16, "em ").concat(offset.y + transform.y / 16, "em")
     }));
   }
@@ -1511,7 +1495,7 @@ function asSymbol (_ref) {
     },
     children: [{
       tag: 'symbol',
-      attributes: _objectSpread({}, attributes, {
+      attributes: _objectSpread$3({}, attributes, {
         id: id
       }),
       children: children
@@ -1547,7 +1531,7 @@ function makeInlineSvgAbstract(params) {
   }).concat(extra.classes).join(' ');
   var content = {
     children: [],
-    attributes: _objectSpread({}, extra.attributes, {
+    attributes: _objectSpread$3({}, extra.attributes, {
       'data-prefix': prefix,
       'data-icon': iconName,
       'class': attrClass,
@@ -1572,7 +1556,7 @@ function makeInlineSvgAbstract(params) {
     children: [title]
   });
 
-  var args = _objectSpread({}, content, {
+  var args = _objectSpread$3({}, content, {
     prefix: prefix,
     iconName: iconName,
     main: main,
@@ -1580,7 +1564,7 @@ function makeInlineSvgAbstract(params) {
     maskId: maskId,
     transform: transform,
     symbol: symbol,
-    styles: _objectSpread({}, uploadedIconWidthStyle, extra.styles)
+    styles: _objectSpread$3({}, uploadedIconWidthStyle, extra.styles)
   });
 
   var _ref2 = mask.found && main.found ? makeIconMasking(args) : makeIconStandard(args),
@@ -1672,7 +1656,7 @@ function defineIcons(prefix, icons) {
   if (typeof namespace.hooks.addPack === 'function' && !skipHooks) {
     namespace.hooks.addPack(prefix, normalized);
   } else {
-    namespace.styles[prefix] = _objectSpread({}, namespace.styles[prefix] || {}, normalized);
+    namespace.styles[prefix] = _objectSpread$3({}, namespace.styles[prefix] || {}, normalized);
   }
   /**
    * Font Awesome 4 used the prefix of `fa` for all icons. With the introduction
@@ -1843,57 +1827,57 @@ var ANIMATION_BASE = {
 };
 ({
   tag: 'path',
-  attributes: _objectSpread({}, FILL, {
+  attributes: _objectSpread$3({}, FILL, {
     d: 'M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z'
   })
 });
 
-var OPACITY_ANIMATE = _objectSpread({}, ANIMATION_BASE, {
+var OPACITY_ANIMATE = _objectSpread$3({}, ANIMATION_BASE, {
   attributeName: 'opacity'
 });
 
 ({
   tag: 'circle',
-  attributes: _objectSpread({}, FILL, {
+  attributes: _objectSpread$3({}, FILL, {
     cx: '256',
     cy: '364',
     r: '28'
   }),
   children: [{
     tag: 'animate',
-    attributes: _objectSpread({}, ANIMATION_BASE, {
+    attributes: _objectSpread$3({}, ANIMATION_BASE, {
       attributeName: 'r',
       values: '28;14;28;28;14;28;'
     })
   }, {
     tag: 'animate',
-    attributes: _objectSpread({}, OPACITY_ANIMATE, {
+    attributes: _objectSpread$3({}, OPACITY_ANIMATE, {
       values: '1;0;1;1;0;1;'
     })
   }]
 });
 ({
   tag: 'path',
-  attributes: _objectSpread({}, FILL, {
+  attributes: _objectSpread$3({}, FILL, {
     opacity: '1',
     d: 'M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z'
   }),
   children: [{
     tag: 'animate',
-    attributes: _objectSpread({}, OPACITY_ANIMATE, {
+    attributes: _objectSpread$3({}, OPACITY_ANIMATE, {
       values: '1;0;0;0;0;1;'
     })
   }]
 });
 ({
   tag: 'path',
-  attributes: _objectSpread({}, FILL, {
+  attributes: _objectSpread$3({}, FILL, {
     opacity: '0',
     d: 'M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z'
   }),
   children: [{
     tag: 'animate',
-    attributes: _objectSpread({}, OPACITY_ANIMATE, {
+    attributes: _objectSpread$3({}, OPACITY_ANIMATE, {
       values: '0;0;1;1;0;0;'
     })
   }]
@@ -1905,7 +1889,7 @@ function asFoundIcon(icon) {
   var height = icon[1];
 
   var _icon$slice = icon.slice(4),
-      _icon$slice2 = _slicedToArray$1(_icon$slice, 1),
+      _icon$slice2 = _slicedToArray(_icon$slice, 1),
       vectorData = _icon$slice2[0];
 
   var element = null;
@@ -1975,12 +1959,12 @@ var Library =
 /*#__PURE__*/
 function () {
   function Library() {
-    _classCallCheck(this, Library);
+    _classCallCheck$1(this, Library);
 
     this.definitions = {};
   }
 
-  _createClass(Library, [{
+  _createClass$1(Library, [{
     key: "add",
     value: function add() {
       var _this = this;
@@ -1991,7 +1975,7 @@ function () {
 
       var additions = definitions.reduce(this._pullDefinitions, {});
       Object.keys(additions).forEach(function (key) {
-        _this.definitions[key] = _objectSpread({}, _this.definitions[key] || {}, additions[key]);
+        _this.definitions[key] = _objectSpread$3({}, _this.definitions[key] || {}, additions[key]);
         defineIcons(key, additions[key]);
         build();
       });
@@ -2070,7 +2054,7 @@ function resolveIcons(next) {
       mask = (mask || {}).icon ? mask : findIconDefinition(mask || {});
     }
 
-    return next(iconDefinition, _objectSpread({}, params, {
+    return next(iconDefinition, _objectSpread$3({}, params, {
       mask: mask
     }));
   };
@@ -2107,7 +2091,7 @@ var icon = resolveIcons(function (iconDefinition) {
   var prefix = iconDefinition.prefix,
       iconName = iconDefinition.iconName,
       icon = iconDefinition.icon;
-  return apiObject(_objectSpread({
+  return apiObject(_objectSpread$3({
     type: 'icon'
   }, iconDefinition), function () {
     ensureCss();
@@ -2133,7 +2117,7 @@ var icon = resolveIcons(function (iconDefinition) {
       },
       prefix: prefix,
       iconName: iconName,
-      transform: _objectSpread({}, meaninglessTransform, transform),
+      transform: _objectSpread$3({}, meaninglessTransform, transform),
       symbol: symbol,
       title: title,
       maskId: maskId,
@@ -2147,21 +2131,21 @@ var icon = resolveIcons(function (iconDefinition) {
   });
 });
 
-function _typeof(obj) {
+function _typeof$1(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
+    _typeof$1 = function (obj) {
       return typeof obj;
     };
   } else {
-    _typeof = function (obj) {
+    _typeof$1 = function (obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof(obj);
+  return _typeof$1(obj);
 }
 
-function _defineProperty$2(obj, key, value) {
+function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -2176,7 +2160,7 @@ function _defineProperty$2(obj, key, value) {
   return obj;
 }
 
-function ownKeys(object, enumerableOnly) {
+function ownKeys$3(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -2195,13 +2179,13 @@ function _objectSpread2(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty$2(target, key, source[key]);
+      ownKeys$3(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys(Object(source)).forEach(function (key) {
+      ownKeys$3(Object(source)).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -2290,7 +2274,7 @@ function classList(props) {
     'fa-li': listItem,
     'fa-flip-horizontal': flip === 'horizontal' || flip === 'both',
     'fa-flip-vertical': flip === 'vertical' || flip === 'both'
-  }, _defineProperty$2(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty$2(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null && rotation !== 0), _defineProperty$2(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty$2(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
+  }, _defineProperty(_classes, "fa-".concat(size), typeof size !== 'undefined' && size !== null), _defineProperty(_classes, "fa-rotate-".concat(rotation), typeof rotation !== 'undefined' && rotation !== null && rotation !== 0), _defineProperty(_classes, "fa-pull-".concat(pull), typeof pull !== 'undefined' && pull !== null), _defineProperty(_classes, 'fa-swap-opacity', props.swapOpacity), _classes); // map over all the keys in the classes object
   // return an array of the keys where the value for the key is not null
 
   return Object.keys(classes).map(function (key) {
@@ -2405,9 +2389,6 @@ function log () {
 }
 
 function normalizeIconArgs(icon) {
-  if (parse.icon) {
-    return parse.icon(icon);
-  } // if the icon is null, there's nothing to do
 
 
   if (icon === null) {
@@ -2415,7 +2396,7 @@ function normalizeIconArgs(icon) {
   } // if the icon is an object and has a prefix and an icon name, return it
 
 
-  if (_typeof(icon) === 'object' && icon.prefix && icon.iconName) {
+  if (_typeof$1(icon) === 'object' && icon.prefix && icon.iconName) {
     return icon;
   } // if it's an array with length of two
 
@@ -2445,7 +2426,7 @@ function objectWithKey(key, value) {
   // or it's not an array but it is truthy
   // then create the object with the key and the value
   // if not, return an empty array
-  return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty$2({}, key, value) : {};
+  return Array.isArray(value) && value.length > 0 || !Array.isArray(value) && value ? _defineProperty({}, key, value) : {};
 }
 
 function FontAwesomeIcon(_ref) {
@@ -2487,23 +2468,23 @@ function FontAwesomeIcon(_ref) {
 }
 FontAwesomeIcon.displayName = 'FontAwesomeIcon';
 FontAwesomeIcon.propTypes = {
-  border: propTypes.bool,
-  className: propTypes.string,
-  mask: propTypes.oneOfType([propTypes.object, propTypes.array, propTypes.string]),
-  fixedWidth: propTypes.bool,
-  inverse: propTypes.bool,
-  flip: propTypes.oneOf(['horizontal', 'vertical', 'both']),
-  icon: propTypes.oneOfType([propTypes.object, propTypes.array, propTypes.string]),
-  listItem: propTypes.bool,
-  pull: propTypes.oneOf(['right', 'left']),
-  pulse: propTypes.bool,
-  rotation: propTypes.oneOf([0, 90, 180, 270]),
-  size: propTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
-  spin: propTypes.bool,
-  symbol: propTypes.oneOfType([propTypes.bool, propTypes.string]),
-  title: propTypes.string,
-  transform: propTypes.oneOfType([propTypes.string, propTypes.object]),
-  swapOpacity: propTypes.bool
+  border: PropTypes.bool,
+  className: PropTypes.string,
+  mask: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
+  fixedWidth: PropTypes.bool,
+  inverse: PropTypes.bool,
+  flip: PropTypes.oneOf(['horizontal', 'vertical', 'both']),
+  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
+  listItem: PropTypes.bool,
+  pull: PropTypes.oneOf(['right', 'left']),
+  pulse: PropTypes.bool,
+  rotation: PropTypes.oneOf([0, 90, 180, 270]),
+  size: PropTypes.oneOf(['lg', 'xs', 'sm', '1x', '2x', '3x', '4x', '5x', '6x', '7x', '8x', '9x', '10x']),
+  spin: PropTypes.bool,
+  symbol: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  title: PropTypes.string,
+  transform: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  swapOpacity: PropTypes.bool
 };
 FontAwesomeIcon.defaultProps = {
   border: false,
@@ -2526,18 +2507,20 @@ FontAwesomeIcon.defaultProps = {
 };
 var convertCurry = convert.bind(null, React__default['default'].createElement);
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-var toolbarWrapper = react.css(_templateObject || (_templateObject = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"])));
-var toolbarControl = react.css(_templateObject2 || (_templateObject2 = taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"])));
-var osdToolbarDropdownWrapper = react.css(_templateObject3 || (_templateObject3 = taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"])));
-var osdToolbarDropdown = react.css(_templateObject4 || (_templateObject4 = taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"])));
+var _templateObject$6, _templateObject2$5, _templateObject3$2, _templateObject4$2;
+var toolbarWrapper = react.css(_templateObject$6 || (_templateObject$6 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  margin-right: 1rem;\n  .osrv-toolbar-button-text {\n    display: none;\n  }\n  @media screen and (max-width: 768px) {\n    margin-right: 0;\n  }\n"])));
+var toolbarControl = react.css(_templateObject2$5 || (_templateObject2$5 = _taggedTemplateLiteral(["\n  color: white;\n  background: rgba(0, 0, 0, 0.5);\n  border-radius: 14px;\n  border: 0;\n  font-size: 2rem;\n  padding: 10px;\n\n  &:hover {\n    background: rgba(0, 0, 0, 0.75);\n  }\n"])));
+var osdToolbarDropdownWrapper = react.css(_templateObject3$2 || (_templateObject3$2 = _taggedTemplateLiteral(["\n  position: relative;\n  display: inline-block;\n"])));
+var osdToolbarDropdown = react.css(_templateObject4$2 || (_templateObject4$2 = _taggedTemplateLiteral(["\n  position: absolute;\n  top: 50px;\n  left: -65px;\n  background: #342f2e;\n  color: #e3e3e3;\n  width: 200px;\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  border: 1px solid #716c6b;\n\n  button {\n    padding: 0.75rem 1rem;\n    color: #f0f0f0;\n    display: inline-block;\n    width: 100%;\n    font-size: 1rem;\n    &:hover {\n      background: #716c6b;\n      transition: all 0.25s ease-in-out;\n    }\n  }\n"])));
 
 var Toolbar = function Toolbar(_ref) {
   var onDownloadCropClick = _ref.onDownloadCropClick,
-      onDownloadFullSize = _ref.onDownloadFullSize;
+      onDownloadFullSize = _ref.onDownloadFullSize,
+      _ref$toolBarOptions = _ref.toolBarOptions,
+      toolBarOptions = _ref$toolBarOptions === void 0 ? {} : _ref$toolBarOptions;
 
   var _useState = React.useState(false),
-      _useState2 = slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray$1(_useState, 2),
       dropDownOpen = _useState2[0],
       setDropDownOpen = _useState2[1];
 
@@ -2561,7 +2544,7 @@ var Toolbar = function Toolbar(_ref) {
   return react.jsx("nav", {
     css: toolbarWrapper,
     className: "osrv-toolbar-wrapper"
-  }, react.jsx("button", {
+  }, (toolBarOptions === null || toolBarOptions === void 0 ? void 0 : toolBarOptions.showZoom) && react.jsx(React__default['default'].Fragment, null, react.jsx("button", {
     id: "zoom-in",
     "data-testid": "zoom-in",
     href: "#zoom-in",
@@ -2583,7 +2566,7 @@ var Toolbar = function Toolbar(_ref) {
     icon: "search-minus"
   }), react.jsx("span", {
     className: "osrv-toolbar-button-text"
-  }, "Zoom Out")), !reactDeviceDetect.isMobile && react.jsx("button", {
+  }, "Zoom Out"))), !reactDeviceDetect.isMobile && (toolBarOptions === null || toolBarOptions === void 0 ? void 0 : toolBarOptions.showFullScreen) && react.jsx("button", {
     id: "full-page",
     "data-testid": "full-page",
     href: "#full-page",
@@ -2594,7 +2577,7 @@ var Toolbar = function Toolbar(_ref) {
     icon: "expand"
   }), react.jsx("span", {
     className: "osrv-toolbar-button-text"
-  }, "Full Screen")), !reactDeviceDetect.isMobile && react.jsx("div", {
+  }, "Full Screen")), !reactDeviceDetect.isMobile && (toolBarOptions === null || toolBarOptions === void 0 ? void 0 : toolBarOptions.showDownload) && react.jsx("div", {
     css: osdToolbarDropdownWrapper
   }, react.jsx("button", {
     "data-testid": "download",
@@ -2622,7 +2605,7 @@ var Toolbar = function Toolbar(_ref) {
     css: toolbarControl,
     className: "osrv-toolbar-button",
     title: "Download full size image"
-  }, "Download full size")))), react.jsx("button", {
+  }, "Download full size")))), (toolBarOptions === null || toolBarOptions === void 0 ? void 0 : toolBarOptions.showPreviousNext) && react.jsx(React__default['default'].Fragment, null, react.jsx("button", {
     id: "previous",
     "data-testid": "previous",
     href: "#previous",
@@ -2644,27 +2627,43 @@ var Toolbar = function Toolbar(_ref) {
     icon: "arrow-circle-right"
   }), react.jsx("span", {
     className: "osrv-toolbar-button-text"
-  }, "Next")));
+  }, "Next"))));
 };
 
 Toolbar.propTypes = {
   /** Show if the device is mobile using package `react-device-detect` */
-  isMobile: propTypes.bool,
+  isMobile: PropTypes.bool,
 
   /** Callback function executed when Dropdown Crop is clicked */
-  onDownloadCropClick: propTypes.func,
+  onDownloadCropClick: PropTypes.func,
 
   /** Callback function executed when Dropdown Full size is clicked */
-  onDownloadFullSize: propTypes.func
+  onDownloadFullSize: PropTypes.func,
+
+  /** Configuration options for the toolbar */
+  toolBarOptions: PropTypes.shape({
+    showDownload: PropTypes.bool,
+    showFullScreen: PropTypes.bool,
+    showPreviousNext: PropTypes.bool,
+    showZoom: PropTypes.bool
+  })
+};
+Toolbar.defaultProps = {
+  toolBarOptions: {
+    showDownload: true,
+    showFullScreen: true,
+    showPreviousNext: true,
+    showZoom: true
+  }
 };
 
-var _templateObject$1, _templateObject2$1;
+var _templateObject$5, _templateObject2$4;
 
-function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var dropdownSelectWrapper = react.css(_templateObject$1 || (_templateObject$1 = taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"])));
-var reactSelectContainer = react.css(_templateObject2$1 || (_templateObject2$1 = taggedTemplateLiteral(["\n  text-align: left;\n"])));
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { _defineProperty$2(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var dropdownSelectWrapper = react.css(_templateObject$5 || (_templateObject$5 = _taggedTemplateLiteral(["\n  width: 350px;\n  color: #342f2e;\n  padding-right: 1rem;\n  font-size: 1rem;\n  @media screen and (max-width: 767px) {\n    display: none;\n  }\n"])));
+var reactSelectContainer = react.css(_templateObject2$4 || (_templateObject2$4 = _taggedTemplateLiteral(["\n  text-align: left;\n"])));
 
 var TileSourceSelect = function TileSourceSelect(_ref) {
   var currentTileSource = _ref.currentTileSource,
@@ -2694,9 +2693,9 @@ var TileSourceSelect = function TileSourceSelect(_ref) {
     options: tileSources,
     placeholder: "Filter work file sets",
     theme: function theme(_theme) {
-      return _objectSpread$1(_objectSpread$1({}, _theme), {}, {
+      return _objectSpread$2(_objectSpread$2({}, _theme), {}, {
         borderRadius: 0,
-        colors: _objectSpread$1(_objectSpread$1({}, _theme.colors), {}, {
+        colors: _objectSpread$2(_objectSpread$2({}, _theme.colors), {}, {
           primary: "#716c6b",
           primary50: "#d8d6d6",
           primary25: "#bbb8b8"
@@ -2709,28 +2708,28 @@ var TileSourceSelect = function TileSourceSelect(_ref) {
 };
 
 var tileSourceShape = {
-  label: propTypes.string,
-  id: propTypes.string
+  label: PropTypes.string,
+  id: PropTypes.string
 };
 TileSourceSelect.propTypes = {
-  currentTileSource: propTypes.shape(tileSourceShape),
+  currentTileSource: PropTypes.shape(tileSourceShape),
 
   /** Callback function executed when a thumbnail is clicked */
-  onFileSetChange: propTypes.func,
+  onFileSetChange: PropTypes.func,
 
   /** All tilesources for the thumbnails */
-  tileSources: propTypes.array
+  tileSources: PropTypes.array
 };
 
-var _templateObject$2, _templateObject2$2, _templateObject3$1, _templateObject4$1;
+var _templateObject$4, _templateObject2$3, _templateObject3$1, _templateObject4$1;
 
 var bottomPanel = function bottomPanel(props) {
-  return react.css(_templateObject$2 || (_templateObject$2 = taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
+  return react.css(_templateObject$4 || (_templateObject$4 = _taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
 };
 
-var thumbnailView = react.css(_templateObject2$2 || (_templateObject2$2 = taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"])));
-var activeThumb = react.css(_templateObject3$1 || (_templateObject3$1 = taggedTemplateLiteral(["\n  outline: 8px solid #f0f0f0;\n  cursor: pointer;\n  transition: outline 0.2s ease-in-out;\n"])));
-var panelListingThumbs = react.css(_templateObject4$1 || (_templateObject4$1 = taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"])), activeThumb, activeThumb);
+var thumbnailView = react.css(_templateObject2$3 || (_templateObject2$3 = _taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"])));
+var activeThumb = react.css(_templateObject3$1 || (_templateObject3$1 = _taggedTemplateLiteral(["\n  outline: 8px solid #f0f0f0;\n  cursor: pointer;\n  transition: outline 0.2s ease-in-out;\n"])));
+var panelListingThumbs = react.css(_templateObject4$1 || (_templateObject4$1 = _taggedTemplateLiteral(["\n  clear: both;\n  list-style: none;\n  padding: 0;\n  white-space: nowrap;\n  margin-top: 13px;\n  margin-bottom: 4px;\n  li {\n    box-sizing: border-box;\n    padding: 0 10px 0 10px;\n    display: inline-block;\n\n    &.active {\n      img {\n        ", "\n      }\n    }\n  }\n\n  img {\n    margin: 8px;\n    &:hover {\n      ", "\n    }\n  }\n"])), activeThumb, activeThumb);
 function Thumbnails(_ref) {
   var currentTileSource = _ref.currentTileSource,
       _ref$tileSources = _ref.tileSources,
@@ -2740,6 +2739,7 @@ function Thumbnails(_ref) {
       isPreview = _ref$isPreview === void 0 ? false : _ref$isPreview;
   return react.jsx("div", {
     "data-testid": "open-seadragon-thumbnails-container",
+    className: "osrv-thumbnails-wrapper",
     css: bottomPanel(isPreview ? "relative" : "absolute")
   }, react.jsx("div", {
     css: thumbnailView
@@ -2763,16 +2763,16 @@ function Thumbnails(_ref) {
 }
 Thumbnails.propTypes = {
   /** Current tile source displayed in OpenSeadragon viewer */
-  currentFileset: propTypes.object,
+  currentFileset: PropTypes.object,
 
   /** Callback function executed when a thumbnail is clicked */
-  onThumbClick: propTypes.func,
+  onThumbClick: PropTypes.func,
 
   /** All tilesources for the image resource */
-  tileSources: propTypes.array,
+  tileSources: PropTypes.array,
 
   /** Boolean to check if this component is called from styleguidist preview mode */
-  isPreview: propTypes.bool
+  isPreview: PropTypes.bool
 };
 
 var ConfigContext = /*#__PURE__*/React__default['default'].createContext();
@@ -2821,14 +2821,14 @@ function updateUrl(_ref) {
   window.history.replaceState({}, "", url);
 }
 
-var _templateObject$3, _templateObject2$3, _templateObject3$2, _templateObject4$2;
+var _templateObject$3, _templateObject2$2, _templateObject3, _templateObject4;
 
-function ownKeys$2(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$1(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$2(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var osdTopRow = react.css(_templateObject$3 || (_templateObject$3 = taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"])));
-var workTitle = react.css(_templateObject2$3 || (_templateObject2$3 = taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"])));
-var toolBarWrapper = react.css(_templateObject3$2 || (_templateObject3$2 = taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"])));
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(Object(source), true).forEach(function (key) { _defineProperty$2(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$1(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var osdTopRow = react.css(_templateObject$3 || (_templateObject$3 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  background: rgba(0, 0, 0, 0.8);\n  position: absolute;\n  z-index: 100;\n  width: 100%;\n  height: 60px;\n"])));
+var workTitle = react.css(_templateObject2$2 || (_templateObject2$2 = _taggedTemplateLiteral(["\n  text-align: left;\n  color: white;\n  font-size: 1.25rem;\n  padding-left: 1rem;\n"])));
+var toolBarWrapper = react.css(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  font-size: 1rem;\n  color: #e3e3e3;\n  position: absolute;\n  z-index: 10;\n  width: 100%;\n  top: 80px;\n  padding-right: 1rem;\n\n  select {\n    color: #e3e3e3;\n    background-color: #716c6b;\n    height: auto;\n    margin: 1rem 0 1rem 1rem;\n  }\n\n  @media screen and (max-width: 768px) {\n    select {\n      display: none;\n    }\n  }\n"])));
 /**
  * Viewer component
  */
@@ -2839,32 +2839,32 @@ var Viewer = function Viewer(_ref) {
   var title = manifest.label || "";
 
   var _useState = React.useState(),
-      _useState2 = slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray$1(_useState, 2),
       openSeadragonInstance = _useState2[0],
       setOpenSeadragonInstance = _useState2[1];
 
   var _useState3 = React.useState([]),
-      _useState4 = slicedToArray(_useState3, 2),
+      _useState4 = _slicedToArray$1(_useState3, 2),
       canvasImageResources = _useState4[0],
       setCanvasImageResources = _useState4[1];
 
   var _useState5 = React.useState(),
-      _useState6 = slicedToArray(_useState5, 2),
+      _useState6 = _slicedToArray$1(_useState5, 2),
       currentTileSource = _useState6[0],
       setCurrentTileSource = _useState6[1];
 
   var _useState7 = React.useState(),
-      _useState8 = slicedToArray(_useState7, 2),
+      _useState8 = _slicedToArray$1(_useState7, 2),
       tileIndex = _useState8[0],
       setTileIndex = _useState8[1];
 
   var _useState9 = React.useState(window.location.hash),
-      _useState10 = slicedToArray(_useState9, 2),
+      _useState10 = _slicedToArray$1(_useState9, 2),
       currentURLParams = _useState10[0],
       setCurrentURLParams = _useState10[1];
 
   var configProps = React.useContext(ConfigContext);
-  var openSeadragonContainer = react.css(_templateObject4$2 || (_templateObject4$2 = taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
+  var openSeadragonContainer = react.css(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
   React.useEffect(function () {
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
@@ -2941,7 +2941,7 @@ var Viewer = function Viewer(_ref) {
         height: height
       };
     } catch (_unused) {
-      console.log("Error in handling download click for a tile source in OpenSeadragon viewer");
+      console.error("Error in handling download click for a tile source in OpenSeadragon viewer");
       returnObj = {};
     }
 
@@ -3006,8 +3006,14 @@ var Viewer = function Viewer(_ref) {
       fullPageButton: "full-page",
       nextButton: "next",
       previousButton: "previous"
+    }; // Include any user passed in Open Seadragon config options
+
+    var getOsdConfig = function getOsdConfig() {
+      var options = configProps === null || configProps === void 0 ? void 0 : configProps.openSeadragonOptions;
+      return options && Object.keys(options).length > 0 ? options : {};
     };
-    setOpenSeadragonInstance(OpenSeadragon__default['default'](_objectSpread$2({
+
+    setOpenSeadragonInstance(OpenSeadragon__default['default'](_objectSpread$1(_objectSpread$1({
       ajaxWithCredentials: true,
       crossOriginPolicy: "Anonymous",
       defaultZoomLevel: 0,
@@ -3038,7 +3044,7 @@ var Viewer = function Viewer(_ref) {
         return t.id;
       }),
       visibilityRatio: 1
-    }, customControlIds)));
+    }, customControlIds), getOsdConfig())));
   }
 
   return react.jsx(React__default['default'].Fragment, null, react.jsx("div", {
@@ -3062,7 +3068,8 @@ var Viewer = function Viewer(_ref) {
     "data-testid": "toolbar-wrapper"
   }, react.jsx(Toolbar, {
     onDownloadCropClick: handleDownloadCropClick,
-    onDownloadFullSize: handleDownloadFullSize
+    onDownloadFullSize: handleDownloadFullSize,
+    toolBarOptions: configProps.toolBarOptions
   })))), react.jsx("div", {
     id: "openseadragon1",
     css: openSeadragonContainer
@@ -3076,11 +3083,11 @@ var Viewer = function Viewer(_ref) {
 };
 
 Viewer.propTypes = {
-  manifestUrl: propTypes.string
+  manifestUrl: PropTypes.string
 };
 
 /*!
- * Font Awesome Free 5.15.2 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 var faArrowCircleLeft = {
@@ -3139,9 +3146,9 @@ function registerIcons() {
   library.add(faPen, faSave, faTrash, faSearchPlus, faSearchMinus, faExpand, faDownload, faArrowCircleLeft, faArrowCircleRight, faHome);
 }
 
-var _templateObject$4, _templateObject2$4;
-var notification = react.css(_templateObject$4 || (_templateObject$4 = taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"])));
-var danger = react.css(_templateObject2$4 || (_templateObject2$4 = taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"])));
+var _templateObject$2, _templateObject2$1;
+var notification = react.css(_templateObject$2 || (_templateObject$2 = _taggedTemplateLiteral(["\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  padding: 1.25rem 2.5rem 1.25rem 1.5rem;\n  position: relative;\n  text-align: center;\n  font-size: 1rem;\n"])));
+var danger = react.css(_templateObject2$1 || (_templateObject2$1 = _taggedTemplateLiteral(["\n  background-color: #f14668;\n  color: #fff;\n"])));
 function Notification(_ref) {
   var _ref$error = _ref.error,
       error = _ref$error === void 0 ? "An error occurred with no data passed to the notification" : _ref$error;
@@ -3152,18 +3159,16 @@ function Notification(_ref) {
 }
 Notification.propTypes = {
   /** Error message to display */
-  error: propTypes.string
+  error: PropTypes.string
 };
 
-function _classCallCheck$1(instance, Constructor) {
+function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
 
-var classCallCheck = _classCallCheck$1;
-
-function _defineProperties$1(target, props) {
+function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
@@ -3173,26 +3178,20 @@ function _defineProperties$1(target, props) {
   }
 }
 
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
   return Constructor;
 }
 
-var createClass = _createClass$1;
-
-var setPrototypeOf = createCommonjsModule(function (module) {
 function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
 
   return _setPrototypeOf(o, p);
 }
-
-module.exports = _setPrototypeOf;
-});
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -3206,30 +3205,24 @@ function _inherits(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) setPrototypeOf(subClass, superClass);
+  if (superClass) _setPrototypeOf(subClass, superClass);
 }
 
-var inherits = _inherits;
-
-var _typeof_1 = createCommonjsModule(function (module) {
 function _typeof(obj) {
   "@babel/helpers - typeof";
 
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
+    _typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
-    module.exports = _typeof = function _typeof(obj) {
+    _typeof = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
   return _typeof(obj);
 }
-
-module.exports = _typeof;
-});
 
 function _assertThisInitialized(self) {
   if (self === void 0) {
@@ -3239,42 +3232,34 @@ function _assertThisInitialized(self) {
   return self;
 }
 
-var assertThisInitialized = _assertThisInitialized;
-
 function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
   }
 
-  return assertThisInitialized(self);
+  return _assertThisInitialized(self);
 }
 
-var possibleConstructorReturn = _possibleConstructorReturn;
-
-var getPrototypeOf = createCommonjsModule(function (module) {
 function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
   };
   return _getPrototypeOf(o);
 }
 
-module.exports = _getPrototypeOf;
-});
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
-  inherits(ErrorBoundary, _React$Component);
+  _inherits(ErrorBoundary, _React$Component);
 
   var _super = _createSuper(ErrorBoundary);
 
   function ErrorBoundary(props) {
     var _this;
 
-    classCallCheck(this, ErrorBoundary);
+    _classCallCheck(this, ErrorBoundary);
 
     _this = _super.call(this, props);
     _this.state = {
@@ -3284,7 +3269,7 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  createClass(ErrorBoundary, [{
+  _createClass(ErrorBoundary, [{
     key: "componentDidCatch",
     value: function componentDidCatch(error, errorInfo) {
       // You can also log the error to an error reporting service
@@ -3317,8 +3302,8 @@ var ErrorBoundary = /*#__PURE__*/function (_React$Component) {
   return ErrorBoundary;
 }(React__default['default'].Component);
 
-var _templateObject$5;
-var LoadingStyles = react.css(_templateObject$5 || (_templateObject$5 = taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"])));
+var _templateObject$1;
+var LoadingStyles = react.css(_templateObject$1 || (_templateObject$1 = _taggedTemplateLiteral(["\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n  margin: auto;\n  top: 45%;\n  div {\n    box-sizing: border-box;\n    display: block;\n    position: absolute;\n    width: 64px;\n    height: 64px;\n    margin: 8px;\n    border: 8px solid #ccc;\n    border-radius: 50%;\n    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n    border-color: #ccc transparent transparent transparent;\n  }\n\n  div:nth-of-type(1) {\n    animation-delay: -0.45s;\n  }\n  div:nth-of-type(2) {\n    animation-delay: -0.3s;\n  }\n  div:nth-of-type(3) {\n    animation-delay: -0.15s;\n  }\n  @keyframes lds-ring {\n    0% {\n      transform: rotate(0deg);\n    }\n    100% {\n      transform: rotate(360deg);\n    }\n  }\n"])));
 function Loading(_ref) {
   var _ref$active = _ref.active,
       active = _ref$active === void 0 ? true : _ref$active;
@@ -3333,36 +3318,31 @@ function Loading(_ref) {
 }
 Loading.propTypes = {
   /** Error message to display */
-  active: propTypes.bool
+  active: PropTypes.bool
 };
 
-var _templateObject$6, _templateObject2$5;
+var _templateObject, _templateObject2;
 
-function ownKeys$3(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$3(Object(source), true).forEach(function (key) { defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys$3(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-var wrapper = react.css(_templateObject$6 || (_templateObject$6 = taggedTemplateLiteral(["\n  position: relative;\n"]))); // Instantiate FontAwesome icons
-
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty$2(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+var wrapper = react.css(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  position: relative;\n"])));
 registerIcons();
-/**
- * Wrapper component around the OpenSeadragon viewer
- *
- * @visibleName OpenSeadragonViewer
- */
-
 function OpenSeadragonViewer(_ref) {
   var _ref$manifest = _ref.manifest,
       manifestObj = _ref$manifest === void 0 ? {} : _ref$manifest,
       manifestUrl = _ref.manifestUrl,
-      options = _ref.options;
+      options = _ref.options,
+      openSeadragonOptions = _ref.openSeadragonOptions,
+      toolBarOptions = _ref.toolBarOptions;
 
   var _useState = React.useState(),
-      _useState2 = slicedToArray(_useState, 2),
+      _useState2 = _slicedToArray$1(_useState, 2),
       manifest = _useState2[0],
       setManifest = _useState2[1];
 
   var _useState3 = React.useState(),
-      _useState4 = slicedToArray(_useState3, 2),
+      _useState4 = _slicedToArray$1(_useState3, 2),
       error = _useState4[0],
       setError = _useState4[1];
 
@@ -3374,14 +3354,14 @@ function OpenSeadragonViewer(_ref) {
 
     setManifest(manifestObj);
   }, []);
-  var loaderWrapper = react.css(_templateObject2$5 || (_templateObject2$5 = taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "])), options.height ? options.height : 500);
+  var loaderWrapper = react.css(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    text-align: center;\n    height: ", "px;\n  "])), options.height ? options.height : 500);
 
   function getManifest() {
     return _getManifest.apply(this, arguments);
   }
 
   function _getManifest() {
-    _getManifest = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
+    _getManifest = _asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
       var response, data, message;
       return regenerator.wrap(function _callee$(_context) {
         while (1) {
@@ -3405,8 +3385,8 @@ function OpenSeadragonViewer(_ref) {
             case 10:
               _context.prev = 10;
               _context.t0 = _context["catch"](0);
-              console.log("e", _context.t0);
-              console.log("".concat(_context.t0.name, ": ").concat(_context.t0.message));
+              console.error("e", _context.t0);
+              console.error("".concat(_context.t0.name, ": ").concat(_context.t0.message));
               message = _context.t0.message.includes("Unexpected token N in JSON at position") ? "Error fetching the manifest url, or the manifest is invalid.  View browser console for details." : "".concat(_context.t0.name, ": ").concat(_context.t0.message);
               setError(message);
               return _context.abrupt("return", Promise.resolve());
@@ -3428,7 +3408,10 @@ function OpenSeadragonViewer(_ref) {
   }
 
   return manifest ? react.jsx(ConfigContext.Provider, {
-    value: _objectSpread$3({}, options)
+    value: _objectSpread(_objectSpread({}, options), {}, {
+      openSeadragonOptions: openSeadragonOptions,
+      toolBarOptions: toolBarOptions
+    })
   }, react.jsx(ErrorBoundary, null, react.jsx("div", {
     css: wrapper
   }, react.jsx(Viewer, {
@@ -3441,37 +3424,55 @@ function OpenSeadragonViewer(_ref) {
 }
 OpenSeadragonViewer.propTypes = {
   /** A IIIF manifest object.  This will take precendence over manifestUrl if present */
-  manifest: propTypes.object,
+  manifest: PropTypes.object,
 
   /** A valid IIIF manifest uri */
-  manifestUrl: propTypes.string,
+  manifestUrl: PropTypes.string,
 
   /** Configurable options */
-  options: propTypes.shape({
-    /** Display the dropdown menu for navigating tile sources */
-    showDropdown: propTypes.bool,
-
-    /** Display tile source thumbnails preview images in a row  */
-    showThumbnails: propTypes.bool,
-
-    /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
-    showToolbar: propTypes.bool,
-
-    /** Display URL params for Zooming and selected tile source highlighting */
-    deepLinking: propTypes.bool,
+  options: PropTypes.shape({
+    /** Render URL hash params which represent Zoom levels and invididual tile sources.  Useful for sharing a URL where you want to show a particular Zoom level and tile source. */
+    deepLinking: PropTypes.bool,
 
     /** Set Height in pixels for the viewer */
-    height: propTypes.number
+    height: PropTypes.number,
+
+    /** Display the dropdown menu for navigating tile sources */
+    showDropdown: PropTypes.bool,
+
+    /** Display tile source thumbnails preview images in a row  */
+    showThumbnails: PropTypes.bool,
+
+    /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
+    showToolbar: PropTypes.bool
+  }),
+
+  /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
+  openSeadragonOptions: PropTypes.object,
+
+  /** Configure display of controls on the toolbar */
+  toolBarOptions: PropTypes.shape({
+    showZoom: PropTypes.bool,
+    showFullScreen: PropTypes.bool,
+    showDownload: PropTypes.bool,
+    showPreviousNext: PropTypes.bool
   })
 };
 OpenSeadragonViewer.defaultProps = {
   options: {
+    deepLinking: true,
+    height: 800,
+    openSeadragonOptions: {},
     showDropdown: true,
     showThumbnails: true,
-    showToolbar: true,
-    deepLinking: true,
-    height: 800
-  }
+    showToolbar: true
+  },
+  toolBarOptions: PropTypes.shape({
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true
+  })
 };
 
 exports.Notification = Notification;
