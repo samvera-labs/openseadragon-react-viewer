@@ -70,6 +70,7 @@ let devRollup = {
   plugins: [
     replace({
       "process.env.NODE_ENV": JSON.stringify(NODE_ENV),
+      preventAssignment: true,
     }),
     babel({
       babelHelpers: "runtime",

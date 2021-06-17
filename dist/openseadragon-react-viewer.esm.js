@@ -3323,7 +3323,13 @@ function OpenSeadragonViewer(_ref) {
       manifestUrl = _ref.manifestUrl,
       options = _ref.options,
       openSeadragonOptions = _ref.openSeadragonOptions,
-      toolBarOptions = _ref.toolBarOptions;
+      _ref$toolBarOptions = _ref.toolBarOptions,
+      toolBarOptions = _ref$toolBarOptions === void 0 ? {
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true
+  } : _ref$toolBarOptions;
 
   var _useState = useState(),
       _useState2 = _slicedToArray$1(_useState, 2),
@@ -3335,6 +3341,7 @@ function OpenSeadragonViewer(_ref) {
       error = _useState4[0],
       setError = _useState4[1];
 
+  console.log("toolBarOptions", toolBarOptions);
   useEffect(function () {
     if (Object.keys(manifestObj).length === 0) {
       getManifest();
@@ -3418,7 +3425,7 @@ OpenSeadragonViewer.propTypes = {
   /** A valid IIIF manifest uri */
   manifestUrl: PropTypes.string,
 
-  /** Configurable options */
+  /** Configurable options.  All boolean values default to `true` */
   options: PropTypes.shape({
     /** Render URL hash params which represent Zoom levels and invididual tile sources.  Useful for sharing a URL where you want to show a particular Zoom level and tile source. */
     deepLinking: PropTypes.bool,
@@ -3439,13 +3446,21 @@ OpenSeadragonViewer.propTypes = {
   /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
   openSeadragonOptions: PropTypes.object,
 
-  /** Configure display of controls on the toolbar */
+  /** Configure display of controls on the toolbar.  Values default to `true` */
   toolBarOptions: PropTypes.shape({
+    /** Show/hide zoom control */
     showZoom: PropTypes.bool,
+
+    /** Show/hide full screen control */
     showFullScreen: PropTypes.bool,
+
+    /** Show/hide download control */
     showDownload: PropTypes.bool,
+
+    /** Show/hide navigation between tilesources control */
     showPreviousNext: PropTypes.bool
-  })
+  }) //toolBarOptions: PropTypes.object,
+
 };
 OpenSeadragonViewer.defaultProps = {
   options: {
@@ -3456,12 +3471,12 @@ OpenSeadragonViewer.defaultProps = {
     showThumbnails: true,
     showToolbar: true
   },
-  toolBarOptions: PropTypes.shape({
+  toolBarOptions: {
     showZoom: true,
     showFullScreen: true,
     showDownload: true,
     showPreviousNext: true
-  })
+  }
 };
 
 export { Notification, OpenSeadragonViewer, Thumbnails, TileSourceSelect, Toolbar };

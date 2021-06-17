@@ -20,10 +20,17 @@ export default function OpenSeadragonViewer({
   manifestUrl,
   options,
   openSeadragonOptions,
-  toolBarOptions,
+  toolBarOptions = {
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true,
+  },
 }) {
   const [manifest, setManifest] = useState();
   const [error, setError] = useState();
+
+  console.log(`toolBarOptions`, toolBarOptions);
 
   useEffect(() => {
     if (Object.keys(manifestObj).length === 0) {
@@ -81,7 +88,7 @@ OpenSeadragonViewer.propTypes = {
   manifest: PropTypes.object,
   /** A valid IIIF manifest uri */
   manifestUrl: PropTypes.string,
-  /** Configurable options */
+  /** Configurable options.  All boolean values default to `true` */
   options: PropTypes.shape({
     /** Render URL hash params which represent Zoom levels and invididual tile sources.  Useful for sharing a URL where you want to show a particular Zoom level and tile source. */
     deepLinking: PropTypes.bool,
@@ -96,13 +103,18 @@ OpenSeadragonViewer.propTypes = {
   }),
   /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
   openSeadragonOptions: PropTypes.object,
-  /** Configure display of controls on the toolbar */
+  /** Configure display of controls on the toolbar.  Values default to `true` */
   toolBarOptions: PropTypes.shape({
+    /** Show/hide zoom control */
     showZoom: PropTypes.bool,
+    /** Show/hide full screen control */
     showFullScreen: PropTypes.bool,
+    /** Show/hide download control */
     showDownload: PropTypes.bool,
+    /** Show/hide navigation between tilesources control */
     showPreviousNext: PropTypes.bool,
   }),
+  //toolBarOptions: PropTypes.object,
 };
 
 OpenSeadragonViewer.defaultProps = {
@@ -114,10 +126,10 @@ OpenSeadragonViewer.defaultProps = {
     showThumbnails: true,
     showToolbar: true,
   },
-  toolBarOptions: PropTypes.shape({
+  toolBarOptions: {
     showZoom: true,
     showFullScreen: true,
     showDownload: true,
     showPreviousNext: true,
-  }),
+  },
 };
