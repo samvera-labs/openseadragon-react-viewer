@@ -1,5 +1,7 @@
 # OpenSeadragonViewer
 
+[![npm version](https://badge.fury.io/js/openseadragon-react-viewer.svg)](https://badge.fury.io/js/openseadragon-react-viewer)
+
 ![Image of OpenSeadragon React Viewer](https://i.imgur.com/6PbYcbE.jpg)
 
 A React wrapper component around the OpenSeadragon viewer. Feed `OpenSeadragonViewer` a IIIF manifest URL, and it will render an OpenSeadragon viewer with:
