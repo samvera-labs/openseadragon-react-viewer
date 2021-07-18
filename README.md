@@ -23,7 +23,7 @@ npm install @emotion/react openseadragon react-device-detect react-select
 
 Then use it in your app:
 
-```
+```jsx
 import React from 'react';
 import { OpenSeadragonViewer } from "openseadragon-react-viewer"
 
