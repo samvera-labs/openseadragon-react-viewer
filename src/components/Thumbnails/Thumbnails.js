@@ -5,12 +5,8 @@ import PropTypes from "prop-types";
 import { jsx, css } from "@emotion/react";
 
 const bottomPanel = (props) => css`
-  background-color: rgba(52, 47, 46, 0.5);
   position: ${props};
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 130px;
+  height: 113px;
   z-index: 4;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -64,7 +60,7 @@ export default function Thumbnails({
     <div
       data-testid="open-seadragon-thumbnails-container"
       className="osrv-thumbnails-wrapper"
-      css={bottomPanel(isPreview ? "relative" : "absolute")}
+      css={bottomPanel("relative")}
     >
       <div css={thumbnailView}>
         <ul css={panelListingThumbs}>

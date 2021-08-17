@@ -30,8 +30,6 @@ export default function OpenSeadragonViewer({
   const [manifest, setManifest] = useState();
   const [error, setError] = useState();
 
-  console.log(`toolBarOptions`, toolBarOptions);
-
   useEffect(() => {
     if (Object.keys(manifestObj).length === 0) {
       getManifest();

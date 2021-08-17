@@ -219,9 +219,9 @@ var runtime = (function (exports) {
   // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
   var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
+  define(IteratorPrototype, iteratorSymbol, function () {
     return this;
-  };
+  });
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
@@ -235,8 +235,9 @@ var runtime = (function (exports) {
 
   var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+  define(Gp, "constructor", GeneratorFunctionPrototype);
+  define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
   GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
     toStringTagSymbol,
@@ -350,9 +351,9 @@ var runtime = (function (exports) {
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
     return this;
-  };
+  });
   exports.AsyncIterator = AsyncIterator;
 
   // Note that simple async functions are implemented on top of
@@ -545,13 +546,13 @@ var runtime = (function (exports) {
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
+  define(Gp, iteratorSymbol, function() {
     return this;
-  };
+  });
 
-  Gp.toString = function() {
+  define(Gp, "toString", function() {
     return "[object Generator]";
-  };
+  });
 
   function pushTryEntry(locs) {
     var entry = { tryLoc: locs[0] };
@@ -870,14 +871,19 @@ try {
 } catch (accidentalStrictMode) {
   // This module should not be running in strict mode, so the above
   // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
+  // in case runtime.js accidentally runs in strict mode, in modern engines
+  // we can explicitly access globalThis. In older engines we can escape
   // strict mode using a global Function call. This could conceivably fail
   // if a Content Security Policy forbids using Function, but in that case
   // the proper solution is to fix the accidental strict mode problem. If
   // you've misconfigured your bundler to force strict mode and applied a
   // CSP to forbid Function, and you're not willing to fix either of those
   // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
 }
 }(runtime));
 
@@ -996,7 +1002,7 @@ function getCanvasImageResources(manifest) {
 }
 
 /*!
- * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -2378,6 +2384,11 @@ function log () {
 }
 
 function normalizeIconArgs(icon) {
+  // this has everything that it needs to be rendered which means it was probably imported
+  // directly from an icon svg package
+  if (icon && _typeof$1(icon) === 'object' && icon.prefix && icon.iconName && icon.icon) {
+    return icon;
+  }
 
 
   if (icon === null) {
@@ -2385,7 +2396,7 @@ function normalizeIconArgs(icon) {
   } // if the icon is an object and has a prefix and an icon name, return it
 
 
-  if (_typeof$1(icon) === 'object' && icon.prefix && icon.iconName) {
+  if (icon && _typeof$1(icon) === 'object' && icon.prefix && icon.iconName) {
     return icon;
   } // if it's an array with length of two
 
@@ -2713,7 +2724,7 @@ TileSourceSelect.propTypes = {
 var _templateObject$4, _templateObject2$3, _templateObject3$1, _templateObject4$1;
 
 var bottomPanel = function bottomPanel(props) {
-  return css$1(_templateObject$4 || (_templateObject$4 = _taggedTemplateLiteral(["\n  background-color: rgba(52, 47, 46, 0.5);\n  position: ", ";\n  bottom: 0;\n  left: 0;\n  right: 0;\n  height: 130px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
+  return css$1(_templateObject$4 || (_templateObject$4 = _taggedTemplateLiteral(["\n  position: ", ";\n  height: 113px;\n  z-index: 4;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n"])), props);
 };
 
 var thumbnailView = css$1(_templateObject2$3 || (_templateObject2$3 = _taggedTemplateLiteral(["\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  overflow-x: scroll;\n  overflow-y: hidden;\n"])));
@@ -2723,13 +2734,12 @@ function Thumbnails(_ref) {
   var currentTileSource = _ref.currentTileSource,
       _ref$tileSources = _ref.tileSources,
       tileSources = _ref$tileSources === void 0 ? [] : _ref$tileSources,
-      onThumbClick = _ref.onThumbClick,
-      _ref$isPreview = _ref.isPreview,
-      isPreview = _ref$isPreview === void 0 ? false : _ref$isPreview;
+      onThumbClick = _ref.onThumbClick;
+      _ref.isPreview;
   return jsx("div", {
     "data-testid": "open-seadragon-thumbnails-container",
     className: "osrv-thumbnails-wrapper",
-    css: bottomPanel(isPreview ? "relative" : "absolute")
+    css: bottomPanel("relative")
   }, jsx("div", {
     css: thumbnailView
   }, jsx("ul", {
@@ -2853,7 +2863,7 @@ var Viewer = function Viewer(_ref) {
       setCurrentURLParams = _useState10[1];
 
   var configProps = useContext(ConfigContext);
-  var openSeadragonContainer = css$1(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n    padding-bottom: 50px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
+  var openSeadragonContainer = css$1(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    display: inline-block;\n    background: black;\n    width: 100%;\n    height: ", "px;\n\n    @media screen and (max-width: 768px) {\n      height: ", "px;\n    }\n  "])), configProps.height ? configProps.height : 800, configProps.height ? configProps.height : 500);
   useEffect(function () {
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
@@ -3076,7 +3086,7 @@ Viewer.propTypes = {
 };
 
 /*!
- * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 var faArrowCircleLeft = {
@@ -3224,6 +3234,8 @@ function _assertThisInitialized(self) {
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
   }
 
   return _assertThisInitialized(self);
@@ -3341,7 +3353,6 @@ function OpenSeadragonViewer(_ref) {
       error = _useState4[0],
       setError = _useState4[1];
 
-  console.log("toolBarOptions", toolBarOptions);
   useEffect(function () {
     if (Object.keys(manifestObj).length === 0) {
       getManifest();

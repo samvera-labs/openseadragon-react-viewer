@@ -73,7 +73,6 @@ const Viewer = ({ manifest }) => {
     background: black;
     width: 100%;
     height: ${configProps.height ? configProps.height : 800}px;
-    padding-bottom: 50px;
 
     @media screen and (max-width: 768px) {
       height: ${configProps.height ? configProps.height : 500}px;
