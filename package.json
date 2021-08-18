@@ -5,10 +5,10 @@
   "module": "dist/openseadragon-react-viewer.esm.js",
   "browser": "dist/openseadragon-react-viewer.umd.js",
   "dependencies": {
-    "@emotion/react": "^11.4.1",
+    "@emotion/react": "^11.1.5",
     "@reglendo/canvas2image": "^1.0.5-2",
-    "react-device-detect": "^1.17.0",
-    "react-select": "^4.3.1"
+    "react-device-detect": "^1.12.1",
+    "react-select": "^4.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
@@ -45,8 +45,8 @@
   "peerDependencies": {
     "@emotion/react": "^11.1.5",
     "openseadragon": "^2.4.0",
-    "react": "^16.8.0",
     "react-device-detect": "^1.12.1",
+    "react": "^17.0.2",
     "react-dom": "^16.8.0",
     "react-select": "^4.1.0"
   },

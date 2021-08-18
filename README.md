@@ -15,10 +15,10 @@ A React wrapper component around the OpenSeadragon viewer. Feed `OpenSeadragonVi
 ## Installation and usage
 
 ```
-yarn add openseadragon-react-viewer
+npm install openseadragon-react-viewer
 
 // And peer dependencies
-yarn add @emotion/react openseadragon react-device-detect react-select
+npm install @emotion/react openseadragon react-device-detect react-select
 ```
 
 Then use it in your app:
@@ -110,7 +110,7 @@ To fix this you must ensure that the OpenSeadragon React Viewer host's React app
 2. Install project dependencies
 
 ```
-yarn install
+npm install
 ```
 
 ### Start development environment
@@ -118,7 +118,7 @@ yarn install
 To spin up the development environment (which is a Styleguidiest dev environment) run:
 
 ```
-yarn dev
+npm run dev
 ```
 
 Visit http://localhost:6060/ (Styleguidist's default port) in your browser.
@@ -130,13 +130,13 @@ See `rollup.config.js` for development and packaging configuration details. Deve
 To run unit tests, with a full coverage report:
 
 ```
-yarn test
+npm run test
 ```
 
 To run tests in `watch` mode:
 
 ```
-yarn test:watch
+npm run test:watch
 ```
 
 ### Styleguidist development
@@ -144,15 +144,15 @@ yarn test:watch
 Styleguidist, in addition to providing documentation, also offers an isolated development environment. To run the environment and test it out:
 
 ```
-yarn dev
+npm run dev
 // or
-yarn styleguide
+npm run styleguide
 ```
 
 To build a static html version of the docs (which Github pages uses), run:
 
 ```
-yarn styleguide:build
+npm run styleguide:build
 ```
 
 ## Deployment
@@ -160,7 +160,7 @@ yarn styleguide:build
 To deploy your forked version of this repo, run:
 
 ```
-yarn build
+npm run build
 ```
 
 This will create CommoneJS, ES Module, and UMD distribution files located in the `/dist/` directory.
