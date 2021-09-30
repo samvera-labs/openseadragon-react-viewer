@@ -1,3 +1,5 @@
+dist
+
 # Logs
 logs
 *.log
@@ -10,9 +12,6 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage
-
-# Compiled binary addons (http://nodejs.org/api/addons.html)
-dist/Release
 
 # Dependency directories
 node_modules/
