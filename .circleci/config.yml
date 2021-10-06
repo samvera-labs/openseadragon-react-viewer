@@ -15,3 +15,16 @@ workflows:
   build-and-test:
     jobs:
       - build-and-test
+
+      steps:
+      - checkout
+
+      - run:
+          name: Check for 'master' branch
+          command: |
+              git fetch --all --quiet --prune --prune-tags
+              if [[ -n "$(git branch --all --list master */master)" ]]; then
+                  echo "A branch named 'master' was found. Please remove it."
+                  echo "$(git branch --all --list master */master)"
+              fi
+              [[ -z "$(git branch --all --list master */master)" ]]
