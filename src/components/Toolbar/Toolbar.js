@@ -63,6 +63,7 @@ const Toolbar = ({
   onDownloadCropClick,
   onDownloadFullSize,
   toolBarOptions = {},
+  containerId
 }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
@@ -88,7 +89,7 @@ const Toolbar = ({
       {toolBarOptions?.showZoom && (
         <>
           <button
-            id="zoom-in"
+            id={`zoom-in-${containerId}`}
             data-testid="zoom-in"
             href="#zoom-in"
             css={toolbarControl}
@@ -99,7 +100,7 @@ const Toolbar = ({
             <span className="osrv-toolbar-button-text">Zoom In</span>
           </button>
           <button
-            id="zoom-out"
+            id={`zoom-out-${containerId}`}
             data-testid="zoom-out"
             href="#zoom-out"
             css={toolbarControl}
@@ -114,7 +115,7 @@ const Toolbar = ({
 
       {!isMobile && toolBarOptions?.showFullScreen && (
         <button
-          id="full-page"
+          id={`full-page-${containerId}`}
           data-testid="full-page"
           href="#full-page"
           css={toolbarControl}
@@ -171,7 +172,7 @@ const Toolbar = ({
       {toolBarOptions?.showPreviousNext && (
         <>
           <button
-            id="previous"
+            id={`previous-${containerId}`}
             data-testid="previous"
             href="#previous"
             css={toolbarControl}
@@ -182,7 +183,7 @@ const Toolbar = ({
             <span className="osrv-toolbar-button-text">Previous</span>
           </button>
           <button
-            id="next"
+            id={`next-${containerId}`}
             data-testid="next"
             href="#next"
             css={toolbarControl}
@@ -211,6 +212,7 @@ Toolbar.propTypes = {
     showFullScreen: PropTypes.bool,
     showPreviousNext: PropTypes.bool,
     showZoom: PropTypes.bool,
+    containerId: PropTypes.string
   }),
 };
 
@@ -220,6 +222,7 @@ Toolbar.defaultProps = {
     showFullScreen: true,
     showPreviousNext: true,
     showZoom: true,
+    containerId: 'openseadragon1'
   },
 };
 

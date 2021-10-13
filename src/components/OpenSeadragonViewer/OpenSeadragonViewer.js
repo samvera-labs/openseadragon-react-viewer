@@ -98,6 +98,7 @@ OpenSeadragonViewer.propTypes = {
     showThumbnails: PropTypes.bool,
     /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
     showToolbar: PropTypes.bool,
+    containerId: PropTypes.string
   }),
   /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
   openSeadragonOptions: PropTypes.object,
@@ -123,6 +124,7 @@ OpenSeadragonViewer.defaultProps = {
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
+    containerId: 'openseadragon1'
   },
   toolBarOptions: {
     showZoom: true,
