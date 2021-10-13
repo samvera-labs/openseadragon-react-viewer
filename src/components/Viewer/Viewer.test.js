@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import {getByTestId, render} from "@testing-library/react";
 import Viewer from "./Viewer";
 import { ConfigContext } from "../../config-context";
 import { mockManifest } from "../../services/testing-helpers";
@@ -9,6 +9,7 @@ const defaultProps = {
   showDropdown: true,
   showThumbnails: true,
   showToolbar: true,
+  containerId: 'openseadragon1'
 };
 
 describe("Viewer", () => {
@@ -37,6 +38,20 @@ describe("Viewer", () => {
     const { getByTestId } = setupTests();
     expect(getByTestId("toolbar-wrapper")).toBeInTheDocument();
   });
+
+  it("has a viewer container with ID matching the configuration", () => {
+    let { getByTestId } = setupTests({
+      ...defaultProps,
+      containerId: "mycontainerid",
+    });
+
+    expect(getByTestId('instance-container')).toHaveAttribute('id', 'mycontainerid')
+  })
+
+  it("has a viewer container ID of openseadragon1 if not configured", () => {
+    const { getByTestId } = setupTests();
+    expect(getByTestId('instance-container')).toHaveAttribute('id', 'openseadragon1')
+  })
 
   it("doesn't render the tool bar if not configured", () => {
     const { queryByTestId } = setupTests({

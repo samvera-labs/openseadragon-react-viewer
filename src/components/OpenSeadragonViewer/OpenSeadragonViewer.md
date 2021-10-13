@@ -42,6 +42,7 @@ import { horse } from "../../manifests/horse";
     showToolbar: true,
     deepLinking: false,
     height: 800,
+    containerId: "myContainerId"
   }}
   openSeadragonOptions={{
     gestureSettingsMouse: {

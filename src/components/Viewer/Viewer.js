@@ -218,12 +218,12 @@ const Viewer = ({ manifest }) => {
     }
 
     const customControlIds = {
-      zoomInButton: "zoom-in",
-      zoomOutButton: "zoom-out",
+      zoomInButton: `zoom-in-${configProps.containerId}`,
+      zoomOutButton: `zoom-out-${configProps.containerId}`,
       //homeButton: "home",
-      fullPageButton: "full-page",
-      nextButton: "next",
-      previousButton: "previous",
+      fullPageButton: `full-page-${configProps.containerId}`,
+      nextButton: `next-${configProps.containerId}`,
+      previousButton: `previous-${configProps.containerId}`,
     };
 
     // Include any user passed in Open Seadragon config options
@@ -243,7 +243,7 @@ const Viewer = ({ manifest }) => {
           dblClickToZoom: true,
           pinchToZoom: true,
         },
-        id: "openseadragon1",
+        id: configProps.containerId,
         loadTilesWithAjax: true,
         navigatorPosition: "ABSOLUTE",
         navigatorTop: "100px",
@@ -292,13 +292,14 @@ const Viewer = ({ manifest }) => {
                 onDownloadCropClick={handleDownloadCropClick}
                 onDownloadFullSize={handleDownloadFullSize}
                 toolBarOptions={configProps.toolBarOptions}
+                containerId={configProps.containerId}
               />
             </div>
           )}
         </div>
       </div>
 
-      <div id="openseadragon1" css={openSeadragonContainer}></div>
+      <div data-testid="instance-container" id={configProps.containerId} css={openSeadragonContainer}></div>
 
       {configProps.showThumbnails && canvasImageResources.length > 1 && (
         <div data-testid="thumbnails-wrapper">
