@@ -8,7 +8,8 @@ import OpenSeadragon from "openseadragon";
 const defaultProps = {
   showDropdown: true,
   showThumbnails: true,
-  showToolbar: true
+  showToolbar: true,
+  containerId: 'openseadragon1'
 };
 
 describe("Viewer", () => {

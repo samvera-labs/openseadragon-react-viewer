@@ -123,6 +123,7 @@ OpenSeadragonViewer.defaultProps = {
     showDropdown: true,
     showThumbnails: true,
     showToolbar: true,
+    containerId: 'openseadragon1'
   },
   toolBarOptions: {
     showZoom: true,

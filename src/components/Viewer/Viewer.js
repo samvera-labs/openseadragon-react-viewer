@@ -79,8 +79,6 @@ const Viewer = ({ manifest }) => {
     }
   `;
 
-  const osdContainerId = configProps.containerId ? configProps.containerId : "openseadragon1";
-
   useEffect(() => {
     // Pull out tile sources from manifest
     setCanvasImageResources(getCanvasImageResources(manifest));
@@ -245,7 +243,7 @@ const Viewer = ({ manifest }) => {
           dblClickToZoom: true,
           pinchToZoom: true,
         },
-        id: osdContainerId,
+        id: configProps.containerId,
         loadTilesWithAjax: true,
         navigatorPosition: "ABSOLUTE",
         navigatorTop: "100px",
@@ -300,7 +298,7 @@ const Viewer = ({ manifest }) => {
         </div>
       </div>
 
-      <div data-testid="instance-container" id={osdContainerId} css={openSeadragonContainer}></div>
+      <div data-testid="instance-container" id={configProps.containerId} css={openSeadragonContainer}></div>
 
       {configProps.showThumbnails && canvasImageResources.length > 1 && (
         <div data-testid="thumbnails-wrapper">
