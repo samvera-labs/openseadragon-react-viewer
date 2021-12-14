@@ -1,6 +1,6 @@
 {
   "name": "openseadragon-react-viewer",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "main": "dist/openseadragon-react-viewer.cjs.js",
   "module": "dist/openseadragon-react-viewer.esm.js",
   "browser": "dist/openseadragon-react-viewer.umd.js",
