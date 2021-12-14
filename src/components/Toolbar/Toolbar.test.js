@@ -5,15 +5,23 @@ import { render, fireEvent } from "@testing-library/react";
 const mockOnDownloadCropClick = jest.fn();
 const mockOnDownloadFullSizeClick = jest.fn();
 
+const defaultProps = {
+  isMobile: false,
+  onDownloadCropClick: mockOnDownloadCropClick,
+  onDownloadFullSize: mockOnDownloadFullSizeClick,
+  toolBarOptions: {
+    showZoom: true,
+    showFullScreen: true,
+    showDownload: true,
+    showPreviousNext: true,
+  },
+  containerId: "openseadragon1",
+};
+
 describe("Toolbar component", () => {
-  function setUpTest(
-    props = {
-      isMobile: false,
-      onDownloadCropClick: mockOnDownloadCropClick,
-      onDownloadFullSize: mockOnDownloadFullSizeClick,
-    }
-  ) {
-    return render(<Toolbar {...props} />);
+  function setUpTest(props) {
+    const mergedProps = { ...defaultProps, ...props };
+    return render(<Toolbar {...mergedProps} />);
   }
 
   it("renders without crashing", () => {
@@ -75,5 +83,21 @@ describe("Toolbar component", () => {
     expect(queryByTestId("download-full")).toBeInTheDocument();
     fireEvent.click(queryByTestId("download-full"));
     expect(mockOnDownloadFullSizeClick).toHaveBeenCalled();
+  });
+
+  it("renders controls as specified by config options", () => {
+    const { queryByTestId, getByTestId } = setUpTest({
+      toolBarOptions: {
+        showZoom: true,
+        showFullScreen: false,
+        showDownload: false,
+        showPreviousNext: true,
+      },
+    });
+    expect(getByTestId("zoom-in")).toBeInTheDocument();
+    expect(queryByTestId("full-page")).toBeFalsy();
+    expect(queryByTestId("download")).toBeFalsy();
+    expect(getByTestId("previous")).toBeInTheDocument();
+    expect(getByTestId("next")).toBeInTheDocument();
   });
 });

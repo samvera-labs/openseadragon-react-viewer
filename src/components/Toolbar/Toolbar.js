@@ -217,14 +217,4 @@ Toolbar.propTypes = {
   containerId: PropTypes.string,
 };
 
-// Toolbar.defaultProps = {
-//   toolBarOptions: {
-//     showDownload: true,
-//     showFullScreen: true,
-//     showPreviousNext: true,
-//     showZoom: true,
-//     containerId: 'openseadragon1'
-//   },
-// };
-
 export default Toolbar;
