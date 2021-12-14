@@ -63,7 +63,7 @@ const Toolbar = ({
   onDownloadCropClick,
   onDownloadFullSize,
   toolBarOptions = {},
-  containerId
+  containerId,
 }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
 
@@ -212,18 +212,19 @@ Toolbar.propTypes = {
     showFullScreen: PropTypes.bool,
     showPreviousNext: PropTypes.bool,
     showZoom: PropTypes.bool,
-    containerId: PropTypes.string
   }),
+  /** Option id attribute for the container element */
+  containerId: PropTypes.string,
 };
 
-Toolbar.defaultProps = {
-  toolBarOptions: {
-    showDownload: true,
-    showFullScreen: true,
-    showPreviousNext: true,
-    showZoom: true,
-    containerId: 'openseadragon1'
-  },
-};
+// Toolbar.defaultProps = {
+//   toolBarOptions: {
+//     showDownload: true,
+//     showFullScreen: true,
+//     showPreviousNext: true,
+//     showZoom: true,
+//     containerId: 'openseadragon1'
+//   },
+// };
 
 export default Toolbar;

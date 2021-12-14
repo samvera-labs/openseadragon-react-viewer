@@ -15,20 +15,34 @@ const wrapper = css`
 
 registerFaIcons();
 
-export default function OpenSeadragonViewer({
+const defaultOptions = {
+  deepLinking: true,
+  height: 800,
+  openSeadragonOptions: {},
+  showDropdown: true,
+  showThumbnails: true,
+  showToolbar: true,
+  containerId: "openseadragon1",
+};
+const defaultToolbarOptions = {
+  showZoom: true,
+  showFullScreen: true,
+  showDownload: true,
+  showPreviousNext: true,
+};
+
+const OpenSeadragonViewer = ({
   manifest: manifestObj = {},
   manifestUrl,
   options,
   openSeadragonOptions,
-  toolBarOptions = {
-    showZoom: true,
-    showFullScreen: true,
-    showDownload: true,
-    showPreviousNext: true,
-  },
-}) {
+  toolBarOptions,
+}) => {
   const [manifest, setManifest] = useState();
   const [error, setError] = useState();
+
+  const updatedOptions = { ...defaultOptions, ...options };
+  const updatedToolbarOptions = { ...defaultToolbarOptions, ...toolBarOptions };
 
   useEffect(() => {
     if (Object.keys(manifestObj).length === 0) {
@@ -66,7 +80,11 @@ export default function OpenSeadragonViewer({
 
   return manifest ? (
     <ConfigContext.Provider
-      value={{ ...options, openSeadragonOptions, toolBarOptions }}
+      value={{
+        ...updatedOptions,
+        openSeadragonOptions,
+        ...updatedToolbarOptions,
+      }}
     >
       <ErrorBoundary>
         <div css={wrapper}>
@@ -79,7 +97,7 @@ export default function OpenSeadragonViewer({
       <Loading active={true} />
     </div>
   );
-}
+};
 
 OpenSeadragonViewer.propTypes = {
   /** A IIIF manifest object.  This will take precendence over manifestUrl if present */
@@ -88,7 +106,7 @@ OpenSeadragonViewer.propTypes = {
   manifestUrl: PropTypes.string,
   /** Configurable options.  All boolean values default to `true` */
   options: PropTypes.shape({
-    /** Render URL hash params which represent Zoom levels and invididual tile sources.  Useful for sharing a URL where you want to show a particular Zoom level and tile source. */
+    /** Render URL hash params which represent Zoom levels and individual tile sources.  Useful for sharing a URL where you want to show a particular Zoom level and tile source. */
     deepLinking: PropTypes.bool,
     /** Set Height in pixels for the viewer */
     height: PropTypes.number,
@@ -98,7 +116,8 @@ OpenSeadragonViewer.propTypes = {
     showThumbnails: PropTypes.bool,
     /** Display custom toolbar (replaces default OpenSeadragon toolbar icons) */
     showToolbar: PropTypes.bool,
-    containerId: PropTypes.string
+    /** Add a custom id attribute to the container */
+    containerId: PropTypes.string,
   }),
   /** Pass through your own OpenSeadragon config options (View all options: https://openseadragon.github.io/docs/OpenSeadragon.Viewport.html) */
   openSeadragonOptions: PropTypes.object,
@@ -113,23 +132,6 @@ OpenSeadragonViewer.propTypes = {
     /** Show/hide navigation between tilesources control */
     showPreviousNext: PropTypes.bool,
   }),
-  //toolBarOptions: PropTypes.object,
 };
 
-OpenSeadragonViewer.defaultProps = {
-  options: {
-    deepLinking: true,
-    height: 800,
-    openSeadragonOptions: {},
-    showDropdown: true,
-    showThumbnails: true,
-    showToolbar: true,
-    containerId: 'openseadragon1'
-  },
-  toolBarOptions: {
-    showZoom: true,
-    showFullScreen: true,
-    showDownload: true,
-    showPreviousNext: true,
-  },
-};
+export default OpenSeadragonViewer;

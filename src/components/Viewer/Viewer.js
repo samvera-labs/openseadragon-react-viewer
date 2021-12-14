@@ -291,7 +291,12 @@ const Viewer = ({ manifest }) => {
               <Toolbar
                 onDownloadCropClick={handleDownloadCropClick}
                 onDownloadFullSize={handleDownloadFullSize}
-                toolBarOptions={configProps.toolBarOptions}
+                toolBarOptions={{
+                  showZoom: configProps.showZoom,
+                  showFullScreen: configProps.showFullScreen,
+                  showDownload: configProps.showDownload,
+                  showPreviousNext: configProps.showPreviousNext,
+                }}
                 containerId={configProps.containerId}
               />
             </div>
@@ -299,7 +304,11 @@ const Viewer = ({ manifest }) => {
         </div>
       </div>
 
-      <div data-testid="instance-container" id={configProps.containerId} css={openSeadragonContainer}></div>
+      <div
+        data-testid="instance-container"
+        id={configProps.containerId}
+        css={openSeadragonContainer}
+      ></div>
 
       {configProps.showThumbnails && canvasImageResources.length > 1 && (
         <div data-testid="thumbnails-wrapper">
