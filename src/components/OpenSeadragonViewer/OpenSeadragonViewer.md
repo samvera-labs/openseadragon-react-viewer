@@ -30,11 +30,11 @@ import { scrapbook } from "../../manifests/jimmy-johnson-scrapbook";
 import { horse } from "../../manifests/horse";
 
 /**
- * Try commenting out the "manifest" prop, and testing your own "manifestUrl" value
- * below to watch it update in real time
+ * Try editing/removing/changing the "manifest" and "manifestUrl" props,
+ * test your own "manifestUrl" value and more to see how this will render images
  */
 <OpenSeadragonViewer
-  manifest={horse}
+  manifest={scrapbook}
   manifestUrl="https://iiif.stack.rdc.library.northwestern.edu/public/06/20/ea/ca/-5/4e/6-/41/81/-a/85/8-/39/dd/ea/0b/b1/c5-manifest.json"
   options={{
     showDropdown: true,
@@ -42,7 +42,7 @@ import { horse } from "../../manifests/horse";
     showToolbar: true,
     deepLinking: false,
     height: 800,
-    containerId: "myContainerId"
+    containerId: "myContainerId",
   }}
   openSeadragonOptions={{
     gestureSettingsMouse: {

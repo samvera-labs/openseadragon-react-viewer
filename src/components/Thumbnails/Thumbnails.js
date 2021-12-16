@@ -50,44 +50,46 @@ const panelListingThumbs = css`
   }
 `;
 
-export default function Thumbnails({
-  currentTileSource,
-  tileSources = [],
-  onThumbClick,
-  isPreview = false,
-}) {
-  return (
-    <div
-      data-testid="open-seadragon-thumbnails-container"
-      className="osrv-thumbnails-wrapper"
-      css={bottomPanel("relative")}
-    >
-      <div css={thumbnailView}>
-        <ul css={panelListingThumbs}>
-          {tileSources.map((t) => (
-            <li
-              key={t.id}
-              data-testid="tile-source-thumbnail"
-              onClick={() => onThumbClick(t.id)}
-              aria-label="Thumbnail"
-              className={
-                currentTileSource && currentTileSource.id === t.id
-                  ? "active"
-                  : ""
-              }
-            >
-              <img
-                src={`${t.id}/square/70,70/0/default.jpg`}
-                data-testid="thumbnail-image"
-                alt={t.label}
-              />
-            </li>
-          ))}
-        </ul>
+const Thumbnails = React.forwardRef(
+  ({ currentTileSource, tileSources = [], onThumbClick }, scrollRef) => {
+    function getClassName(t) {
+      let className = `osrv-thumbnail`;
+      if (currentTileSource && currentTileSource.id === t.id) {
+        className += ` active`;
+      }
+      return className;
+    }
+
+    return (
+      <div
+        data-testid="open-seadragon-thumbnails-container"
+        className="osrv-thumbnails-wrapper"
+        css={bottomPanel("relative")}
+      >
+        <div css={thumbnailView} ref={scrollRef}>
+          <ul css={panelListingThumbs}>
+            {tileSources.map((t) => (
+              <li
+                key={t.id}
+                data-id={t.id}
+                data-testid="tile-source-thumbnail"
+                onClick={() => onThumbClick(t.id)}
+                aria-label="Thumbnail"
+                className={getClassName(t)}
+              >
+                <img
+                  src={`${t.id}/square/70,70/0/default.jpg`}
+                  data-testid="thumbnail-image"
+                  alt={t.label}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+);
 
 Thumbnails.propTypes = {
   /** Current tile source displayed in OpenSeadragon viewer */
@@ -96,6 +98,6 @@ Thumbnails.propTypes = {
   onThumbClick: PropTypes.func,
   /** All tilesources for the image resource */
   tileSources: PropTypes.array,
-  /** Boolean to check if this component is called from styleguidist preview mode */
-  isPreview: PropTypes.bool,
 };
+
+export default Thumbnails;

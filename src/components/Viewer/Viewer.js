@@ -66,6 +66,7 @@ const Viewer = ({ manifest }) => {
   const [currentURLParams, setCurrentURLParams] = useState(
     window.location.hash
   );
+  const scrollElRef = React.useRef();
   const configProps = useContext(ConfigContext);
 
   const openSeadragonContainer = css`
@@ -192,7 +193,9 @@ const Viewer = ({ manifest }) => {
   };
 
   const handlePageChange = ({ page }) => {
-    setCurrentTileSource(canvasImageResources[page]);
+    const activeTile = canvasImageResources[page];
+    setCurrentTileSource(activeTile);
+    centerActiveThumbnail(activeTile.id);
 
     if (configProps.deepLinking) {
       updateUrl({ tileSourceIndex: page });
@@ -207,9 +210,19 @@ const Viewer = ({ manifest }) => {
     const index = canvasImageResources.findIndex(
       (element) => element.id === id
     );
-
     setCurrentTileSource(canvasImageResources[index]);
     openSeadragonInstance.goToPage(index);
+  }
+
+  /**
+   * Center selected thumbnail in the thumbnail drawer
+   * @param {String} id
+   */
+  function centerActiveThumbnail(id) {
+    const el = document.querySelector(`[data-id="${id}"]`);
+    const leftPos =
+      el.offsetLeft - scrollElRef.current.offsetWidth / 2 + el.offsetWidth / 2;
+    scrollElRef.current.scrollTo({ left: leftPos, behavior: "smooth" });
   }
 
   function initOpenSeadragon() {
@@ -315,6 +328,7 @@ const Viewer = ({ manifest }) => {
           <Thumbnails
             currentTileSource={currentTileSource}
             onThumbClick={handleThumbClick}
+            ref={scrollElRef}
             tileSources={canvasImageResources}
           />
         </div>
