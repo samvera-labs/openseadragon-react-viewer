@@ -1,6 +1,15 @@
-# OpenSeadragonViewer
+# openseadragon-react-viewer
 
 [![npm version](https://badge.fury.io/js/openseadragon-react-viewer.svg)](https://badge.fury.io/js/openseadragon-react-viewer)
+
+## March 30, 2022:
+
+_Note this repository will be no longer be maintained by the original developers. We encourage all users to switch to [clover-iiif](https://github.com/samvera-labs/clover-iiif), which will provide the same image viewing experience in OpenSeadragon, along with support for audio and video files in a single viewer._
+
+### Updated viewer
+
+- [clover-iiif Github](https://github.com/samvera-labs/clover-iiif)
+- [clover-iiif NPM](https://www.npmjs.com/package/@samvera/clover-iiif)
 
 ![Image of OpenSeadragon React Viewer](https://i.imgur.com/6PbYcbE.jpg)
 
@@ -14,7 +23,7 @@ A React wrapper component around the OpenSeadragon viewer. Feed `OpenSeadragonVi
 
 ## Installation and usage
 
-```
+```bash
 npm install openseadragon-react-viewer
 
 // And peer dependencies
@@ -109,7 +118,7 @@ To fix this you must ensure that the OpenSeadragon React Viewer host's React app
 
 2. Install project dependencies
 
-```
+```bash
 npm install
 ```
 
@@ -117,7 +126,7 @@ npm install
 
 To spin up the development environment (which is a Styleguidiest dev environment) run:
 
-```
+```bash
 npm run dev
 ```
 
@@ -129,13 +138,13 @@ See `rollup.config.js` for development and packaging configuration details. Deve
 
 To run unit tests, with a full coverage report:
 
-```
+```bash
 npm run test
 ```
 
 To run tests in `watch` mode:
 
-```
+```bash
 npm run test:watch
 ```
 
@@ -143,7 +152,7 @@ npm run test:watch
 
 Styleguidist, in addition to providing documentation, also offers an isolated development environment. To run the environment and test it out:
 
-```
+```bash
 npm run dev
 // or
 npm run styleguide
@@ -151,7 +160,7 @@ npm run styleguide
 
 To build a static html version of the docs (which Github pages uses), run:
 
-```
+```bash
 npm run styleguide:build
 ```
 
@@ -159,7 +168,7 @@ npm run styleguide:build
 
 To deploy your forked version of this repo, run:
 
-```
+```bash
 npm run build
 ```
 
@@ -173,7 +182,7 @@ See the [Styleguidist docs](https://samvera-labs.github.io/openseadragon-react-v
 
 If you're working on a PR for this project, create a feature branch off of `main`.
 
-This repository follows the [Samvera Community Code of Conduct](https://samvera.atlassian.net/wiki/spaces/samvera/pages/405212316/Code+of+Conduct) and [language recommendations](https://github.com/samvera/maintenance/blob/master/templates/CONTRIBUTING.md#language).  Please ***do not*** create a branch called `master` for this repository or as part of your pull request; the branch will either need to be removed or renamed before it can be considered for inclusion in the code base and history of this repository.
+This repository follows the [Samvera Community Code of Conduct](https://samvera.atlassian.net/wiki/spaces/samvera/pages/405212316/Code+of+Conduct) and [language recommendations](https://github.com/samvera/maintenance/blob/master/templates/CONTRIBUTING.md#language). Please **_do not_** create a branch called `master` for this repository or as part of your pull request; the branch will either need to be removed or renamed before it can be considered for inclusion in the code base and history of this repository.
 
 ## Code style
 
