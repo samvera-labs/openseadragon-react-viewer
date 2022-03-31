@@ -33,8 +33,8 @@ npm install @emotion/react openseadragon react-device-detect react-select
 Then use it in your app:
 
 ```jsx
-import React from 'react';
-import { OpenSeadragonViewer } from "openseadragon-react-viewer"
+import React from "react";
+import { OpenSeadragonViewer } from "openseadragon-react-viewer";
 
 const App = () => {
   // Provide either a local IIIF manifest object
@@ -48,7 +48,7 @@ const App = () => {
   // All other options default to 'true'
   const options = {
     showDropdown: true,
-    showThumbnails: false,
+    showThumbnails: true,
     showToolbar: true,
     deepLinking: true,
     height: 800,
@@ -58,7 +58,7 @@ const App = () => {
   const openSeadragonOptions = {
     gestureSettingsMouse: {
       scrollToZoom: true,
-    }
+    },
   };
 
   // Customize which tool bar controls are displayed
@@ -74,12 +74,12 @@ const App = () => {
     <OpenSeadragonViewer
       manifest={manifest}
       manifestUrl={manifestUrl}
-      options,
-      openSeadragonOptions, // Optional
-      toolBarOptions // Optional
-      />
+      options={options}
+      openSeadragonOptions={openSeadragonOptions} // Optional
+      toolBarOptions={toolBarOptions} // Optional
+    />
   );
-}
+};
 
 export default App;
 ```
