@@ -4,6 +4,10 @@
   "main": "dist/openseadragon-react-viewer.cjs.js",
   "module": "dist/openseadragon-react-viewer.esm.js",
   "browser": "dist/openseadragon-react-viewer.umd.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samvera-labs/openseadragon-react-viewer.git"
+  },
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@reglendo/canvas2image": "^1.0.5-2",
@@ -16,13 +20,13 @@
     "@babel/plugin-transform-runtime": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.1",
-    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-replace": "^4.0.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.3",
@@ -30,10 +34,10 @@
     "babel-loader": "^8.2.3",
     "jest": "^27.4.5",
     "jest-canvas-mock": "^2.2.0",
-    "openseadragon": "^2.4.2",
+    "openseadragon": "^3.0.0",
     "prop-types": "^15.7.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-styleguidist": "^11.1.7",
     "rollup": "^2.61.1",
     "rollup-plugin-livereload": "^2.0.5",
@@ -43,9 +47,9 @@
     "webpack": "^5.65.0"
   },
   "peerDependencies": {
-    "openseadragon": "^2.4.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "openseadragon": "^3.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "scripts": {
     "build": "NODE_ENV=production rollup -c && styleguidist build",
